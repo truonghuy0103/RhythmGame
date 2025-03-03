@@ -5,195 +5,266 @@ using UnityEngine;
 using System;
 using Huy_Core;
 using Newtonsoft.Json;
+using UnityEngine.Serialization;
 
-public class Huy_GameManager : MonoBehaviour
-{ 
-    [SerializeField] public Huy_UIGameplay uiGameplay;
-
-    [Header("---Transform and Game Object---")]
-    [SerializeField] private List<GameObject> lsPrefabArrows = new List<GameObject>();
-    [SerializeField] private List<Transform> lsContainSpawnArrow = new List<Transform>();
-    [SerializeField] private List<Transform> lsContainSpawnEnemyArrow = new List<Transform>();
-    
-    [SerializeField] private List<Transform> lsTargetArrows = new List<Transform>();
-    [SerializeField] private List<Transform> lsPositionSpawnArrows = new List<Transform>();
-    
-    [Header("---Data---")]
-    private List<Huy_ArrowDataItem> lsArrowDataItems = new List<Huy_ArrowDataItem>();
-    
-    [Header("---Variables ---")]
-    private float prevTimeArrow = 0;
-    private float distanceMoveArrow = 0;
-    private int curIndexArrow = 0;
-
-    private float timeMoveArrow;
-    private float defaultTimeMoveArrow = 1.8f;
-    public void SetupGameplayUI(float lengthSong)
+namespace Huy
+{
+    public class Huy_GameManager : MonoBehaviour
     {
-        prevTimeArrow = 0;
-        distanceMoveArrow = uiGameplay.GetDistanceMoveArrow();
-        timeMoveArrow = defaultTimeMoveArrow * 1;
-        
-        //Get List Position Spawn Arrow
-        lsPositionSpawnArrows = uiGameplay.GetListTransformSpawnArrow();
-        //Get List Target Arrow
-        lsTargetArrows = uiGameplay.GetListTargetArrow();
-        
-        //Get data json
-        Huy_RootItem rootItem = JsonConvert.DeserializeObject<Huy_RootItem>(Resources.Load<TextAsset>("Jsons/tutorial-easy").text);
-        Huy_SongItem songItem = rootItem.songItem;
-        
-        lsArrowDataItems.Clear();
-        for (int i = 0; i < songItem.notes.Count; i++)
+        [SerializeField] public Huy_UIGameplay uiGameplay;
+
+        [Header("---Transform and Game Object---")] [SerializeField]
+        private List<GameObject> lsPrefabArrows = new List<GameObject>();
+
+        [SerializeField] private List<Transform> lsContainSpawnArrow = new List<Transform>();
+        [SerializeField] private List<Transform> lsContainSpawnEnemyArrow = new List<Transform>();
+
+        [SerializeField] private List<Transform> lsTargetArrows = new List<Transform>();
+        [SerializeField] private List<Transform> lsPositionSpawnArrows = new List<Transform>();
+
+        [Header("---Data---")] private List<Huy_ArrowDataItem> lsArrowDataItems = new List<Huy_ArrowDataItem>();
+
+        [Header("---Variables ---")] private float prevTimeArrow = 0;
+        private float distanceMoveArrow = 0;
+        private int curIndexArrow = 0;
+
+        private float timeMoveArrow;
+        private float defaultTimeMoveArrow = 1.8f;
+
+        public GameState gameState;
+        public float TimerSong;
+        private float deltaTime;
+
+        private void Start()
         {
-            for (int j = 0; j < songItem.notes[i].sectionNotes.Count; j++)
-            {
-                Huy_ArrowDataItem arrowDataItem = new Huy_ArrowDataItem(songItem.notes[i].sectionNotes[j][0],
-                    (int)(songItem.notes[i].sectionNotes[j][1] % 4), songItem.notes[i].sectionNotes[j][2],
-                    songItem.notes[i].mustHitSection);
-                lsArrowDataItems.Add(arrowDataItem);
-            }
+            SetupGameplay();
         }
-        
-        lsArrowDataItems.Sort(SortByTimeAppear);
-    }
 
-    private int SortByTimeAppear(Huy_ArrowDataItem obj1, Huy_ArrowDataItem obj2)
-    {
-        return obj1.timeAppear.CompareTo(obj2.timeAppear);
-    }
-
-    public void LoadNoteNew(float time)
-    {
-        if (curIndexArrow == lsArrowDataItems.Count - 1)
+        public void SetupGameplay()
         {
-            if (lsArrowDataItems[curIndexArrow - 1].timeAppear > time * 1000)
+            gameState = GameState.None;
+            GetSongGameplay(0,"tutorial");
+            Huy_SoundManager.Instance.PlaySoundBGM();
+            float lengthSong = Huy_SoundManager.Instance.GetLengthBGM();
+            SetupGameplayUI(lengthSong);
+        }
+
+        public void SetupGameplayUI(float lengthSong)
+        {
+            prevTimeArrow = 0;
+            distanceMoveArrow = uiGameplay.GetDistanceMoveArrow();
+            timeMoveArrow = defaultTimeMoveArrow * 1;
+
+            //Get List Position Spawn Arrow
+            lsPositionSpawnArrows = uiGameplay.GetListTransformSpawnArrow();
+            //Get List Target Arrow
+            lsTargetArrows = uiGameplay.GetListTargetArrow();
+
+            //Get data json
+            Huy_RootItem rootItem =
+                JsonConvert.DeserializeObject<Huy_RootItem>(Resources.Load<TextAsset>("Jsons/tutorial-easy").text);
+            Huy_SongItem songItem = rootItem.song;
+
+            Debug.Log("json: " + rootItem.ToString());
+
+            lsArrowDataItems.Clear();
+            for (int i = 0; i < songItem.notes.Count; i++)
             {
-                return;
-            }
-            else
-            {
-                if (((lsArrowDataItems[curIndexArrow].timeAppear / 1000) - time) < -0.001f &&
-                    ((lsArrowDataItems[curIndexArrow].timeAppear / 1000) - time) >= -0.15f)
+                for (int j = 0; j < songItem.notes[i].sectionNotes.Count; j++)
                 {
-                    //Create arrow
-                    return;
+                    Huy_ArrowDataItem arrowDataItem = new Huy_ArrowDataItem(songItem.notes[i].sectionNotes[j][0],
+                        (int)(songItem.notes[i].sectionNotes[j][1] % 4), songItem.notes[i].sectionNotes[j][2],
+                        songItem.notes[i].mustHitSection);
+                    lsArrowDataItems.Add(arrowDataItem);
                 }
             }
+
+            lsArrowDataItems.Sort(SortByTimeAppear);
+
+            TimerSong = lengthSong;
+            deltaTime = timeMoveArrow - 0.1f;
+            gameState = GameState.Playing;
         }
-        else
+
+        private void Update()
         {
-            if (lsArrowDataItems[curIndexArrow].timeAppear == 0 || lsArrowDataItems[curIndexArrow].timeAppear < 1000)
+            if (gameState == GameState.Playing && TimerSong >= 0)
             {
-                //Create arrow
-                return;
+                ShowTimerSong();
+                LoadNoteNew(Huy_SoundManager.Instance.GetCurrentTimeSoundBGM() + deltaTime);
             }
-            else
+        }
+
+        public void ShowTimerSong()
+        {
+            TimerSong -= Time.deltaTime;
+            if (TimerSong <= 0)
             {
-                if (lsArrowDataItems[curIndexArrow].timeAppear > time * 1000)
+                //Show timer text
+                //Check win/lose
+            }
+        }
+
+        private int SortByTimeAppear(Huy_ArrowDataItem obj1, Huy_ArrowDataItem obj2)
+        {
+            return obj1.timeAppear.CompareTo(obj2.timeAppear);
+        }
+
+        public void LoadNoteNew(float time)
+        {
+            if (curIndexArrow == lsArrowDataItems.Count - 1)
+            {
+                if (lsArrowDataItems[curIndexArrow - 1].timeAppear > time * 1000)
                 {
                     return;
                 }
                 else
                 {
-                    if (lsArrowDataItems[curIndexArrow + 1].timeAppear > time * 1000)
+                    if (((lsArrowDataItems[curIndexArrow].timeAppear / 1000) - time) < -0.001f &&
+                        ((lsArrowDataItems[curIndexArrow].timeAppear / 1000) - time) >= -0.15f)
                     {
                         //Create arrow
+                        CreateArrow();
+                        return;
+                    }
+                }
+            }
+            else
+            {
+                if (lsArrowDataItems[curIndexArrow].timeAppear == 0 ||
+                    lsArrowDataItems[curIndexArrow].timeAppear < 1000)
+                {
+                    //Create arrow
+                    CreateArrow();
+                    return;
+                }
+                else
+                {
+                    if (lsArrowDataItems[curIndexArrow].timeAppear > time * 1000)
+                    {
+                        return;
+                    }
+                    else
+                    {
+                        if (lsArrowDataItems[curIndexArrow + 1].timeAppear > time * 1000)
+                        {
+                            //Create arrow
+                            CreateArrow();
+                        }
                     }
                 }
             }
         }
-    }
 
-    private void CreateArrow()
-    {
-        if (lsArrowDataItems[curIndexArrow] != null)
+        private void CreateArrow()
         {
-            int indexArrowClone = lsArrowDataItems[curIndexArrow].indexArrow;
-            int sumArrow = lsArrowDataItems.Count;
-            if (lsArrowDataItems[curIndexArrow].mustHit)
+            if (lsArrowDataItems[curIndexArrow] != null)
             {
-                //Create arrow from list prefab
-                GameObject goArrow = Instantiate(lsPrefabArrows[indexArrowClone], lsContainSpawnArrow[indexArrowClone]);
-                goArrow.transform.localPosition = lsPositionSpawnArrows[indexArrowClone].position;
-                Huy_Arrow arrowMove = goArrow.GetComponent<Huy_Arrow>();
-                //Setup arrow
-                arrowMove.SetupArrow(timeMoveArrow, lsArrowDataItems[curIndexArrow].timeTail / 1000,
-                    lsArrowDataItems[curIndexArrow].indexArrow, lsArrowDataItems[curIndexArrow].mustHit,
-                    distanceMoveArrow, curIndexArrow, sumArrow);
+                int indexArrowClone = lsArrowDataItems[curIndexArrow].indexArrow;
+                int sumArrow = lsArrowDataItems.Count;
+                if (lsArrowDataItems[curIndexArrow].mustHit)
+                {
+                    //Create arrow from list prefab
+                    GameObject goArrow = Instantiate(lsPrefabArrows[indexArrowClone],
+                        lsContainSpawnArrow[indexArrowClone]);
+                    goArrow.transform.localPosition = lsPositionSpawnArrows[indexArrowClone].position;
+                    Huy_Arrow arrowMove = goArrow.GetComponent<Huy_Arrow>();
+                    //Setup arrow
+                    arrowMove.SetupArrow(timeMoveArrow, lsArrowDataItems[curIndexArrow].timeTail / 1000,
+                        lsArrowDataItems[curIndexArrow].indexArrow, lsArrowDataItems[curIndexArrow].mustHit,
+                        distanceMoveArrow, curIndexArrow, sumArrow);
+                }
+                else
+                {
+                    //Create arrow from list prefab
+                    GameObject goArrow = Instantiate(lsPrefabArrows[indexArrowClone],
+                        lsContainSpawnEnemyArrow[indexArrowClone]);
+                    goArrow.transform.localPosition = lsPositionSpawnArrows[indexArrowClone].position;
+                    Huy_Arrow arrowMove = goArrow.GetComponent<Huy_Arrow>();
+                    //Setup arrow
+                    arrowMove.SetupArrow(timeMoveArrow, lsArrowDataItems[curIndexArrow].timeTail / 1000,
+                        lsArrowDataItems[curIndexArrow].indexArrow, lsArrowDataItems[curIndexArrow].mustHit,
+                        distanceMoveArrow, curIndexArrow, sumArrow);
+                }
+            }
+
+            curIndexArrow++;
+        }
+
+        private void GetSongGameplay(int indexMod, string nameSong)
+        {
+            if (indexMod == 0)
+            {
+                AudioClip songAudioClip = Resources.Load("Sounds/Inst-" + nameSong) as AudioClip;
+                Huy_SoundManager.Instance.AddSoundBGM(songAudioClip);
             }
             else
             {
-                //Create arrow from list prefab
-                GameObject goArrow = Instantiate(lsPrefabArrows[indexArrowClone], lsContainSpawnEnemyArrow[indexArrowClone]);
-                goArrow.transform.localPosition = lsPositionSpawnArrows[indexArrowClone].position;
-                Huy_Arrow arrowMove = goArrow.GetComponent<Huy_Arrow>();
-                //Setup arrow
-                arrowMove.SetupArrow(timeMoveArrow, lsArrowDataItems[curIndexArrow].timeTail / 1000,
-                    lsArrowDataItems[curIndexArrow].indexArrow, lsArrowDataItems[curIndexArrow].mustHit,
-                    distanceMoveArrow, curIndexArrow, sumArrow);
+                // Get From Asset Bundle
             }
+
         }
-        
-        curIndexArrow++;
     }
-    private void GetSongGameplay(int indexMod, string nameSong)
+
+    [Serializable]
+    public class Huy_ArrowDataItem
     {
-        if (indexMod == 0)
+        public float timeAppear;
+        public int indexArrow;
+        public float timeTail;
+        public bool mustHit;
+
+        public Huy_ArrowDataItem(float timeAppear, int indexArrow, float timeTail, bool mustHit)
         {
-            AudioClip songAudioClip = Resources.Load("Sounds/Inst-" + nameSong) as AudioClip;
-            Huy_SoundManager.Instance.AddSoundBGM(songAudioClip); 
+            this.timeAppear = timeAppear;
+            this.indexArrow = indexArrow;
+            this.timeTail = timeTail;
+            this.mustHit = mustHit;
         }
-        else
+    }
+
+    [Serializable]
+    public class Huy_NoteSongItem
+    {
+        public int lengthInStep;
+        public bool mustHitSection;
+        public List<float[]> sectionNotes = new List<float[]>();
+
+        public Huy_NoteSongItem(int lengthInStep, bool mustHitSection, List<float[]> sectionNotes)
         {
-            // Get From Asset Bundle
+            this.lengthInStep = lengthInStep;
+            this.mustHitSection = mustHitSection;
+            this.sectionNotes = sectionNotes;
         }
-        
     }
-}
 
-[Serializable]
-public class Huy_ArrowDataItem
-{
-    public float timeAppear;
-    public int indexArrow;
-    public float timeTail;
-    public bool mustHit;
-
-    public Huy_ArrowDataItem(float timeAppear, int indexArrow, float timeTail, bool mustHit)
+    [Serializable]
+    public class Huy_SongItem
     {
-        this.timeAppear = timeAppear;
-        this.indexArrow = indexArrow;
-        this.timeTail = timeTail;
-        this.mustHit = mustHit;
+        public List<Huy_NoteSongItem> notes = new List<Huy_NoteSongItem>();
     }
-}
 
-[Serializable]
-public class Huy_NoteSongItem
-{
-    public int lengthInStep;
-    public bool mustHitSection;
-    public List<float[]> sectionNotes = new List<float[]>();
-
-    public Huy_NoteSongItem(int lengthInStep, bool mustHitSection, List<float[]> sectionNotes)
+    [Serializable]
+    public class Huy_RootItem
     {
-        this.lengthInStep = lengthInStep;
-        this.mustHitSection = mustHitSection;
-        this.sectionNotes = sectionNotes;
+        public Huy_SongItem song;
     }
-}
 
-[Serializable]
-public class Huy_SongItem
-{
-    public List<Huy_NoteSongItem> notes = new List<Huy_NoteSongItem>();
-}
+    public enum GameState
+    {
+        None = 0,
+        PauseGame = 1,
+        Playing = 2,
+        Ready = 3,
+        EndGame = 4
+    }
 
-[Serializable]
-public class Huy_RootItem
-{
-    public Huy_SongItem songItem;
+    public enum Difficult
+    {
+        Easy = 0,
+        Normal = 1,
+        Hard = 2
+    }
 }
 
 

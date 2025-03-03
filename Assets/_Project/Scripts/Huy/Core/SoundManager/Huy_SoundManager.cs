@@ -39,8 +39,10 @@ namespace Huy_Core
 
        public float GetLengthBGM()
        {
+           Debug.Log("count: " + lsBGMs.Count);
            if (lsBGMs.Count > 0)
            {
+               Debug.Log("length: " + lsBGMs[0].length);
                return lsBGMs[0].length;
            }
 
