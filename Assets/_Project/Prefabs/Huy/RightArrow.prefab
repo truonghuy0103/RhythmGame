@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3982017710233513989}
   - component: {fileID: 3982017710233513988}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Tail
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -97,7 +97,7 @@ GameObject:
   - component: {fileID: 7412419775401935943}
   - component: {fileID: 4172725748575981025}
   - component: {fileID: 8827301422430300522}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: RightArrow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -231,3 +231,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 662e793105319bb4ea76103fe2cdc7a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  spriteArrowMustHit: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
+  spriteArrow: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
+  spriteTailMustHit: {fileID: 0}
+  spriteTail: {fileID: 0}
+  spriteRendererArrow: {fileID: 0}
+  spriteRendererTail: {fileID: 0}
+  collider2D: {fileID: 0}
+  isCollider: 0
+  isCorrectArrow: 0
+  timerAnim: 0

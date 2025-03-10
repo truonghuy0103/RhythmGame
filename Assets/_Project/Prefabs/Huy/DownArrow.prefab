@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 8442736850304488911}
   - component: {fileID: 5520956367744181839}
   - component: {fileID: 1142579508973023131}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: DownArrow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -147,6 +147,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 662e793105319bb4ea76103fe2cdc7a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  spriteArrowMustHit: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
+  spriteArrow: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
+  spriteTailMustHit: {fileID: 0}
+  spriteTail: {fileID: 0}
+  spriteRendererArrow: {fileID: 0}
+  spriteRendererTail: {fileID: 0}
+  collider2D: {fileID: 0}
+  isCollider: 0
+  isCorrectArrow: 0
+  timerAnim: 0
 --- !u!1 &4674553984374373534
 GameObject:
   m_ObjectHideFlags: 0
@@ -157,7 +167,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3430611028993613329}
   - component: {fileID: 4289234210087371179}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Tail
   m_TagString: Untagged
   m_Icon: {fileID: 0}

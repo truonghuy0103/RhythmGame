@@ -54,6 +54,11 @@ public class Huy_TargetArrow : MonoBehaviour
 
     public void SetCollider(Huy_Arrow arrow)
     {
+        if (arrow != null)
+        {
+            Debug.Log("Collider: "+ arrow.name);
+        }
+        
         if (lsArrows.Count == 0 || !lsArrows.Contains(arrow))
         {
             lsArrows.Add(arrow);
@@ -62,6 +67,11 @@ public class Huy_TargetArrow : MonoBehaviour
 
     public void ExitCollider(Huy_Arrow arrow)
     {
+        if (arrow != null)
+        {
+            Debug.Log("Exit: " + arrow.name);
+        }
+        
         if (lsArrows.Contains(arrow))
         {
             lsArrows.Remove(arrow);

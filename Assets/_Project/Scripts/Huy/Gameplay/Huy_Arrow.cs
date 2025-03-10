@@ -38,7 +38,7 @@ public class Huy_Arrow : MonoBehaviour
     private void Awake()
     {
         spriteRendererArrow = GetComponent<SpriteRenderer>();
-        spriteRendererTail = GetComponentInChildren<SpriteRenderer>();
+        spriteRendererTail = transform.GetChild(0).GetComponent<SpriteRenderer>();
         collider2D = GetComponent<BoxCollider2D>();
     }
 
@@ -141,6 +141,7 @@ public class Huy_Arrow : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
+        Debug.Log("Enter: " + other.gameObject.name);
         if (other.gameObject.layer == 8)
         {
             isCollider = true;
