@@ -9,43 +9,72 @@ using UnityEngine.Serialization;
 
 namespace Huy
 {
-    public class Huy_GameManager : MonoBehaviour
+    public class Huy_GameManager : SingletonMono<Huy_GameManager>
     {
         [SerializeField] public Huy_UIGameplay uiGameplay;
 
-        [Header("---Transform and Game Object---")] [SerializeField]
-        private List<GameObject> lsPrefabArrows = new List<GameObject>();
+        [Header("---Transform and Game Object---")] 
+        [SerializeField] private List<GameObject> lsPrefabArrows = new List<GameObject>();
 
         [SerializeField] private List<Transform> lsContainSpawnArrow = new List<Transform>();
         [SerializeField] private List<Transform> lsContainSpawnEnemyArrow = new List<Transform>();
 
-        [SerializeField] private List<Transform> lsTargetArrows = new List<Transform>();
+        [SerializeField] private List<Transform> lsTransTargetArrows = new List<Transform>();
         [SerializeField] private List<Transform> lsPositionSpawnArrows = new List<Transform>();
 
-        [Header("---Data---")] private List<Huy_ArrowDataItem> lsArrowDataItems = new List<Huy_ArrowDataItem>();
+        [Header("---Data---")] 
+        private List<Huy_ArrowDataItem> lsArrowDataItems = new List<Huy_ArrowDataItem>();
 
-        [Header("---Variables ---")] private float prevTimeArrow = 0;
+        [Header("---Variables ---")] 
+        private float prevTimeArrow = 0;
         private float distanceMoveArrow = 0;
         private int curIndexArrow = 0;
 
         private float timeMoveArrow;
-        private float defaultTimeMoveArrow = 1.8f;
+
+        [SerializeField, Range(1, 3)] private float defaultTimeMoveArrow = 1.8f;
 
         public GameState gameState;
         public float TimerSong;
         private float deltaTime;
+        
+        public string nameSong;
 
-        private void Start()
+        private int miss;
+        public int Miss
         {
+            get => miss;
+            set => miss = value;
+        }
+
+        private int score;
+
+        public int Score
+        {
+            get => score;
+            set => score = value;
+        }
+        
+        public List<Huy_TargetArrow> lsTargetArrows = new List<Huy_TargetArrow>();
+        
+        private IEnumerator Start()
+        {
+            //Get List Position Spawn Arrow
+            lsPositionSpawnArrows = uiGameplay.GetListTransformSpawnArrow();
+            //Get List Target Arrow
+            lsTransTargetArrows = uiGameplay.GetListTargetArrow();
+            
+            yield return new WaitForSeconds(0.1f);
             SetupGameplay();
         }
 
         public void SetupGameplay()
         {
             gameState = GameState.None;
-            GetSongGameplay(0,"tutorial");
+            GetSongGameplay(0, nameSong);
             Huy_SoundManager.Instance.PlaySoundBGM();
             float lengthSong = Huy_SoundManager.Instance.GetLengthBGM();
+            Debug.Log("lengthSong: " + lengthSong);
             SetupGameplayUI(lengthSong);
         }
 
@@ -54,12 +83,7 @@ namespace Huy
             prevTimeArrow = 0;
             distanceMoveArrow = uiGameplay.GetDistanceMoveArrow();
             timeMoveArrow = defaultTimeMoveArrow * 1;
-
-            //Get List Position Spawn Arrow
-            lsPositionSpawnArrows = uiGameplay.GetListTransformSpawnArrow();
-            //Get List Target Arrow
-            lsTargetArrows = uiGameplay.GetListTargetArrow();
-
+            
             //Get data json
             Huy_RootItem rootItem =
                 JsonConvert.DeserializeObject<Huy_RootItem>(Resources.Load<TextAsset>("Jsons/tutorial-easy").text);
@@ -91,7 +115,14 @@ namespace Huy
             if (gameState == GameState.Playing && TimerSong >= 0)
             {
                 ShowTimerSong();
-                LoadNoteNew(Huy_SoundManager.Instance.GetCurrentTimeSoundBGM() + deltaTime);
+                if (nameSong == "tutorial")
+                {
+                    LoadNoteNew(Huy_SoundManager.Instance.GetCurrentTimeSoundBGM() + deltaTime);
+                }
+                else
+                {
+                    CalculateCreateArrow(Huy_SoundManager.Instance.GetCurrentTimeSoundBGM() + deltaTime);
+                }
             }
         }
 
@@ -155,6 +186,21 @@ namespace Huy
                 }
             }
         }
+        
+        private void CalculateCreateArrow(float time)
+        {
+            if (curIndexArrow >= lsArrowDataItems.Count)
+            {
+                return;
+            }
+
+            if ((lsArrowDataItems[curIndexArrow].timeAppear / 1000) < time && (time - prevTimeArrow > 0.1f))
+            {
+                Debug.Log("arrow: " + curIndexArrow + " " + lsArrowDataItems[curIndexArrow].timeAppear + " " + lsArrowDataItems.Count);
+                CreateArrow();
+                prevTimeArrow = time;
+            }
+        }
 
         private void CreateArrow()
         {
@@ -202,10 +248,24 @@ namespace Huy
             {
                 // Get From Asset Bundle
             }
+        }
 
+        public void OnButtonClickDown(int index)
+        {
+            lsTargetArrows[index].IsPress = true;
+        }
+
+        public void OnButtonClickUp(int index)
+        {
+            lsTargetArrows[index].IsPress = false;
+            for (int i = 0; i < lsContainSpawnArrow[index].childCount; i++)
+            {
+                lsContainSpawnArrow[index].GetChild(i).GetComponent<Huy_Arrow>().IsPress = false;
+            }
+                
         }
     }
-
+    
     [Serializable]
     public class Huy_ArrowDataItem
     {

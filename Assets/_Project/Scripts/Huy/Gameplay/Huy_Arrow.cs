@@ -1,7 +1,9 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
+using Huy;
 
 public class Huy_Arrow : MonoBehaviour
 {
@@ -20,9 +22,9 @@ public class Huy_Arrow : MonoBehaviour
     private bool isPress;
     public bool isCollider;
     
-    [SerializeField] private bool isCorrectArrow;
+    public bool isCorrectArrow;
     
-    private float timerAnim;
+    public float timerAnim;
     private int indexArrow;
 
     private const float DeltaMoveMustHit = 4;
@@ -107,5 +109,72 @@ public class Huy_Arrow : MonoBehaviour
     {
         DOTween.Kill(transform);
         Destroy(gameObject);
+    }
+
+    public void SetCorrect()
+    {
+        if (!isMustHit)
+        {
+            return;
+        }
+
+        if (isCorrectArrow)
+        {
+            return;
+        }
+
+        spriteRendererTail.sortingOrder = 3;
+        isCorrectArrow = true;
+        spriteRendererArrow.enabled = false;
+        if (timerAnim == 0)
+        {
+            collider2D.enabled = false;
+        }
+    }
+
+    public void SetInvisibleTail()
+    {
+        spriteRendererTail.enabled = false;
+        collider2D.enabled = false;
+        //Set animation idle for Main
+    }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.gameObject.layer == 8)
+        {
+            isCollider = true;
+            if (isMustHit)
+            {
+                //Set collider for target arrow
+                Huy_GameManager.Instance.lsTargetArrows[indexArrow].SetCollider(this);
+            }
+            else
+            {
+                //Set animation for enemy
+            }
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D other)
+    {
+        if (other.gameObject.layer == 8)
+        {
+            isCollider = false;
+            if (isMustHit)
+            {
+                if (isCorrectArrow)
+                {
+                    //Add score
+                }
+                else
+                {
+                    //Sub score
+                    //Set anim fail for main
+                }
+                //Exit collider target arrow
+                Huy_GameManager.Instance.lsTargetArrows[indexArrow].ExitCollider(this);
+            }
+        }
     }
 }
