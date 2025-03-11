@@ -11,7 +11,7 @@ namespace Huy
 {
     public class Huy_GameManager : SingletonMono<Huy_GameManager>
     {
-        [SerializeField] public Huy_UIGameplay uiGameplay;
+        public Huy_UIGameplay uiGameplay;
 
         [Header("---Transform and Game Object---")] 
         [SerializeField] private List<GameObject> lsPrefabArrows = new List<GameObject>();
@@ -86,7 +86,7 @@ namespace Huy
             
             //Get data json
             Huy_RootItem rootItem =
-                JsonConvert.DeserializeObject<Huy_RootItem>(Resources.Load<TextAsset>("Jsons/tutorial-easy").text);
+                JsonConvert.DeserializeObject<Huy_RootItem>(Resources.Load<TextAsset>("Jsons/" + nameSong + "-easy").text);
             Huy_SongItem songItem = rootItem.song;
 
             Debug.Log("json: " + rootItem.ToString());

@@ -10,6 +10,10 @@ public class Huy_UIGameplay : MonoBehaviour
     
     [SerializeField] private Transform transTarget;
     public List<Transform> lsTransSpawnArrowBot = new List<Transform>();
+    
+    [Header("-----Sprite-----")]
+    [SerializeField] private List<Sprite> lsSpriteArrowNormals = new List<Sprite>();
+    [SerializeField] private List<Sprite> lsSpriteArrowCorrects = new List<Sprite>();
 
     public float GetDistanceMoveArrow()
     {
@@ -85,5 +89,21 @@ public class Huy_UIGameplay : MonoBehaviour
         {
             OnButtonClickUp(3);
         }
+    }
+
+    public void SetCorrectArrow(int index)
+    {
+        StartCoroutine(PlayAnimationCorrectArrow(index));
+    }
+
+    IEnumerator PlayAnimationCorrectArrow(int index)
+    {
+        lsArrowTops[index].sprite = lsSpriteArrowCorrects[index];
+        lsArrowTops[index].SetNativeSize();
+        
+        yield return new WaitForSeconds(0.5f);
+        
+        lsArrowTops[index].sprite = lsSpriteArrowNormals[index];
+        lsArrowTops[index].SetNativeSize();
     }
 }

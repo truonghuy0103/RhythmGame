@@ -130,6 +130,8 @@ public class Huy_Arrow : MonoBehaviour
         {
             collider2D.enabled = false;
         }
+        
+        Huy_GameManager.Instance.uiGameplay.SetCorrectArrow(indexArrow);
     }
 
     public void SetInvisibleTail()
