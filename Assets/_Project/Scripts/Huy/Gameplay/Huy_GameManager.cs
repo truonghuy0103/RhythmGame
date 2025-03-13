@@ -21,7 +21,12 @@ namespace Huy
 
         [SerializeField] private List<Transform> lsTransTargetArrows = new List<Transform>();
         [SerializeField] private List<Transform> lsPositionSpawnArrows = new List<Transform>();
-
+        
+        [Header("---Transform and Game Object---")] 
+        [SerializeField] private Huy_CharacterDataBinding boyDataBinding;
+        [SerializeField] private Huy_CharacterDataBinding girlDataBinding;
+        [SerializeField] private Huy_CharacterDataBinding enemyDataBinding;
+        
         [Header("---Data---")] 
         private List<Huy_ArrowDataItem> lsArrowDataItems = new List<Huy_ArrowDataItem>();
 
@@ -145,11 +150,11 @@ namespace Huy
         {
             if (curIndexArrow == lsArrowDataItems.Count - 1)
             {
-                if (lsArrowDataItems[curIndexArrow - 1].timeAppear > time * 1000)
+                /*if (lsArrowDataItems[curIndexArrow - 1].timeAppear > time * 1000)
                 {
                     return;
                 }
-                else
+                else*/
                 {
                     if (((lsArrowDataItems[curIndexArrow].timeAppear / 1000) - time) < -0.001f &&
                         ((lsArrowDataItems[curIndexArrow].timeAppear / 1000) - time) >= -0.15f)
@@ -162,25 +167,28 @@ namespace Huy
             }
             else
             {
-                if (lsArrowDataItems[curIndexArrow].timeAppear == 0 ||
-                    lsArrowDataItems[curIndexArrow].timeAppear < 1000)
+                if (curIndexArrow < lsArrowDataItems.Count - 1)
                 {
-                    //Create arrow
-                    CreateArrow();
-                    return;
-                }
-                else
-                {
-                    if (lsArrowDataItems[curIndexArrow].timeAppear > time * 1000)
+                    if (lsArrowDataItems[curIndexArrow].timeAppear == 0 ||
+                        lsArrowDataItems[curIndexArrow].timeAppear < 1000)
                     {
+                        //Create arrow
+                        CreateArrow();
                         return;
                     }
                     else
                     {
-                        if (lsArrowDataItems[curIndexArrow + 1].timeAppear > time * 1000)
+                        if (lsArrowDataItems[curIndexArrow].timeAppear > time * 1000)
                         {
-                            //Create arrow
-                            CreateArrow();
+                            return;
+                        }
+                        else
+                        {
+                            if (lsArrowDataItems[curIndexArrow + 1].timeAppear > time * 1000)
+                            {
+                                //Create arrow
+                                CreateArrow();
+                            }
                         }
                     }
                 }
@@ -264,6 +272,26 @@ namespace Huy
             }
                 
         }
+
+        public void SetAnimationBoy(float index, float timeLoop = 0)
+        {
+            boyDataBinding.SetAnimationCharacter(index);
+            if (timeLoop == 0)
+            {
+                timeLoop = 0.5f;
+            }
+
+            float speedMove = distanceMoveArrow / timeMoveArrow;
+            float newTimeMove = (timeLoop * 10) / speedMove;
+            CancelInvoke("DelayFinishAnimBoy");
+            Invoke("DelayFinishAnimBoy", newTimeMove);
+        }
+
+        public void DelayFinishAnimBoy()
+        {
+            boyDataBinding.SetAnimationCharacter(0);
+        }
+        
     }
     
     [Serializable]

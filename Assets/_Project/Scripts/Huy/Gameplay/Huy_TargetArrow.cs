@@ -1,5 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
+using Huy;
+using Unity.VisualScripting.Dependencies.NCalc;
 using UnityEngine;
 
 public class Huy_TargetArrow : MonoBehaviour
@@ -26,6 +28,7 @@ public class Huy_TargetArrow : MonoBehaviour
                 if (countCollider == 0)
                 {
                     //Set animation fail for Main
+                    Huy_GameManager.Instance.SetAnimationBoy(index + 5);
                     //Sub HP bar for Main
                 }
 
@@ -52,6 +55,8 @@ public class Huy_TargetArrow : MonoBehaviour
 
     private int index;
 
+    public int countCorrect;
+
     public void SetCollider(Huy_Arrow arrow)
     {
         if (arrow != null)
@@ -76,5 +81,11 @@ public class Huy_TargetArrow : MonoBehaviour
         {
             lsArrows.Remove(arrow);
         }
+    }
+
+    public void SetCorrectCollider(int index, float timerAnim)
+    {
+        countCorrect++;
+        Huy_GameManager.Instance.SetAnimationBoy(index,timerAnim);
     }
 }

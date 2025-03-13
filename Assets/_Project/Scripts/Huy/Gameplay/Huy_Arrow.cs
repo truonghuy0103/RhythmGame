@@ -132,6 +132,7 @@ public class Huy_Arrow : MonoBehaviour
         }
         
         Huy_GameManager.Instance.uiGameplay.SetCorrectArrow(indexArrow);
+        Huy_GameManager.Instance.lsTargetArrows[indexArrow].SetCorrectCollider(indexArrow + 1, timerAnim);
     }
 
     public void SetInvisibleTail()
@@ -139,6 +140,7 @@ public class Huy_Arrow : MonoBehaviour
         spriteRendererTail.enabled = false;
         collider2D.enabled = false;
         //Set animation idle for Main
+        Huy_GameManager.Instance.SetAnimationBoy(0);
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -174,6 +176,7 @@ public class Huy_Arrow : MonoBehaviour
                 {
                     //Sub score
                     //Set anim fail for main
+                    Huy_GameManager.Instance.SetAnimationBoy(indexArrow + 5);
                 }
                 //Exit collider target arrow
                 Huy_GameManager.Instance.lsTargetArrows[indexArrow].ExitCollider(this);
