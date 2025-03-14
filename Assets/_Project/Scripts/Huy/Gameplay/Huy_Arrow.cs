@@ -157,6 +157,7 @@ public class Huy_Arrow : MonoBehaviour
             else
             {
                 //Set animation for enemy
+                Huy_GameManager.Instance.SetAnimationEnemy(indexArrow + 1);
             }
         }
     }

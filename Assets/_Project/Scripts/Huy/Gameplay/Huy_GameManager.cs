@@ -24,8 +24,9 @@ namespace Huy
         
         [Header("---Transform and Game Object---")] 
         [SerializeField] private Huy_CharacterDataBinding boyDataBinding;
-        [SerializeField] private Huy_CharacterDataBinding girlDataBinding;
-        [SerializeField] private Huy_CharacterDataBinding enemyDataBinding;
+        [SerializeField] private Huy_CharacterDataBinding girlDataBinding; 
+        [SerializeField] private Huy_CharacterDataBinding bossDataBinding;
+        private Huy_CharacterDataBinding enemyDataBinding;
         
         [Header("---Data---")] 
         private List<Huy_ArrowDataItem> lsArrowDataItems = new List<Huy_ArrowDataItem>();
@@ -112,7 +113,25 @@ namespace Huy
 
             TimerSong = lengthSong;
             deltaTime = timeMoveArrow - 0.1f;
+            
+            SetupCharacter();
+            
             gameState = GameState.Playing;
+        }
+
+        public void SetupCharacter()
+        {
+            if (nameSong == "tutorial")
+            {
+                bossDataBinding.gameObject.SetActive(false);
+                enemyDataBinding = girlDataBinding;
+            }
+            else
+            {
+                bossDataBinding.gameObject.SetActive(true);
+                girlDataBinding.SetAnimationCharacter(0);
+                enemyDataBinding = bossDataBinding;
+            }
         }
 
         private void Update()
@@ -290,6 +309,29 @@ namespace Huy
         public void DelayFinishAnimBoy()
         {
             boyDataBinding.SetAnimationCharacter(0);
+        }
+
+        public void SetAnimationEnemy(float index, float timeLoop = 0)
+        {
+            if (enemyDataBinding == null || !enemyDataBinding.gameObject.activeSelf)
+                return;
+            
+            enemyDataBinding.SetAnimationCharacter(index);
+            if (timeLoop == 0)
+            {
+                timeLoop = 0.5f;
+            }
+            
+            float speedMove = distanceMoveArrow / timeMoveArrow;
+            float newTimeMove = (timeLoop * 10) / speedMove;
+            
+            CancelInvoke("DelayFinishAnimEnemy");
+            Invoke("DelayFinishAnimEnemy", newTimeMove);
+        }
+
+        public void DelayFinishAnimEnemy()
+        {
+            enemyDataBinding.SetAnimationCharacter(0);
         }
         
     }
