@@ -2710,6 +2710,11 @@ MonoBehaviour:
   - {fileID: 1021895842}
   - {fileID: 1496875299}
   - {fileID: 1288678825}
+  lsGoEffectArrows:
+  - {fileID: 1478355241984917736, guid: d6f114cb92b8e4d08b9bb411acb177ec, type: 3}
+  - {fileID: 2460916333298853322, guid: 540ad237dde5343aebd0718ae885b44b, type: 3}
+  - {fileID: 5890753914385074462, guid: 12c2ceb24c8284103bf0985c8fe169ae, type: 3}
+  - {fileID: 5328712040142253760, guid: c46286818298d437787a820d47352281, type: 3}
   lsSpriteArrowNormals:
   - {fileID: 21300000, guid: fdb7ff94664114420bbcfbfa961c6238, type: 3}
   - {fileID: 21300000, guid: 69c4dff772fdd41d193c5db8ac5b8797, type: 3}

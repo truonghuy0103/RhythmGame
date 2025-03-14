@@ -8,8 +8,10 @@ public class Huy_UIGameplay : MonoBehaviour
 {
     [SerializeField] private List<Image> lsArrowTops = new List<Image>();
     
+    [Header("-----Transform & GameObject-----")]
     [SerializeField] private Transform transTarget;
     public List<Transform> lsTransSpawnArrowBot = new List<Transform>();
+    [SerializeField] private List<GameObject> lsGoEffectArrows = new List<GameObject>();
     
     [Header("-----Sprite-----")]
     [SerializeField] private List<Sprite> lsSpriteArrowNormals = new List<Sprite>();
@@ -100,6 +102,10 @@ public class Huy_UIGameplay : MonoBehaviour
     {
         lsArrowTops[index].sprite = lsSpriteArrowCorrects[index];
         lsArrowTops[index].SetNativeSize();
+        
+        GameObject goEffect = Instantiate(lsGoEffectArrows[index]);
+        goEffect.transform.position = lsArrowTops[index].transform.position;
+        goEffect.SetActive(true);
         
         yield return new WaitForSeconds(0.5f);
         
