@@ -1,0 +1,78 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c5da4f4af6c134a2a8e765f8df6feba5, type: 3}
+  m_Name: Huy Config Mode
+  m_EditorClassIdentifier: 
+  data:
+  - mameMode: Default
+    nameAssetBundle: Default
+    configWeekDatas:
+    - name: tutorial
+      configSongData:
+      - nameSong: Tutorial
+        nameJson: tutorial
+    - name: Week 1
+      configSongData:
+      - nameSong: Bopeebo
+        nameJson: bepeebo
+      - nameSong: Fresh
+        nameJson: fresh
+      - nameSong: Dadbattle
+        nameJson: dadbattle
+    - name: Week 2
+      configSongData:
+      - nameSong: Spookeez
+        nameJson: spookeez
+      - nameSong: South
+        nameJson: south
+      - nameSong: Monster
+        nameJson: monster
+    - name: Week 3
+      configSongData:
+      - nameSong: Pico
+        nameJson: pico
+      - nameSong: Philly
+        nameJson: philly
+      - nameSong: Blammed
+        nameJson: blammed
+    - name: Week 4
+      configSongData:
+      - nameSong: Satin Panties
+        nameJson: satin-panties
+      - nameSong: High
+        nameJson: high
+      - nameSong: MILF
+        nameJson: milf
+    - name: Week 5
+      configSongData:
+      - nameSong: Cocoa
+        nameJson: cocoa
+      - nameSong: Eggnog
+        nameJson: eggnog
+      - nameSong: Winter Horrorland
+        nameJson: winter-horrorland
+    - name: Week 6
+      configSongData:
+      - nameSong: Senpai
+        nameJson: senpai
+      - nameSong: Roses
+        nameJson: roses
+      - nameSong: Thorns
+        nameJson: thorns
+    - name: Week 7
+      configSongData:
+      - nameSong: Ugh
+        nameJson: ugh
+      - nameSong: Guns
+        nameJson: guns
+      - nameSong: Stress
+        nameJson: stress

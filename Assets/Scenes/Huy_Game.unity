@@ -1117,7 +1117,6 @@ MonoBehaviour:
   lsPositionSpawnArrows: []
   boyDataBinding: {fileID: 1626531788}
   girlDataBinding: {fileID: 1031193236}
-  enemyDataBinding: {fileID: 0}
   bossDataBinding: {fileID: 1100765761}
   defaultTimeMoveArrow: 1.8
   gameState: 0
@@ -2111,7 +2110,7 @@ Animator:
   m_GameObject: {fileID: 1100765758}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 6dbae88be4e714c5cb4f23a2d9cbe72a, type: 2}
+  m_Controller: {fileID: 22100000, guid: 13b359950247648f4807fc7c0c257f7e, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0

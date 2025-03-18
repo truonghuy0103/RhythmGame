@@ -60,6 +60,13 @@ namespace Huy
             get => score;
             set => score = value;
         }
+
+        private int indexSongOfWeek;
+        private int indexWeek;
+        private int indexMode;
+        
+        private Huy_ConfigWeekData configWeekData;
+        private Huy_ConfigSongData configSongData;
         
         public List<Huy_TargetArrow> lsTargetArrows = new List<Huy_TargetArrow>();
         
@@ -71,13 +78,20 @@ namespace Huy
             lsTransTargetArrows = uiGameplay.GetListTargetArrow();
             
             yield return new WaitForSeconds(0.1f);
-            SetupGameplay();
+            SetupGameplay(0,0,0);
         }
 
-        public void SetupGameplay()
+        public void SetupGameplay(int indexMode, int indexWeek, int indexSong)
         {
+            this.indexMode = indexMode;
+            this.indexWeek = indexWeek;
+            this.indexSongOfWeek = indexSong;
+
+            configWeekData = Huy_ConfigMode.ConfigWeekData(indexMode, indexWeek);
+            configSongData = Huy_ConfigMode.ConfigSongData(indexMode, indexWeek, indexSongOfWeek);
+            
             gameState = GameState.None;
-            GetSongGameplay(0, nameSong);
+            GetSongGameplay(indexMode, configSongData.nameJson);
             Huy_SoundManager.Instance.PlaySoundBGM();
             float lengthSong = Huy_SoundManager.Instance.GetLengthBGM();
             Debug.Log("lengthSong: " + lengthSong);
