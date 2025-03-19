@@ -76,3 +76,18 @@ MonoBehaviour:
         nameJson: guns
       - nameSong: Stress
         nameJson: stress
+  - mameMode: Garcello Mode
+    nameAssetBundle: garcello
+    configWeekDatas:
+    - name: Garcello
+      configSongData:
+      - nameSong: Headache
+        nameJson: headache
+      - nameSong: Nerves
+        nameJson: nerves
+      - nameSong: Release
+        nameJson: release
+      - nameSong: Fading
+        nameJson: fading
+      - nameSong: Dip
+        nameJson: dip
