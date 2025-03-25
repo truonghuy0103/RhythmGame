@@ -78,7 +78,7 @@ namespace Huy
             lsTransTargetArrows = uiGameplay.GetListTargetArrow();
             
             yield return new WaitForSeconds(0.1f);
-            SetupGameplay(0,0,0);
+            SetupGameplay(0,1,0);
         }
 
         public void SetupGameplay(int indexMode, int indexWeek, int indexSong)
@@ -106,7 +106,7 @@ namespace Huy
             
             //Get data json
             Huy_RootItem rootItem =
-                JsonConvert.DeserializeObject<Huy_RootItem>(Resources.Load<TextAsset>("Jsons/" + nameSong + "-easy").text);
+                JsonConvert.DeserializeObject<Huy_RootItem>(Resources.Load<TextAsset>("Jsons/" + configSongData.nameJson + "-easy").text);
             Huy_SongItem songItem = rootItem.song;
 
             Debug.Log("json: " + rootItem.ToString());
@@ -135,7 +135,7 @@ namespace Huy
 
         public void SetupCharacter()
         {
-            if (nameSong == "tutorial")
+            if (configSongData.nameJson == "tutorial")
             {
                 bossDataBinding.gameObject.SetActive(false);
                 enemyDataBinding = girlDataBinding;

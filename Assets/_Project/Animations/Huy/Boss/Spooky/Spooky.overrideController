@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!221 &22100000
+AnimatorOverrideController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Spooky
+  m_Controller: {fileID: 9100000, guid: fa161cd44917c483ea80c2768b5050d2, type: 2}
+  m_Clips:
+  - m_OriginalClip: {fileID: 7400000, guid: 5a0fc03c4fc544fd3b301b967f592e60, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: c77b4a32ea75642d499170e7862c363d, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 7949447643482413ab357a56cce9b826, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 97a88dfa4e0e34a1e98f5cd8cce99069, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 8bf43c87e91844fd2a8a3e2885d9d868, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: b99fff60ddb5c45fbae9b559768eaff7, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 7ec0ec6905fff429392a62079a5782bd, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 74b74bf73bc58470cbf0f6735a0a6e67, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 08a85629085724ae3be64ed02e12304d, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: ccd9a6083f6944fc38cba184579034ab, type: 2}

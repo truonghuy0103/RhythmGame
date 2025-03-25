@@ -23,7 +23,7 @@ MonoBehaviour:
     - name: Week 1
       configSongData:
       - nameSong: Bopeebo
-        nameJson: bepeebo
+        nameJson: bopeebo
       - nameSong: Fresh
         nameJson: fresh
       - nameSong: Dadbattle
