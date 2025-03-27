@@ -8,11 +8,19 @@ using File = UnityEngine.Windows.File;
 public static class NameSpaceEditor
 {
     public const string NameSpaceTemplate = "Templates/NameSpace";
+    public const string BaseUITemplate = "Templates/BaseUITemplate";
 
     [MenuItem("Assets/Create/Create New Script", priority = 0)]
     public static void CreateNameSpaceScript()
     {
         var assetTemplate = NameSpaceTemplate;
+        CreateFMScript(assetTemplate,"NewScript.cs");
+    }
+    
+    [MenuItem("Assets/Create/Create Base UI", priority = 0)]
+    public static void CreateBaseUIScript()
+    {
+        var assetTemplate = BaseUITemplate;
         CreateFMScript(assetTemplate,"NewScript.cs");
     }
 

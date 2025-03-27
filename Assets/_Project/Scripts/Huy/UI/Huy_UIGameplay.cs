@@ -3,8 +3,10 @@ using System.Collections.Generic;
 using Huy;
 using UnityEngine;
 using UnityEngine.UI;
+using Huy_Core;
+using UnityEditor;
 
-public class Huy_UIGameplay : MonoBehaviour
+public class Huy_UIGameplay : BaseUI
 {
     [SerializeField] private List<Image> lsArrowTops = new List<Image>();
     
@@ -16,6 +18,16 @@ public class Huy_UIGameplay : MonoBehaviour
     [Header("-----Sprite-----")]
     [SerializeField] private List<Sprite> lsSpriteArrowNormals = new List<Sprite>();
     [SerializeField] private List<Sprite> lsSpriteArrowCorrects = new List<Sprite>();
+
+    public override void OnInit()
+    {
+        base.OnInit();
+    }
+
+    public override void OnSetup(UIParam param = null)
+    {
+        base.OnSetup(param);
+    }
 
     public float GetDistanceMoveArrow()
     {
