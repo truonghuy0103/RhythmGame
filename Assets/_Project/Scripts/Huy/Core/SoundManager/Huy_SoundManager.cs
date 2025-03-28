@@ -153,6 +153,8 @@ namespace Huy_Core
         Victory,
         COUNT
     }
+    
+    [Serializable]
     public class Huy_SoundItem
     {
         public SoundFXIndex soundFxIndex;
