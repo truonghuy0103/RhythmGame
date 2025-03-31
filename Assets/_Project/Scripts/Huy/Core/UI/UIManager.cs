@@ -11,6 +11,15 @@ namespace Huy
 		UIGameplay,
 		UIWin,
 		UILose,
+		UILoading,
+		UILuckyDraw,
+		UISkin,
+		UIReward,
+		UIPause,
+		UIRate,
+		UINoInternet,
+		UIOption,
+		UIRewardLogin,
 		COUNT
 	}
 	public class UIManager : SingletonMono<UIManager>
