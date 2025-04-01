@@ -196,7 +196,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1528010499277277255}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1228711436933317062}
+        m_TargetAssemblyTypeName: Huy.Huy_UIWin, Assembly-CSharp
+        m_MethodName: OnX5_Clicked
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &1528010500009702366
 GameObject:
   m_ObjectHideFlags: 0
@@ -317,7 +329,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1528010500009702355}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1228711436933317062}
+        m_TargetAssemblyTypeName: Huy.Huy_UIWin, Assembly-CSharp
+        m_MethodName: OnHome_Clicked
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &1528010500513348836
 GameObject:
   m_ObjectHideFlags: 0
@@ -554,6 +578,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   uiIndex: 2
+  txtCoinReward: {fileID: 6115215854519895800}
+  txtCoin: {fileID: 908463927742944429}
+  btnX5: {fileID: 1528010499277277252}
 --- !u!1 &1528010501175630982
 GameObject:
   m_ObjectHideFlags: 0
@@ -956,6 +983,17 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3466dbe123d6a4b1abf1c2f989a614b5, type: 3}
+--- !u!114 &908463927742944429 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1850722527474548675, guid: 3466dbe123d6a4b1abf1c2f989a614b5, type: 3}
+  m_PrefabInstance: {fileID: 1528010500169870190}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!224 &4907254338910560575 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 5849758814751099473, guid: 3466dbe123d6a4b1abf1c2f989a614b5, type: 3}

@@ -123,4 +123,9 @@ namespace Huy
 		public Difficult difficult;
 		public int maxValueSlider;
 	}
+
+	public class WinParam : UIParam
+	{
+		public int coinReward;
+	}
 }

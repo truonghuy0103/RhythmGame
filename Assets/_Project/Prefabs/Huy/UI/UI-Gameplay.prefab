@@ -408,7 +408,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 4745946848696253265}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 4745946850531442552}
+        m_TargetAssemblyTypeName: Huy_UIGameplay, Assembly-CSharp
+        m_MethodName: OnPauseGame_Clicked
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &4745946848796860999
 GameObject:
   m_ObjectHideFlags: 0
@@ -5320,11 +5332,24 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   uiIndex: 1
+  txtSong: {fileID: 4745946848994455106}
+  txtMiss: {fileID: 4745946849526932579}
+  txtScore: {fileID: 4745946850167817578}
+  txtTimer: {fileID: 4745946850312128758}
+  imgReady: {fileID: 4745946849859395563}
+  imgDifficult: {fileID: 4745946849910278103}
+  imgIconBoy: {fileID: 4745946849905921273}
+  imgIconBoss: {fileID: 4745946849433486205}
   lsArrowTops:
   - {fileID: 4745946849538555935}
   - {fileID: 4745946849421601201}
   - {fileID: 4745946850485075420}
   - {fileID: 4745946848800657935}
+  lsImgBtns:
+  - {fileID: 4745946850165530512}
+  - {fileID: 4745946849099077124}
+  - {fileID: 4745946850631037829}
+  - {fileID: 4745946850438684427}
   transTarget: {fileID: 4745946850351548015}
   lsTransSpawnArrowBot:
   - {fileID: 4745946850165530510}
@@ -5336,6 +5361,11 @@ MonoBehaviour:
   - {fileID: 2460916333298853322, guid: 540ad237dde5343aebd0718ae885b44b, type: 3}
   - {fileID: 5890753914385074462, guid: 12c2ceb24c8284103bf0985c8fe169ae, type: 3}
   - {fileID: 5328712040142253760, guid: c46286818298d437787a820d47352281, type: 3}
+  lsGoTexts:
+  - {fileID: 4745946850667595558}
+  - {fileID: 4745946849442486129}
+  - {fileID: 4745946850587189312}
+  - {fileID: 4745946849666584067}
   lsSpriteArrowNormals:
   - {fileID: 21300000, guid: fdb7ff94664114420bbcfbfa961c6238, type: 3}
   - {fileID: 21300000, guid: 69c4dff772fdd41d193c5db8ac5b8797, type: 3}
@@ -5346,6 +5376,28 @@ MonoBehaviour:
   - {fileID: 21300000, guid: e7fa91e9c53b342ac97d48435e40579f, type: 3}
   - {fileID: 21300000, guid: 69c4814bcfe294bfdb8b9934c0cd58f9, type: 3}
   - {fileID: 21300000, guid: 3af48d7d20589403a92a1a57debe1954, type: 3}
+  lsSpriteDifficults:
+  - {fileID: 21300000, guid: 7d338de01034d4d818915a79d9b13cc1, type: 3}
+  - {fileID: 21300000, guid: a5e0e2f3211154d40a628461387356e2, type: 3}
+  - {fileID: 21300000, guid: 38aa631f4420f4494935a2ab555dac21, type: 3}
+  lsSpriteCountdowns:
+  - {fileID: 21300000, guid: 057b59858c1104c34ac2d28c37d18a4d, type: 3}
+  - {fileID: 21300000, guid: 3cab5d16c4d8f400981c453247164079, type: 3}
+  - {fileID: 21300000, guid: 4d3813dc52897479dbe584c98943536f, type: 3}
+  lsSpriteButtonOns:
+  - {fileID: 21300000, guid: 2e2e53cacc52d4efdaab1bcf5b98a3bf, type: 3}
+  - {fileID: 21300000, guid: a249770581c264ab5b71f1695602dd07, type: 3}
+  - {fileID: 21300000, guid: 1ff76e26de4814dba954b8ceb1dab2f8, type: 3}
+  - {fileID: 21300000, guid: e50820954f7d249299d09bfae66484cf, type: 3}
+  lsSpriteButtonOffs:
+  - {fileID: 21300000, guid: ad68ced9c57c14f36b9cd4517d915cfd, type: 3}
+  - {fileID: 21300000, guid: 4d35f3fa784434c49909f40940c23c6c, type: 3}
+  - {fileID: 21300000, guid: 6bdf794589755408ebd08969615c5e61, type: 3}
+  - {fileID: 21300000, guid: 89e2fc090156e445fa029378b234c70c, type: 3}
+  spriteBoyNormal: {fileID: 21300000, guid: 0445d61446aa44d208519f5a34bca520, type: 3}
+  spriteBoyLose: {fileID: 21300000, guid: 737810e39d910476b84b86038c4e636a, type: 3}
+  sliderHP: {fileID: 4745946849455506517}
+  defaultScaleBtn: {x: 0.9, y: 0.9, z: 0}
 --- !u!1 &4745946850550950566
 GameObject:
   m_ObjectHideFlags: 0

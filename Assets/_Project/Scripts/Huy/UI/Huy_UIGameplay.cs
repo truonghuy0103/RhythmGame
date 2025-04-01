@@ -239,4 +239,49 @@ public class Huy_UIGameplay : BaseUI
         txtTimer.text = Mathf.RoundToInt(timer / 60).ToString("00") + " : " +
                         Mathf.RoundToInt(timer % 60).ToString("00");
     }
+
+    public void ShowTextCorrect(int index)
+    {
+        lsGoTexts[index].SetActive(true);
+    }
+
+    public void SetSliderHP(float delta)
+    {
+        sliderHP.value = delta;
+        if (sliderHP.value > sliderHP.maxValue / 2)
+        {
+            imgIconBoy.sprite = spriteBoyLose;
+            imgIconBoss.sprite = spriteEnemyNormal;
+        }
+        else
+        {
+            imgIconBoy.sprite = spriteBoyNormal;
+            imgIconBoss.sprite = spriteEnemyLose;
+        }
+
+        if (sliderHP.value >= sliderHP.maxValue)
+        {
+            //Show game lose
+        }
+    }
+
+    public bool CheckGameWin()
+    {
+        return sliderHP.value <= sliderHP.maxValue / 2;
+    }
+
+    public void SetSpriteIconBoss(Sprite spriteBossLose, Sprite spriteBossNormal)
+    {
+        this.spriteEnemyNormal = spriteBossNormal;
+        this.spriteEnemyLose = spriteBossLose;
+    }
+
+    public void OnPauseGame_Clicked()
+    {
+        //Play click SFX
+        Huy_SoundManager.Instance.PlaySoundSFX(SoundFXIndex.Click);
+        Huy_SoundManager.Instance.PauseSoundBGM();
+        gameState = GameState.PauseGame;
+        UIManager.Instance.ShowUI(UIIndex.UIPause);
+    }
 }
