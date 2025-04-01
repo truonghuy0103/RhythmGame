@@ -4,20 +4,59 @@ using Huy;
 using UnityEngine;
 using UnityEngine.UI;
 using Huy_Core;
+using TMPro;
 using UnityEditor;
 
 public class Huy_UIGameplay : BaseUI
 {
+    [Header("-----Text-----")]
+    [SerializeField] private TextMeshProUGUI txtSong;
+    [SerializeField] private TextMeshProUGUI txtMiss;
+    [SerializeField] private TextMeshProUGUI txtScore;
+    
+    [SerializeField] private TextMeshProUGUI txtTimer;
+
+    [Header("-----Image-----")] 
+    [SerializeField] private Image imgReady;
+    [SerializeField] private Image imgDifficult;
+
+    [SerializeField] private Image imgIconBoy;
+    [SerializeField] private Image imgIconBoss;
+    
     [SerializeField] private List<Image> lsArrowTops = new List<Image>();
+    [SerializeField] private List<Image> lsImgBtns = new List<Image>();
     
     [Header("-----Transform & GameObject-----")]
     [SerializeField] private Transform transTarget;
     public List<Transform> lsTransSpawnArrowBot = new List<Transform>();
     [SerializeField] private List<GameObject> lsGoEffectArrows = new List<GameObject>();
     
+    [SerializeField] private List<GameObject> lsGoTexts = new List<GameObject>();
+    
     [Header("-----Sprite-----")]
     [SerializeField] private List<Sprite> lsSpriteArrowNormals = new List<Sprite>();
     [SerializeField] private List<Sprite> lsSpriteArrowCorrects = new List<Sprite>();
+    
+    [SerializeField] private List<Sprite> lsSpriteDifficults = new List<Sprite>();
+    
+    [SerializeField] private List<Sprite> lsSpriteCountdowns = new List<Sprite>();
+    
+    [SerializeField] private List<Sprite> lsSpriteButtonOns = new List<Sprite>();
+    [SerializeField] private List<Sprite> lsSpriteButtonOffs = new List<Sprite>();
+    
+    [SerializeField] private Sprite spriteBoyNormal;
+    [SerializeField] private Sprite spriteBoyLose;
+
+    private Sprite spriteEnemyNormal;
+    private Sprite spriteEnemyLose;
+    
+    [Header("-----Variable-----")]
+    private GameplayParam gameplayParam;
+
+    [SerializeField] private Slider sliderHP;
+
+    [SerializeField] private Vector3 defaultScaleBtn = new Vector3(0.9f, 0.9f, 0);
+    private GameState gameState;
 
     public override void OnInit()
     {
@@ -27,6 +66,56 @@ public class Huy_UIGameplay : BaseUI
     public override void OnSetup(UIParam param = null)
     {
         base.OnSetup(param);
+        
+        gameplayParam = (GameplayParam)param;
+        txtSong.text = gameplayParam.nameSong;
+        imgDifficult.sprite = lsSpriteDifficults[(int)gameplayParam.difficult];
+        imgDifficult.SetNativeSize();
+        sliderHP.maxValue = gameplayParam.maxValueSlider;
+        sliderHP.value = gameplayParam.maxValueSlider / 2;
+
+        imgReady.sprite = lsSpriteCountdowns[0];
+        imgReady.SetNativeSize();
+
+        for (int i = 0; i < lsGoTexts.Count; i++)
+        {
+            lsGoTexts[i].SetActive(false);
+        }
+
+        imgIconBoy.sprite = spriteBoyNormal;
+        imgIconBoy.SetNativeSize();
+
+        for (int i = 0; i < lsImgBtns.Count; i++)
+        {
+            lsImgBtns[i].sprite = lsSpriteButtonOffs[i];
+            lsImgBtns[i].SetNativeSize();
+            
+            lsImgBtns[i].transform.localScale = defaultScaleBtn;
+        }
+
+        StartCoroutine(CountdownToStart(1f));
+    }
+
+    IEnumerator CountdownToStart(float timer)
+    {
+        gameState = GameState.Ready;    
+        imgReady.gameObject.SetActive(true);
+        for (int i = 0; i < lsSpriteCountdowns.Count; i++)
+        {
+            imgReady.sprite = lsSpriteCountdowns[i];
+            imgReady.SetNativeSize();
+            
+            Huy_SoundManager.Instance.PlaySoundSFX(SoundFXIndex.One + 1);
+            
+            yield return new WaitForSeconds(timer);
+        }
+        
+        imgReady.gameObject.SetActive(false);
+        Huy_SoundManager.Instance.PlaySoundSFX(SoundFXIndex.Go);
+        
+        yield return new WaitForSeconds(timer);
+        gameState = GameState.Playing;
+        Huy_SoundManager.Instance.PlaySoundBGM();
     }
 
     public float GetDistanceMoveArrow()
@@ -52,11 +141,21 @@ public class Huy_UIGameplay : BaseUI
 
     public void OnButtonClickDown(int index)
     {
+        lsImgBtns[index].sprite = lsSpriteButtonOns[index];
+        lsImgBtns[index].SetNativeSize();
+
+        lsImgBtns[index].transform.localScale = Vector3.one;
+        
         Huy_GameManager.Instance.OnButtonClickDown(index);
     }
 
     public void OnButtonClickUp(int index)
     {
+        lsImgBtns[index].sprite = lsSpriteButtonOffs[index];
+        lsImgBtns[index].SetNativeSize();
+
+        lsImgBtns[index].transform.localScale = defaultScaleBtn;
+        
         Huy_GameManager.Instance.OnButtonClickUp(index);
     }
 
@@ -123,5 +222,21 @@ public class Huy_UIGameplay : BaseUI
         
         lsArrowTops[index].sprite = lsSpriteArrowNormals[index];
         lsArrowTops[index].SetNativeSize();
+    }
+
+    public void UpdateScoreText(int score)
+    {
+        txtScore.text = "Score: " + score.ToString();
+    }
+
+    public void UpdateMissText(int miss)
+    {
+        txtMiss.text = string.Format("|     Miss: {0}    |", miss.ToString());
+    }
+
+    public void UpdateTimerText(float timer)
+    {
+        txtTimer.text = Mathf.RoundToInt(timer / 60).ToString("00") + " : " +
+                        Mathf.RoundToInt(timer % 60).ToString("00");
     }
 }

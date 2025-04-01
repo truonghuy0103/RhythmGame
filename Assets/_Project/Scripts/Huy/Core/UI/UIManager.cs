@@ -116,4 +116,11 @@ namespace Huy
 	{
 		
 	}
+
+	public class GameplayParam : UIParam
+	{
+		public string nameSong;
+		public Difficult difficult;
+		public int maxValueSlider;
+	}
 }
