@@ -120,7 +120,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 7148113598463649851}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1382218613641687060}
+        m_TargetAssemblyTypeName: Huy.Huy_UILose, Assembly-CSharp
+        m_MethodName: OnHome_Clicked
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &7148113598868544202
 GameObject:
   m_ObjectHideFlags: 0
@@ -306,7 +318,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 7148113598927780693}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1382218613641687060}
+        m_TargetAssemblyTypeName: Huy.Huy_UILose, Assembly-CSharp
+        m_MethodName: OnRestart_Clicked
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &7148113598996076705
 GameObject:
   m_ObjectHideFlags: 0
@@ -552,3 +576,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   uiIndex: 3
+  goBtns: {fileID: 7148113598868544202}

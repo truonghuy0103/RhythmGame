@@ -1,11 +1,96 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using Huy_Core;
 using UnityEngine;
 using Huy;
+using TMPro;
+using UnityEngine.UI;
 namespace Huy
 {
 	public class SongItem : MonoBehaviour
 	{
-	
+		[SerializeField] private Image imgIcon;
+		[SerializeField] private Image imgDifficult;
+		private Image imgFrame;
+		
+		[SerializeField] private List<Sprite> lsSpriteDifficults = new List<Sprite>();
+		[SerializeField] private List<Sprite> lsSpriteFrames = new List<Sprite>();
+
+		[SerializeField] private TextMeshProUGUI txtScore;
+		[SerializeField] private TextMeshProUGUI txtNameSong;
+		[SerializeField] private TextMeshProUGUI txtPrice;
+
+		[SerializeField] private GameObject goPlay;
+		[SerializeField] private GameObject goBuySong;
+
+		private int indexDifficult;
+		private int indexSong;
+		private int indexWeek;
+		private int indexMode;
+
+		private int price;
+
+		private Huy_UIMainMenu parent;
+
+		private void Awake()
+		{
+			imgFrame = GetComponent<Image>();
+		}
+
+		public void OnSetupSongItem(Huy_UIMainMenu parent, int indexMode, int indexWeek, int indexSong,
+			Huy_GameplaySongData gameplaySongData,int score, bool isBought)
+		{
+			int indexFrame = indexSong % lsSpriteFrames.Count;
+			imgFrame.sprite = lsSpriteFrames[indexFrame];
+
+			this.parent = parent;
+			this.indexMode = indexMode;
+			this.indexWeek = indexWeek;
+			this.indexSong = indexSong;
+			this.price = gameplaySongData.price;
+
+			txtNameSong.text = gameplaySongData.nameSong;
+			txtScore.text = score.ToString();
+			
+			indexDifficult = 0;
+			imgDifficult.sprite = lsSpriteDifficults[indexDifficult];
+			imgDifficult.SetNativeSize();
+
+			imgIcon.sprite = gameplaySongData.spriteIcon;
+			imgIcon.SetNativeSize();
+			imgIcon.transform.localScale = new Vector3(0.6f, 0.6f, 1);
+
+			if (isBought)
+			{
+				goBuySong.SetActive(false);
+				goPlay.SetActive(true);
+			}
+			else
+			{
+				goBuySong.SetActive(true);
+				goPlay.SetActive(false);
+			}
+		}
+
+		public void OnDifficult_Clicked(int index)
+		{
+			Huy_SoundManager.Instance.PlaySoundSFX(SoundFXIndex.Click);
+			indexDifficult += index;
+			if (indexDifficult < 0)
+			{
+				indexDifficult = lsSpriteDifficults.Count - 1;
+			}
+			else
+			{
+				if (indexDifficult >= lsSpriteDifficults.Count)
+				{
+					indexDifficult = 0;
+				}
+			}
+			
+			imgDifficult.sprite = lsSpriteDifficults[indexDifficult];
+			imgDifficult.SetNativeSize();
+		}
 	}
 }

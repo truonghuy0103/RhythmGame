@@ -1912,7 +1912,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 35109234294032654}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 473189085826263668}
+        m_TargetAssemblyTypeName: Huy.Huy_UIMainMenu, Assembly-CSharp
+        m_MethodName: OnOption_Clicked
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &35109234325072174
 GameObject:
   m_ObjectHideFlags: 0
@@ -3581,7 +3593,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 35109234678645733}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 473189085826263668}
+        m_TargetAssemblyTypeName: Huy.Huy_UIMainMenu, Assembly-CSharp
+        m_MethodName: OnRate_Clicked
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &35109234707636264
 GameObject:
   m_ObjectHideFlags: 0
@@ -4164,7 +4188,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 35109234809544687}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 473189085826263668}
+        m_TargetAssemblyTypeName: Huy.Huy_UIMainMenu, Assembly-CSharp
+        m_MethodName: OnLuckyDraw_Clicked
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &35109234848375198
 GameObject:
   m_ObjectHideFlags: 0
@@ -4543,7 +4579,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 35109234911552473}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 473189085826263668}
+        m_TargetAssemblyTypeName: Huy.Huy_UIMainMenu, Assembly-CSharp
+        m_MethodName: OnRewardLogin_Clicked
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &35109234912527000
 GameObject:
   m_ObjectHideFlags: 0
@@ -4941,7 +4989,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 35109234939446530}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 473189085826263668}
+        m_TargetAssemblyTypeName: Huy.Huy_UIMainMenu, Assembly-CSharp
+        m_MethodName: OnSkin_Clicked
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &35109234944874238
 GameObject:
   m_ObjectHideFlags: 0
@@ -5222,6 +5282,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   uiIndex: 0
+  lsSongItems: []
+  txtCoin: {fileID: 5753121195029972207}
+  imgBoy: {fileID: 35109233915743578}
+  imgGirl: {fileID: 35109234508916877}
+  imgVibrate: {fileID: 35109234944874224}
+  spriteVibrateOn: {fileID: 21300000, guid: 8ca569790384d43e2bd2527613d8fd37, type: 3}
+  spriteVibrateOff: {fileID: 21300000, guid: 398ad1ef4badd4f0e867cbaf6e4eb7c5, type: 3}
+  boyAnimator: {fileID: 35109233915743577}
+  girlAnimator: {fileID: 35109234508916876}
+  lsGoSelectModes: []
 --- !u!1 &35109235073691689
 GameObject:
   m_ObjectHideFlags: 0
@@ -5491,7 +5561,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 35109235140967436}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 473189085826263668}
+        m_TargetAssemblyTypeName: Huy.Huy_UIMainMenu, Assembly-CSharp
+        m_MethodName: OnVibrate_Clicked
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &35109235142491323
 GameObject:
   m_ObjectHideFlags: 0
@@ -8483,3 +8565,14 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 5849758814751099473, guid: 3466dbe123d6a4b1abf1c2f989a614b5, type: 3}
   m_PrefabInstance: {fileID: 6230773427404716844}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &5753121195029972207 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1850722527474548675, guid: 3466dbe123d6a4b1abf1c2f989a614b5, type: 3}
+  m_PrefabInstance: {fileID: 6230773427404716844}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
