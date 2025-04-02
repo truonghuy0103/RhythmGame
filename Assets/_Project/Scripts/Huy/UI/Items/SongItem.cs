@@ -19,7 +19,6 @@ namespace Huy
 
 		[SerializeField] private TextMeshProUGUI txtScore;
 		[SerializeField] private TextMeshProUGUI txtNameSong;
-		[SerializeField] private TextMeshProUGUI txtPrice;
 
 		[SerializeField] private GameObject goPlay;
 		[SerializeField] private GameObject goBuySong;
@@ -57,7 +56,7 @@ namespace Huy
 			imgDifficult.sprite = lsSpriteDifficults[indexDifficult];
 			imgDifficult.SetNativeSize();
 
-			imgIcon.sprite = gameplaySongData.spriteIcon;
+			imgIcon.sprite = gameplaySongData.spriteCharacter;
 			imgIcon.SetNativeSize();
 			imgIcon.transform.localScale = new Vector3(0.6f, 0.6f, 1);
 
@@ -91,6 +90,47 @@ namespace Huy
 			
 			imgDifficult.sprite = lsSpriteDifficults[indexDifficult];
 			imgDifficult.SetNativeSize();
+		}
+
+		public void OnBuySongItem_Clicked()
+		{
+			Huy_SoundManager.Instance.PlaySoundSFX(SoundFXIndex.Click);
+			if (Huy_GameManager.Instance.GameSave.Coin >= price)
+			{
+				Huy_GameManager.Instance.GameSave.Coin -= price;
+				SaveManager.Instance.SaveGame();
+				
+				goBuySong.SetActive(false);
+				goPlay.SetActive(true);
+				
+				//Save song data item to UI Main Menu
+				parent.OnSaveSongData(indexMode, indexWeek, indexSong);
+			}
+		}
+
+		public void OnPlay_Clicked()
+		{
+			Huy_SoundManager.Instance.PlaySoundSFX(SoundFXIndex.Click);
+			if (Huy_GameManager.Instance.GameSave.isFirstOpen)
+			{
+				//Show inter ads
+			}
+			UIManager.Instance.HideUI(parent);
+			Huy_GameManager.Instance.SetupGameplay(indexMode, indexWeek, indexSong, (Difficult)indexDifficult);
+		}
+
+		public void OnRewardAds_Clicked()
+		{
+			Huy_SoundManager.Instance.PlaySoundSFX(SoundFXIndex.Click);
+			//Show reward ads
+			if (indexMode == 0)
+			{
+				Timer.DelayedCall(0.5f, () =>
+				{
+					UIManager.Instance.HideUI(parent);
+					Huy_GameManager.Instance.SetupGameplay(indexMode, indexWeek, indexSong, (Difficult)indexDifficult);
+				},this);
+			}
 		}
 	}
 }

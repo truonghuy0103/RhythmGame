@@ -102,7 +102,18 @@ namespace Huy
         private Huy_ConfigSongData configSongData;
         
         public List<Huy_TargetArrow> lsTargetArrows = new List<Huy_TargetArrow>();
-        
+
+        private void Awake()
+        {
+            Input.multiTouchEnabled = true;
+            goGameContent.SetActive(false);
+            GameSave = SaveManager.Instance.LoadSave();
+            
+            UIManager.Instance.Init(() =>
+            {
+                UIManager.Instance.ShowUI(UIIndex.UIMainMenu);
+            });
+        }
         private IEnumerator Start()
         {
             //Get List Position Spawn Arrow
@@ -111,7 +122,7 @@ namespace Huy
             lsTransTargetArrows = uiGameplay.GetListTargetArrow();
             
             yield return new WaitForSeconds(0.1f);
-            SetupGameplay(0, 1, 0, Difficult.Easy);
+            //SetupGameplay(0, 1, 0, Difficult.Easy);
         }
 
         public void SetupGameplay(int indexMode, int indexWeek, int indexSong, Difficult difficult)

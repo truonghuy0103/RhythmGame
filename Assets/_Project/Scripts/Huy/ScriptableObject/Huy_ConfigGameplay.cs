@@ -9,7 +9,7 @@ public class Huy_ConfigGameplay : ScriptableObject
     public Huy_GameplayModeData[] data;
     private static Huy_ConfigGameplay Instance;
 
-    public static Huy_GameplayModeData GameplayModeData(int index)
+    public static Huy_GameplayModeData ConfigModeData(int index)
     {
         Instance = Resources.Load<Huy_ConfigGameplay>("Configs/Huy Config Gameplay");
         Huy_GameplayModeData result = null;
@@ -27,7 +27,7 @@ public class Huy_ConfigGameplay : ScriptableObject
         return result;
     }
 
-    public static Huy_GameplayWeekData GameplayWeekData(int indexMode, int indexWeek)
+    public static Huy_GameplayWeekData ConfigWeekData(int indexMode, int indexWeek)
     {
         Instance = Resources.Load<Huy_ConfigGameplay>("Configs/Huy Config Gameplay");
         Huy_GameplayWeekData result = null;
@@ -36,16 +36,11 @@ public class Huy_ConfigGameplay : ScriptableObject
         {
             result = Instance.data[indexMode].gameplayWeekDatas[indexWeek];
         }
-
-        if (result == null)
-        {
-            result = Instance.data[0].gameplayWeekDatas[0];
-        }
         
         return result;
     }
     
-    public static Huy_GameplaySongData GameplaySongData(int indexMode, int indexWeek, int indexSong)
+    public static Huy_GameplaySongData ConfigSongData(int indexMode, int indexWeek, int indexSong)
     {
         Instance = Resources.Load<Huy_ConfigGameplay>("Configs/Huy Config Gameplay");
         Huy_GameplaySongData result = null;
@@ -54,11 +49,6 @@ public class Huy_ConfigGameplay : ScriptableObject
             Instance.data[indexMode].gameplayWeekDatas[indexWeek].gameplaySongDatas.Count > indexSong)
         {
             result = Instance.data[indexMode].gameplayWeekDatas[indexWeek].gameplaySongDatas[indexSong];
-        }
-
-        if (result == null)
-        {
-            result = Instance.data[0].gameplayWeekDatas[0].gameplaySongDatas[0];
         }
         
         return result;
@@ -82,7 +72,7 @@ public class Huy_ConfigGameplay : ScriptableObject
         return Instance.data[indexMode].gameplayWeekDatas[indexWeek].gameplaySongDatas.Count;
     }
 
-    public static int GetCountSongInMode(int indexMode)
+    public static int GetAllSongInMode(int indexMode)
     {
         int countSong = 0;
         for (int i = 0; i < GetWeekLength(indexMode); i++)

@@ -88,6 +88,7 @@ namespace Huy_Core
 
        public void PlaySoundSFX(SoundFXIndex soundIndex, bool isLoop = false)
        {
+           return;
            if(isMute) return;
 
            EazySoundManager.PlaySound(dicSoundFxs[soundIndex].soundFxClip, isLoop);
