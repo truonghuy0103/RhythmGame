@@ -117,6 +117,8 @@ namespace Huy
 		public void UpdateTextCoin()
 		{
 			//Set coin from save to txtCoin
+			int coin = Huy_GameManager.Instance.GameSave.Coin;
+			txtCoin.text = coin.ToString();
 		}
 	}
 }

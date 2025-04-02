@@ -11,6 +11,8 @@ namespace Huy
 {
     public class Huy_GameManager : SingletonMono<Huy_GameManager>
     {
+        public GameSave GameSave { get; set; }
+        
         public Huy_UIGameplay uiGameplay;
 
         [Header("---Transform and Game Object---")] 
