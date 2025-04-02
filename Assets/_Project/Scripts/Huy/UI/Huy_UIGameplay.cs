@@ -262,6 +262,7 @@ public class Huy_UIGameplay : BaseUI
         if (sliderHP.value >= sliderHP.maxValue)
         {
             //Show game lose
+            Huy_GameManager.Instance.ShowGameLose();
         }
     }
 

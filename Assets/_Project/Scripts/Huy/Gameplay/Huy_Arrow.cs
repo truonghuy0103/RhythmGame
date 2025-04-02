@@ -105,7 +105,7 @@ public class Huy_Arrow : MonoBehaviour
         });
     }
 
-    private void DestroySelf()
+    public void DestroySelf()
     {
         DOTween.Kill(transform);
         Destroy(gameObject);
@@ -172,10 +172,12 @@ public class Huy_Arrow : MonoBehaviour
                 if (isCorrectArrow)
                 {
                     //Add score
+                    Huy_GameManager.Instance.AddScore();
                 }
                 else
                 {
                     //Sub score
+                    Huy_GameManager.Instance.SubScore();
                     //Set anim fail for main
                     Huy_GameManager.Instance.SetAnimationBoy(indexArrow + 5);
                 }

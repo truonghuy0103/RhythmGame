@@ -23,8 +23,10 @@ namespace Huy
 
         [SerializeField] private List<Transform> lsTransTargetArrows = new List<Transform>();
         [SerializeField] private List<Transform> lsPositionSpawnArrows = new List<Transform>();
+
+        [SerializeField] private GameObject goGameContent;
         
-        [Header("---Transform and Game Object---")] 
+        [Header("---Animator---")] 
         [SerializeField] private Huy_CharacterDataBinding boyDataBinding;
         [SerializeField] private Huy_CharacterDataBinding girlDataBinding; 
         [SerializeField] private Huy_CharacterDataBinding bossDataBinding;
@@ -43,7 +45,20 @@ namespace Huy
         [SerializeField, Range(1, 3)] private float defaultTimeMoveArrow = 1.8f;
 
         public GameState gameState;
-        public float TimerSong;
+
+        private float timerSong;
+        public float TimerSong
+        {
+            get => timerSong;
+            set
+            {
+                timerSong = value;
+                if (uiGameplay != null)
+                {
+                    uiGameplay.UpdateTimerText(timerSong);
+                }
+            }
+        }
         private float deltaTime;
         
         public string nameSong;
@@ -52,7 +67,14 @@ namespace Huy
         public int Miss
         {
             get => miss;
-            set => miss = value;
+            set
+            {
+                miss = value;
+                if (uiGameplay != null)
+                {
+                    uiGameplay.UpdateMissText(miss);
+                }
+            }
         }
 
         private int score;
@@ -60,12 +82,21 @@ namespace Huy
         public int Score
         {
             get => score;
-            set => score = value;
+            set
+            {
+                score = value;
+                if (uiGameplay != null)
+                {
+                    uiGameplay.UpdateScoreText(score);
+                }
+            }
         }
 
         private int indexSongOfWeek;
         private int indexWeek;
         private int indexMode;
+        
+        private Difficult difficult;
         
         private Huy_ConfigWeekData configWeekData;
         private Huy_ConfigSongData configSongData;
@@ -80,19 +111,23 @@ namespace Huy
             lsTransTargetArrows = uiGameplay.GetListTargetArrow();
             
             yield return new WaitForSeconds(0.1f);
-            SetupGameplay(0,1,0);
+            SetupGameplay(0, 1, 0, Difficult.Easy);
         }
 
-        public void SetupGameplay(int indexMode, int indexWeek, int indexSong)
+        public void SetupGameplay(int indexMode, int indexWeek, int indexSong, Difficult difficult)
         {
             this.indexMode = indexMode;
             this.indexWeek = indexWeek;
             this.indexSongOfWeek = indexSong;
+            this.difficult = difficult;
 
             configWeekData = Huy_ConfigMode.ConfigWeekData(indexMode, indexWeek);
             configSongData = Huy_ConfigMode.ConfigSongData(indexMode, indexWeek, indexSongOfWeek);
             
             gameState = GameState.None;
+            
+            goGameContent.SetActive(true);
+                
             GetSongGameplay(indexMode, configSongData.nameJson);
             Huy_SoundManager.Instance.PlaySoundBGM();
             float lengthSong = Huy_SoundManager.Instance.GetLengthBGM();
@@ -127,7 +162,7 @@ namespace Huy
 
             lsArrowDataItems.Sort(SortByTimeAppear);
 
-            TimerSong = lengthSong;
+            timerSong = lengthSong;
             deltaTime = timeMoveArrow - 0.1f;
             
             SetupCharacter();
@@ -152,7 +187,7 @@ namespace Huy
 
         private void Update()
         {
-            if (gameState == GameState.Playing && TimerSong >= 0)
+            if (gameState == GameState.Playing && timerSong >= 0)
             {
                 ShowTimerSong();
                 if (nameSong == "tutorial")
@@ -168,11 +203,21 @@ namespace Huy
 
         public void ShowTimerSong()
         {
-            TimerSong -= Time.deltaTime;
-            if (TimerSong <= 0)
+            timerSong -= Time.deltaTime;
+            if (timerSong <= 0)
             {
                 //Show timer text
+                uiGameplay.UpdateTimerText(0);
                 //Check win/lose
+                if (uiGameplay.CheckGameWin())
+                {
+                    ShowGameWin();
+                }
+                else
+                {
+                    goGameContent.SetActive(false);
+                    ShowGameLose();
+                }
             }
         }
 
@@ -349,7 +394,93 @@ namespace Huy
         {
             enemyDataBinding.SetAnimationCharacter(0);
         }
-        
+
+        public void AddScore()
+        {
+            //Show Combo text correct
+            score += 100;
+            uiGameplay.SetSliderHP(1);
+        }
+
+        public void SubScore()
+        {
+            miss++;
+            uiGameplay.SetSliderHP(-1);
+        }
+        public void ShowGameLose()
+        {
+            if (gameState != GameState.EndGame)
+            {
+                Huy_SoundManager.Instance.StopSoundBGM();
+                //Clear all arrow
+                ClearAllArrow();
+                UIManager.Instance.HideUI(UIIndex.UIGameplay);
+                gameState = GameState.EndGame;
+                UIManager.Instance.ShowUI(UIIndex.UILose);
+            }
+        }
+
+        public void ShowGameWin()
+        {
+            GameSave.ModeSaves[indexMode].WeekSaves[indexWeek].SongSaves[indexSongOfWeek].Score = score;
+            gameState = GameState.EndGame;
+            UIManager.Instance.ShowUI(UIIndex.UIWin, new WinParam()
+            {
+                coinReward = 100
+            });
+        }
+
+        public void RestartGame()
+        {
+            Time.timeScale = 1;
+            gameState = GameState.EndGame;
+            SetupGameplay(indexMode, indexWeek, indexSongOfWeek, difficult);
+            Huy_SoundManager.Instance.StopSoundBGM();
+            ClearAllArrow();
+        }
+
+        public void GoToHome()
+        {
+            Time.timeScale = 1;
+            gameState = GameState.EndGame;
+            UIManager.Instance.HideUI(UIIndex.UIGameplay);
+            Huy_SoundManager.Instance.StopSoundBGM();
+            //Hide Game Object Content
+            goGameContent.SetActive(false);
+            ClearAllArrow();
+        }
+
+        public void ResumeGame()
+        {
+            Time.timeScale = 1;
+            gameState = GameState.Playing;
+            Huy_SoundManager.Instance.ResumeSoundBGM();
+        }
+
+        private void ClearAllArrow()
+        {
+            for (int i = 0; i < lsContainSpawnArrow.Count; i++)
+            {
+                if (lsContainSpawnArrow[i].childCount > 0)
+                {
+                    for (int j = 0; j < lsContainSpawnArrow[i].childCount; j++)
+                    {
+                        lsContainSpawnArrow[i].GetChild(j).GetComponent<Huy_Arrow>().DestroySelf();
+                    }
+                }
+            }
+
+            for (int i = 0; i < lsContainSpawnEnemyArrow.Count; i++)
+            {
+                if (lsContainSpawnEnemyArrow[i].childCount > 0)
+                {
+                    for (int j = 0; j < lsContainSpawnEnemyArrow[i].childCount; j++)
+                    {
+                        lsContainSpawnEnemyArrow[i].GetChild(j).GetComponent<Huy_Arrow>().DestroySelf();
+                    }
+                }
+            }
+        }
     }
     
     [Serializable]

@@ -23,6 +23,7 @@ namespace Huy
          {
 	         Huy_SoundManager.Instance.PlaySoundSFX(SoundFXIndex.Click);
 	         //Resume game
+	         Huy_GameManager.Instance.ResumeGame();
 	         //Show inter ads
 	         UIManager.Instance.HideUI(this);
          }
@@ -31,6 +32,7 @@ namespace Huy
          {
 	         Huy_SoundManager.Instance.PlaySoundSFX(SoundFXIndex.Click);
 	         //End game
+	         Huy_GameManager.Instance.GoToHome();
 	         UIManager.Instance.HideUI(UIIndex.UIGameplay);
 	         UIManager.Instance.HideUI(this);
          }
@@ -42,6 +44,7 @@ namespace Huy
 	         UIManager.Instance.HideUI(UIIndex.UIGameplay);
 	         //Show inter ads
 	         //Restart game
+	         Huy_GameManager.Instance.RestartGame();
          }
 	}
 }

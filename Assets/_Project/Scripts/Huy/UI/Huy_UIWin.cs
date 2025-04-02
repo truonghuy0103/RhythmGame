@@ -8,6 +8,11 @@ using UnityEngine.UI;
 
 namespace Huy
 {
+	public class WinParam : UIParam
+	{
+		public int coinReward;
+	}
+	
 	public class Huy_UIWin : BaseUI
 	{
 		[SerializeField] private TextMeshProUGUI txtCoinReward;
