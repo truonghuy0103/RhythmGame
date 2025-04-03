@@ -247,7 +247,7 @@ public class Huy_UIGameplay : BaseUI
 
     public void SetSliderHP(float delta)
     {
-        sliderHP.value = delta;
+        sliderHP.value += delta;
         if (sliderHP.value > sliderHP.maxValue / 2)
         {
             imgIconBoy.sprite = spriteBoyLose;

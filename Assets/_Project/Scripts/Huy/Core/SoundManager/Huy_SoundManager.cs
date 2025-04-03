@@ -22,6 +22,7 @@ namespace Huy_Core
            dicSoundFxs.Clear();
            for (int i = 0; i < soundFxItems.Count; i++)
            {
+               Debug.Log("dict: " + soundFxItems[i].soundFxIndex);
                dicSoundFxs.Add(soundFxItems[i].soundFxIndex, soundFxItems[i]);
            }
 
@@ -88,8 +89,7 @@ namespace Huy_Core
 
        public void PlaySoundSFX(SoundFXIndex soundIndex, bool isLoop = false)
        {
-           return;
-           if(isMute) return;
+           if (isMute) return;
 
            EazySoundManager.PlaySound(dicSoundFxs[soundIndex].soundFxClip, isLoop);
        }

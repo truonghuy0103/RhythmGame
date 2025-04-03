@@ -100,6 +100,7 @@ namespace Huy
         
         private Huy_ConfigWeekData configWeekData;
         private Huy_ConfigSongData configSongData;
+        private Huy_GameplaySongData gameplaySongData;
         
         public List<Huy_TargetArrow> lsTargetArrows = new List<Huy_TargetArrow>();
 
@@ -111,7 +112,7 @@ namespace Huy
             
             UIManager.Instance.Init(() =>
             {
-                UIManager.Instance.ShowUI(UIIndex.UIMainMenu);
+                UIManager.Instance.ShowUI(UIIndex.UILoading);
             });
         }
         private IEnumerator Start()
@@ -143,6 +144,9 @@ namespace Huy
             Huy_SoundManager.Instance.PlaySoundBGM();
             float lengthSong = Huy_SoundManager.Instance.GetLengthBGM();
             Debug.Log("lengthSong: " + lengthSong);
+
+            gameplaySongData = Huy_ConfigGameplay.ConfigSongData(indexMode, indexWeek, indexSong);
+            uiGameplay.SetSpriteIconBoss(gameplaySongData.spriteIconLose,gameplaySongData.spriteIcon);
             SetupGameplayUI(lengthSong);
         }
 
@@ -176,6 +180,16 @@ namespace Huy
             timerSong = lengthSong;
             deltaTime = timeMoveArrow - 0.1f;
             
+            Huy_SoundManager.Instance.StopSoundSFX(SoundFXIndex.SoundMenu);
+            UIManager.Instance.ShowUI(UIIndex.UIGameplay,new GameplayParam()
+            {
+                difficult = difficult,
+                maxValueSlider = 50,
+                nameSong = configSongData.nameJson,
+            });
+            
+            Miss = 0;
+            Score = 0;
             SetupCharacter();
             
             gameState = GameState.Playing;
@@ -214,8 +228,8 @@ namespace Huy
 
         public void ShowTimerSong()
         {
-            timerSong -= Time.deltaTime;
-            if (timerSong <= 0)
+            TimerSong -= Time.deltaTime;
+            if (TimerSong <= 0)
             {
                 //Show timer text
                 uiGameplay.UpdateTimerText(0);
@@ -409,14 +423,14 @@ namespace Huy
         public void AddScore()
         {
             //Show Combo text correct
-            score += 100;
-            uiGameplay.SetSliderHP(1);
+            Score += 100;
+            uiGameplay.SetSliderHP(-1);
         }
 
         public void SubScore()
         {
-            miss++;
-            uiGameplay.SetSliderHP(-1);
+            Miss++;
+            uiGameplay.SetSliderHP(1);
         }
         public void ShowGameLose()
         {

@@ -71,7 +71,7 @@ MonoBehaviour:
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
-  m_FillAmount: 1
+  m_FillAmount: 0
   m_FillClockwise: 1
   m_FillOrigin: 2
   m_UseSpriteMesh: 0
@@ -248,6 +248,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   uiIndex: 4
+  txtLoading: {fileID: 542874884972225430}
+  imgLoading: {fileID: 542874883923510934}
+  timerLoading: 3
 --- !u!1 &542874884898794958
 GameObject:
   m_ObjectHideFlags: 0
@@ -266,7 +269,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &542874884898794959
 RectTransform:
   m_ObjectHideFlags: 0

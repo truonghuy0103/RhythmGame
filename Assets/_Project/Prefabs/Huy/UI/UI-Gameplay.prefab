@@ -784,7 +784,7 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 0.5, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -1059,7 +1059,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &4745946849011411179
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1115,8 +1115,8 @@ RectTransform:
   m_Father: {fileID: 4745946848796861000}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMin: {x: 0.5, y: 0}
+  m_AnchorMax: {x: 0.5, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -1855,7 +1855,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 4745946849312411609}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 4745946850531442552}
+        m_TargetAssemblyTypeName: Huy_UIGameplay, Assembly-CSharp
+        m_MethodName: OnPauseGame_Clicked
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &4745946849370085632
 GameObject:
   m_ObjectHideFlags: 0
@@ -5332,14 +5344,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   uiIndex: 1
-  txtSong: {fileID: 4745946848994455106}
-  txtMiss: {fileID: 4745946849526932579}
-  txtScore: {fileID: 4745946850167817578}
-  txtTimer: {fileID: 4745946850312128758}
+  txtSong: {fileID: 4745946850218706752}
+  txtMiss: {fileID: 4745946849120658896}
+  txtScore: {fileID: 4745946850286003254}
+  txtTimer: {fileID: 4745946849370085634}
   imgReady: {fileID: 4745946849859395563}
-  imgDifficult: {fileID: 4745946849910278103}
-  imgIconBoy: {fileID: 4745946849905921273}
-  imgIconBoss: {fileID: 4745946849433486205}
+  imgDifficult: {fileID: 4745946850334458963}
+  imgIconBoy: {fileID: 4745946849583926017}
+  imgIconBoss: {fileID: 4745946849916197547}
   lsArrowTops:
   - {fileID: 4745946849538555935}
   - {fileID: 4745946849421601201}
@@ -5396,7 +5408,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 89e2fc090156e445fa029378b234c70c, type: 3}
   spriteBoyNormal: {fileID: 21300000, guid: 0445d61446aa44d208519f5a34bca520, type: 3}
   spriteBoyLose: {fileID: 21300000, guid: 737810e39d910476b84b86038c4e636a, type: 3}
-  sliderHP: {fileID: 4745946849455506517}
+  sliderHP: {fileID: 4745946850634010785}
   defaultScaleBtn: {x: 0.9, y: 0.9, z: 0}
 --- !u!1 &4745946850550950566
 GameObject:
@@ -5796,7 +5808,7 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 4745946850142610999}
   m_FillRect: {fileID: 4745946849898203913}
   m_HandleRect: {fileID: 4745946850142610998}
