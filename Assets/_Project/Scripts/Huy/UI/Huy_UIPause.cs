@@ -33,8 +33,8 @@ namespace Huy
 	         Huy_SoundManager.Instance.PlaySoundSFX(SoundFXIndex.Click);
 	         //End game
 	         Huy_GameManager.Instance.GoToHome();
-	         UIManager.Instance.HideUI(UIIndex.UIGameplay);
 	         UIManager.Instance.HideUI(this);
+	         UIManager.Instance.ShowUI(UIIndex.UIMainMenu);
          }
          
          public void OnRestart_Clicked()

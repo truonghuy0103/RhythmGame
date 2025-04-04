@@ -30,6 +30,7 @@ public class Huy_TargetArrow : MonoBehaviour
                     //Set animation fail for Main
                     Huy_GameManager.Instance.SetAnimationBoy(index + 5);
                     //Sub HP bar for Main
+                    Huy_GameManager.Instance.SubScore();
                 }
 
                 if (lsArrows.Count > 0)

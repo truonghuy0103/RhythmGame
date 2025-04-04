@@ -45,6 +45,7 @@ namespace Huy
 			
 			UIManager.Instance.HideUI(this);
 			//Game manager restart function
+			Huy_GameManager.Instance.RestartGame();
 		}
 	}
 }

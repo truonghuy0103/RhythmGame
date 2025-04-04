@@ -144,9 +144,7 @@ namespace Huy
             Huy_SoundManager.Instance.PlaySoundBGM();
             float lengthSong = Huy_SoundManager.Instance.GetLengthBGM();
             Debug.Log("lengthSong: " + lengthSong);
-
-            gameplaySongData = Huy_ConfigGameplay.ConfigSongData(indexMode, indexWeek, indexSong);
-            uiGameplay.SetSpriteIconBoss(gameplaySongData.spriteIconLose,gameplaySongData.spriteIcon);
+            
             SetupGameplayUI(lengthSong);
         }
 
@@ -187,6 +185,9 @@ namespace Huy
                 maxValueSlider = 50,
                 nameSong = configSongData.nameJson,
             });
+            
+            gameplaySongData = Huy_ConfigGameplay.ConfigSongData(indexMode, indexWeek, indexSongOfWeek);
+            uiGameplay.SetSpriteIconBoss(gameplaySongData.spriteIconLose,gameplaySongData.spriteIcon);
             
             Miss = 0;
             Score = 0;

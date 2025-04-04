@@ -236,8 +236,8 @@ public class Huy_UIGameplay : BaseUI
 
     public void UpdateTimerText(float timer)
     {
-        txtTimer.text = Mathf.RoundToInt(timer / 60).ToString("00") + " : " +
-                        Mathf.RoundToInt(timer % 60).ToString("00");
+        txtTimer.text = Mathf.FloorToInt(timer / 60).ToString("00") + " : " +
+                        Mathf.FloorToInt(timer % 60).ToString("00");
     }
 
     public void ShowTextCorrect(int index)
@@ -275,6 +275,7 @@ public class Huy_UIGameplay : BaseUI
     {
         this.spriteEnemyNormal = spriteBossNormal;
         this.spriteEnemyLose = spriteBossLose;
+        SetSliderHP(0);
     }
 
     public void OnPauseGame_Clicked()
