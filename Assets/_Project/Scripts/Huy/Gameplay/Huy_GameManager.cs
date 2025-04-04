@@ -132,6 +132,8 @@ namespace Huy
             this.indexWeek = indexWeek;
             this.indexSongOfWeek = indexSong;
             this.difficult = difficult;
+            
+            curIndexArrow = 0;
 
             configWeekData = Huy_ConfigMode.ConfigWeekData(indexMode, indexWeek);
             configSongData = Huy_ConfigMode.ConfigSongData(indexMode, indexWeek, indexSongOfWeek);
@@ -193,7 +195,7 @@ namespace Huy
             Score = 0;
             SetupCharacter();
             
-            gameState = GameState.Playing;
+            //gameState = GameState.Playing;
         }
 
         public void SetupCharacter()
@@ -207,6 +209,7 @@ namespace Huy
             {
                 bossDataBinding.gameObject.SetActive(true);
                 girlDataBinding.SetAnimationCharacter(0);
+                bossDataBinding.GetComponent<Animator>().runtimeAnimatorController = gameplaySongData.enemyAnimator;
                 enemyDataBinding = bossDataBinding;
             }
         }
@@ -216,7 +219,7 @@ namespace Huy
             if (gameState == GameState.Playing && timerSong >= 0)
             {
                 ShowTimerSong();
-                if (nameSong == "tutorial")
+                if (indexMode == 0 && indexWeek == 0 && indexSongOfWeek == 0)
                 {
                     LoadNoteNew(Huy_SoundManager.Instance.GetCurrentTimeSoundBGM() + deltaTime);
                 }

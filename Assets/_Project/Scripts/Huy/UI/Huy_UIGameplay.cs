@@ -7,7 +7,9 @@ using Huy_Core;
 using TMPro;
 using UnityEditor;
 
-public class Huy_UIGameplay : BaseUI
+namespace Huy
+{
+    public class Huy_UIGameplay : BaseUI
 {
     [Header("-----Text-----")]
     [SerializeField] private TextMeshProUGUI txtSong;
@@ -56,7 +58,6 @@ public class Huy_UIGameplay : BaseUI
     [SerializeField] private Slider sliderHP;
 
     [SerializeField] private Vector3 defaultScaleBtn = new Vector3(0.9f, 0.9f, 0);
-    private GameState gameState;
 
     public override void OnInit()
     {
@@ -98,7 +99,7 @@ public class Huy_UIGameplay : BaseUI
 
     IEnumerator CountdownToStart(float timer)
     {
-        gameState = GameState.Ready;    
+        Huy_GameManager.Instance.gameState = GameState.Ready;    
         imgReady.gameObject.SetActive(true);
         for (int i = 0; i < lsSpriteCountdowns.Count; i++)
         {
@@ -114,7 +115,7 @@ public class Huy_UIGameplay : BaseUI
         Huy_SoundManager.Instance.PlaySoundSFX(SoundFXIndex.Go);
         
         yield return new WaitForSeconds(timer);
-        gameState = GameState.Playing;
+        Huy_GameManager.Instance.gameState = GameState.Playing;
         Huy_SoundManager.Instance.PlaySoundBGM();
     }
 
@@ -283,7 +284,9 @@ public class Huy_UIGameplay : BaseUI
         //Play click SFX
         Huy_SoundManager.Instance.PlaySoundSFX(SoundFXIndex.Click);
         Huy_SoundManager.Instance.PauseSoundBGM();
-        gameState = GameState.PauseGame;
+        Huy_GameManager.Instance.gameState = GameState.PauseGame;
         UIManager.Instance.ShowUI(UIIndex.UIPause);
     }
 }
+}
+
