@@ -423,6 +423,7 @@ GameObject:
   - component: {fileID: 7747024512217907192}
   - component: {fileID: 7747024512217907193}
   - component: {fileID: 7747024512217907198}
+  - component: {fileID: 411771832}
   m_Layer: 5
   m_Name: btnSlot (1)
   m_TagString: Untagged
@@ -535,6 +536,22 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &411771832
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7747024512217907196}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6da47cdd30aa0422aa68fca3ab60b842, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  txtCoin: {fileID: 7747024512439218219}
+  goFade: {fileID: 7747024512597566070}
+  spriteOn: {fileID: 21300000, guid: e1ffa3e5dce41453daee38f653203810, type: 3}
+  spriteOff: {fileID: 21300000, guid: ef2911d42885047c99c2daa96b8ee4e9, type: 3}
 --- !u!1 &7747024512244439730
 GameObject:
   m_ObjectHideFlags: 0
@@ -1220,6 +1237,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   uiIndex: 12
+  lsSlotItems: []
 --- !u!1 &7747024512469142802
 GameObject:
   m_ObjectHideFlags: 0
@@ -2135,6 +2153,7 @@ GameObject:
   - component: {fileID: 7747024512804383400}
   - component: {fileID: 7747024512804383401}
   - component: {fileID: 7747024512804383406}
+  - component: {fileID: 451897161}
   m_Layer: 5
   m_Name: btnSlot
   m_TagString: Untagged
@@ -2247,6 +2266,22 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &451897161
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7747024512804383404}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6da47cdd30aa0422aa68fca3ab60b842, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  txtCoin: {fileID: 7747024513113750633}
+  goFade: {fileID: 7747024511913178337}
+  spriteOn: {fileID: 21300000, guid: 597590c0be76a408483c454882e42327, type: 3}
+  spriteOff: {fileID: 21300000, guid: b7d382bec9177437ea1cbdb8b61171b9, type: 3}
 --- !u!1 &7747024512822616419
 GameObject:
   m_ObjectHideFlags: 0
@@ -2835,6 +2870,7 @@ GameObject:
   - component: {fileID: 7747024513126315882}
   - component: {fileID: 7747024513126315883}
   - component: {fileID: 7747024513126315880}
+  - component: {fileID: 8638961}
   m_Layer: 5
   m_Name: btnSlot (2)
   m_TagString: Untagged
@@ -2947,6 +2983,22 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &8638961
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7747024513126315886}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6da47cdd30aa0422aa68fca3ab60b842, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  txtCoin: {fileID: 7747024513582922090}
+  goFade: {fileID: 7747024513758586569}
+  spriteOn: {fileID: 21300000, guid: e1ffa3e5dce41453daee38f653203810, type: 3}
+  spriteOff: {fileID: 21300000, guid: ef2911d42885047c99c2daa96b8ee4e9, type: 3}
 --- !u!1 &7747024513148702907
 GameObject:
   m_ObjectHideFlags: 0
@@ -3229,6 +3281,7 @@ GameObject:
   - component: {fileID: 7747024513282652470}
   - component: {fileID: 7747024513282652471}
   - component: {fileID: 7747024513282652468}
+  - component: {fileID: 7747024513596969429}
   m_Layer: 5
   m_Name: btnSlot
   m_TagString: Untagged
@@ -3341,6 +3394,22 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &7747024513596969429
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7747024513282652474}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6da47cdd30aa0422aa68fca3ab60b842, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  txtCoin: {fileID: 7747024512684732020}
+  goFade: {fileID: 7747024513893673261}
+  spriteOn: {fileID: 21300000, guid: e1ffa3e5dce41453daee38f653203810, type: 3}
+  spriteOff: {fileID: 21300000, guid: ef2911d42885047c99c2daa96b8ee4e9, type: 3}
 --- !u!1 &7747024513305495632
 GameObject:
   m_ObjectHideFlags: 0
@@ -4128,6 +4197,7 @@ GameObject:
   - component: {fileID: 7747024513789895263}
   - component: {fileID: 7747024513789895260}
   - component: {fileID: 7747024513789895261}
+  - component: {fileID: 1631004593}
   m_Layer: 5
   m_Name: btnSlot
   m_TagString: Untagged
@@ -4240,6 +4310,22 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &1631004593
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7747024513789895267}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6da47cdd30aa0422aa68fca3ab60b842, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  txtCoin: {fileID: 7747024512073731497}
+  goFade: {fileID: 7747024512703911347}
+  spriteOn: {fileID: 21300000, guid: e1ffa3e5dce41453daee38f653203810, type: 3}
+  spriteOff: {fileID: 21300000, guid: ef2911d42885047c99c2daa96b8ee4e9, type: 3}
 --- !u!1 &7747024513845306284
 GameObject:
   m_ObjectHideFlags: 0
@@ -4387,6 +4473,7 @@ GameObject:
   - component: {fileID: 7747024513881097245}
   - component: {fileID: 7747024513881097250}
   - component: {fileID: 7747024513881097251}
+  - component: {fileID: 995682840}
   m_Layer: 5
   m_Name: btnSlot (2)
   m_TagString: Untagged
@@ -4499,6 +4586,22 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &995682840
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7747024513881097249}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6da47cdd30aa0422aa68fca3ab60b842, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  txtCoin: {fileID: 7747024513438809009}
+  goFade: {fileID: 7747024512337108336}
+  spriteOn: {fileID: 21300000, guid: e1ffa3e5dce41453daee38f653203810, type: 3}
+  spriteOff: {fileID: 21300000, guid: ef2911d42885047c99c2daa96b8ee4e9, type: 3}
 --- !u!1 &7747024513893673261
 GameObject:
   m_ObjectHideFlags: 0
@@ -4664,6 +4767,7 @@ GameObject:
   - component: {fileID: 7747024513910978379}
   - component: {fileID: 7747024513910978376}
   - component: {fileID: 7747024513910978377}
+  - component: {fileID: 7747024513596969428}
   m_Layer: 5
   m_Name: btnSlot (1)
   m_TagString: Untagged
@@ -4776,6 +4880,22 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &7747024513596969428
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7747024513910978383}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6da47cdd30aa0422aa68fca3ab60b842, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  txtCoin: {fileID: 7747024512495159627}
+  goFade: {fileID: 7747024513726466814}
+  spriteOn: {fileID: 21300000, guid: e1ffa3e5dce41453daee38f653203810, type: 3}
+  spriteOff: {fileID: 21300000, guid: ef2911d42885047c99c2daa96b8ee4e9, type: 3}
 --- !u!1 &7747024513920516113
 GameObject:
   m_ObjectHideFlags: 0
