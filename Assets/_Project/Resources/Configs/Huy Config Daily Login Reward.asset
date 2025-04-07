@@ -17,20 +17,20 @@ MonoBehaviour:
     id: 0
     coin: 200
   - day: Day 2
-    id: 0
+    id: 1
     coin: 400
   - day: Day 3
-    id: 0
+    id: 2
     coin: 600
   - day: Day 4
-    id: 0
+    id: 3
     coin: 800
   - day: Day 5
-    id: 0
+    id: 4
     coin: 1000
   - day: Day 6
-    id: 0
+    id: 5
     coin: 1500
   - day: Day 7
-    id: 0
+    id: 6
     coin: 2000

@@ -33,7 +33,7 @@ namespace Huy
 			valueCoin = coin;
 			indexLogin = index;
 			txtCoin.text = valueCoin.ToString();
-			GetComponent<Image>().sprite = spriteOn;
+			GetComponent<Image>().sprite = spriteOff;
 
 			if (!getReward)
 			{
@@ -54,6 +54,7 @@ namespace Huy
 			Huy_SoundManager.Instance.PlaySoundSFX(SoundFXIndex.Click);
 			DisableSlot();
 			//Show UI Reward
+			UIManager.Instance.ShowUI(UIIndex.UIReward, new RewardParam() { valueCoin = valueCoin });
 			indexLogin++;
 			if (indexLogin >= 7)
 			{

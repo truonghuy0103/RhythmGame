@@ -1237,7 +1237,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   uiIndex: 12
-  lsSlotItems: []
+  lsSlotItems:
+  - {fileID: 7747024513596969429}
+  - {fileID: 7747024513596969428}
+  - {fileID: 8638961}
+  - {fileID: 1631004593}
+  - {fileID: 411771832}
+  - {fileID: 995682840}
+  - {fileID: 451897161}
 --- !u!1 &7747024512469142802
 GameObject:
   m_ObjectHideFlags: 0
@@ -3530,7 +3537,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 7747024513305495629}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2778183909740322163}
+        m_TargetAssemblyTypeName: Huy.Huy_UIRewardLogin, Assembly-CSharp
+        m_MethodName: OnCloseClick
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &7747024513438809015
 GameObject:
   m_ObjectHideFlags: 0

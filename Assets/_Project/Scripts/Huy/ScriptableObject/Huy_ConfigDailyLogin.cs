@@ -14,7 +14,7 @@ namespace Huy
 
 		public static Huy_ConfigDailyLoginData GetDailyLoginData(int index)
 		{
-			Instance = Resources.Load<Huy_ConfigDailyLogin>("Configs/Huy Config Daily Login");
+			Instance = Resources.Load<Huy_ConfigDailyLogin>("Configs/Huy Config Daily Login Reward");
 			Huy_ConfigDailyLoginData result = null;
 			foreach (var go in Instance.data)
 			{

@@ -20,14 +20,16 @@ namespace Huy
             {
 	            //Get config daily reward
 	            Huy_ConfigDailyLoginData configDailyLoginData = Huy.Huy_ConfigDailyLogin.GetDailyLoginData(i);
+	            //Debug.Log("Config: " + configDailyLoginData.coin + " " + configDailyLoginData.id);
+	            Debug.Log("login: " + Huy_GameManager.Instance.GameSave.CurrentDay + " " 
+	                      + Huy_GameManager.Instance.GameSave.CurrentDayOfWeekLogin);
 	            int currentDayLogin = Huy_GameManager.Instance.GameSave.CurrentDayLogin;
 	            int currentWeekLogin = Huy_GameManager.Instance.GameSave.CurrentDayOfWeekLogin;
-	            int coin = 0;
+	            int coin = configDailyLoginData.coin;
 
 	            if (DateTime.Now.DayOfYear - currentWeekLogin == currentDayLogin)
 	            {
 		            //Get coin from config
-		            coin = configDailyLoginData.coin;
 		            lsSlotItems[i].OnSetup(i, coin, i >= currentDayLogin, i == currentDayLogin);
 	            }
 	            else
