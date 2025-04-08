@@ -27,6 +27,9 @@ namespace Huy
             
             Huy_GameManager.Instance.GameSave.Coin += rewardParam.valueCoin;
             SaveManager.Instance.SaveGame();
+
+            Huy_UIMainMenu uiMainMenu = (Huy_UIMainMenu)UIManager.Instance.FindUIVisible(UIIndex.UIMainMenu);
+            uiMainMenu.UpdateTextCoin();
          }
 	}
 }

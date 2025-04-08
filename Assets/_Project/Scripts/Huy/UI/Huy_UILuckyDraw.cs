@@ -46,6 +46,13 @@ namespace Huy
             
             btnFree.interactable = !isShowCountdown;
             
+            //Set text coin from config lucky draw
+            for (int i = 0; i < lsTextCoins.Count; i++)
+            {
+	            Huy_ConfigLuckyDrawData luckyDrawData = Huy_ConfigLuckyDraw.GetConfigLuckyDrawData(i);
+	            lsTextCoins[i].text = luckyDrawData.coin.ToString();
+            }
+            
             imgDraw.transform.eulerAngles = new Vector3(0, 0, -30);
          }
 
@@ -60,6 +67,7 @@ namespace Huy
 	         float halfPieceAngleWithPadding = halfPieceAngle - (halfPieceAngle / 4f);
 	         
 	         int randIndex = Random.Range(0, lsTextCoins.Count);
+	         Debug.Log("Random: " + randIndex + " " + lsTextCoins[randIndex].text);
 	         float angle = -(pieceAngle * randIndex);
 
 	         /*float rightOffset = (angle - halfPieceAngleWithPadding) % 360;
@@ -73,7 +81,7 @@ namespace Huy
 	         float prevAngle, curAngle;
 	         prevAngle = curAngle = transWheelCircle.eulerAngles.z;
 
-	         transWheelCircle.DORotate(targetRotation, randtimer, RotateMode.Fast).SetEase(Ease.InOutQuart).OnUpdate(
+	         transWheelCircle.DORotate(targetRotation, randtimer, RotateMode.FastBeyond360).SetEase(Ease.InOutQuart).OnUpdate(
 		         () =>
 		         {
 			         float diff = Mathf.Abs(prevAngle - curAngle);
@@ -88,9 +96,13 @@ namespace Huy
 		         {
 			         Timer.DelayedCall(1, () =>
 			         {
-				         int indexLuckyDraw = Mathf.Abs(Mathf.RoundToInt(transWheelCircle.eulerAngles.z / 60));
 				         //Get config depend Index to coin
+				         Huy_ConfigLuckyDrawData luckyDrawData = Huy_ConfigLuckyDraw.GetConfigLuckyDrawData(randIndex);
 				         //Show reward
+				         UIManager.Instance.ShowUI(UIIndex.UIReward, new RewardParam()
+				         {
+					         valueCoin = luckyDrawData.coin
+				         });
 
 				         if (!isAds)
 				         {
