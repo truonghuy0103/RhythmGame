@@ -5,6 +5,7 @@ using Huy_Core;
 using UnityEngine;
 using Huy;
 using Unity.VisualScripting;
+using UnityEngine.Playables;
 using UnityEngine.UI;
 
 namespace Huy
@@ -34,10 +35,7 @@ namespace Huy
 		{
 			GetComponent<Button>().onClick.AddListener(() => OnSkin_Clicked());
 			
-			goPrice = transform.Find("imgFrame").gameObject;
-			goPrice.GetComponent<Button>().onClick.AddListener(() => OnBuy_clicked());
-			
-			imgSkin = transform.Find("imgGirl").GetComponent<Image>();
+			goPrice.GetComponent<Button>().onClick.AddListener(() => OnBuy_Clicked());
 		}
 
 		public void OnSkin_Clicked()
@@ -49,10 +47,12 @@ namespace Huy
 				if (isSkinGirl)
 				{
 					//Change skin for girl
+					parent.OnChangeSkinGirl(configSkinData.spriteSkin,this);
 				}
 				else
 				{
 					//Change skin for boy
+					parent.OnChangeSkinBoy(configSkinData.spriteSkin, this);
 				}
 			}
 		}
@@ -63,10 +63,12 @@ namespace Huy
 			if (isGirl)
 			{
 				//Change skin for girl
+				parent.OnChangeSkinGirl(configSkinData.spriteSkin,this);
 			}
 			else
 			{
 				//Change skin for boy
+				parent.OnChangeSkinBoy(configSkinData.spriteSkin, this);
 			}
 		}
 
@@ -95,7 +97,7 @@ namespace Huy
 			}
 		}
 
-		public void OnBuy_clicked()
+		public void OnBuy_Clicked()
 		{
 			Huy_SoundManager.Instance.PlaySoundSFX(SoundFXIndex.Click);
 			if (Huy_GameManager.Instance.GameSave.Coin >= valueBoughtSkin && !isBought)
@@ -116,6 +118,7 @@ namespace Huy
 					Huy_GameManager.Instance.GameSave.BoySkinBoughts.Add(idSkinBoy);
 				}
 				//Update text coin
+				parent.UpdateTextCoin();
 				//Set sprite for imgSkin
 				imgSkin.sprite = configSkinData.spriteSkin;
 			}

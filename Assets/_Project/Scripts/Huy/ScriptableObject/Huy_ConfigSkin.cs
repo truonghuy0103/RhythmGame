@@ -56,6 +56,18 @@ namespace Huy
 			
 			return result;
 		}
+
+		public static int GetBoySkinDataLength()
+		{
+			Instance = Resources.Load<Huy_ConfigSkin>("Configs/Huy Config Skin");
+			return Instance.dataBoys.Length;
+		}
+
+		public static int GetGirlSkinDataLength()
+		{
+			Instance = Resources.Load<Huy_ConfigSkin>("Configs/Huy Config Skin");
+			return Instance.dataGirls.Length;
+		}
 	}
 
 	[Serializable]
