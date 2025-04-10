@@ -25,6 +25,19 @@ public class AssetBundleManager : SingletonMono<AssetBundleManager>
     
     public Dictionary<string,AssetBundleItem> songDatabase = new Dictionary<string, AssetBundleItem>();
 
+    private void Start()
+    {
+        DownloadAsset_WWW(
+            "https://github.com/truonghuy0103/RhythmGame/raw/refs/heads/Huy/Huy_18-08/AssetBundles/iOS/inst-ballistic",
+            "/inst-ballistic",
+            () =>
+            {
+                Debug.Log("Success download assetbundle from github");
+                StartCoroutine(GetSongFromBundle("/inst-ballistic", "inst-ballistic"));
+            },
+            () => { Debug.Log("Failed to download github"); });
+    }
+
     public void RemoteConfigUpdate()
     {
         //Get Config asset bundle into song database
@@ -45,6 +58,7 @@ public class AssetBundleManager : SingletonMono<AssetBundleManager>
             if (webRequest.result == UnityWebRequest.Result.ConnectionError || webRequest.result ==
                 UnityWebRequest.Result.ProtocolError)
             {
+                Debug.Log("failed reason: " + webRequest.result);
                 onResult?.Invoke(false, null);
             }
             else
@@ -59,7 +73,7 @@ public class AssetBundleManager : SingletonMono<AssetBundleManager>
         path = path.ToLower().Trim();
         //Show UI Loading
         string filePath = FileHelper.GetWritablePath(LocalPath) + path;
-
+        Debug.Log("Filepath: " + filePath);
         if (File.Exists(filePath))
         {
             onSuccess();
@@ -134,7 +148,8 @@ public class AssetBundleManager : SingletonMono<AssetBundleManager>
         }
         
         Huy_SoundManager.Instance.AddSoundBGM(asset.asset as AudioClip);
-        
+        Huy_SoundManager.Instance.StopAllSoundFX();
+        Huy_SoundManager.Instance.PlaySoundBGM();
         assetBundle.Unload(false);
     }
 }
