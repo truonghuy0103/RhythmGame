@@ -40,6 +40,10 @@ namespace Huy
             
             btnX5.gameObject.SetActive(true);
             isWatchAds = false;
+            AdsManager.Instance.ShowInterstitialAds(() =>
+            {
+	            
+            });
          }
 
          public void OnHome_Clicked()
@@ -48,28 +52,33 @@ namespace Huy
 	         Huy_SoundManager.Instance.StopSoundSFX(SoundFXIndex.Victory);
 	         //Show inter ads
 	         
-	         Huy_GameManager.Instance.GoToHome();
 	         UIManager.Instance.HideUI(this);
 	         UIManager.Instance.ShowUI(UIIndex.UIMainMenu);
+	         Huy_GameManager.Instance.GoToHome();
 	         
 	         //Disable Game Content
 	         if (!isWatchAds)
 	         {
 		         //Add coin reward value to Save
+		         Huy_GameManager.Instance.GameSave.Coin += valueCoinReward;
+		         SaveManager.Instance.SaveGame();
 	         }
          }
          
          public void OnX5_Clicked()
          {
 	         Huy_SoundManager.Instance.PlaySoundSFX(SoundFXIndex.Click);
-	         UIManager.Instance.HideUI(UIIndex.UIGameplay);
-	         UIManager.Instance.HideUI(this);
+	         AdsManager.Instance.ShowRewardedAds(() =>
+	         {
+		         UIManager.Instance.HideUI(UIIndex.UIGameplay);
+		         //UIManager.Instance.HideUI(this);
 	         
-	         //Show reward ads
-	         isWatchAds = true;
-	         valueCoinReward *= 5;
-	         //Add coin reward to Save
-	         btnX5.gameObject.SetActive(false);
+		         //Show reward ads
+		         isWatchAds = true;
+		         valueCoinReward *= 5;
+		         //Add coin reward to Save
+		         btnX5.gameObject.SetActive(false);
+	         });
          }
 	}
 }

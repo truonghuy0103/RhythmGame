@@ -98,6 +98,7 @@ namespace Huy
 					}
 				}
 			}
+			AdsManager.Instance.ShowBanner();
 		}
 
 		public void OnOption_Clicked()

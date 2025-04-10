@@ -151,10 +151,13 @@ namespace Huy
 
          public void OnAds_Clicked()
          {
-	         isAds = true;
 	         Huy_SoundManager.Instance.PlaySoundSFX(SoundFXIndex.Click);
 	         //Show Reward Ads
-	         Spin();
+	         AdsManager.Instance.ShowRewardedAds(() =>
+	         {
+		         isAds = true;
+		         Spin();
+	         });
          }
 
          public override void OnCloseClick()

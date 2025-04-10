@@ -140,8 +140,12 @@ namespace Huy
          {
 	         Huy_SoundManager.Instance.PlaySoundSFX(SoundFXIndex.Click);
 	         //Show Ads
-	         Huy_GameManager.Instance.GameSave.Coin += 100;
-	         txtCoin.text = Huy_GameManager.Instance.GameSave.Coin.ToString();
+	         AdsManager.Instance.ShowRewardedAds(() =>
+	         {
+		         Debug.Log("Finished Reward ads");
+		         Huy_GameManager.Instance.GameSave.Coin += 100;
+		         txtCoin.text = Huy_GameManager.Instance.GameSave.Coin.ToString();
+	         });
          }
 
          public void UpdateTextCoin()

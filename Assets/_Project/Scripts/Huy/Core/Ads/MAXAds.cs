@@ -184,7 +184,12 @@ namespace Huy_Core
         {
             if (!string.IsNullOrEmpty(rewardedAdUnitID))
             {
-                MaxSdk.ShowRewardedAd(rewardedAdUnitID);
+                customRewardCallback = finished;
+                this.watchFailed = watchFailed;
+                if (IsRewardedReady())
+                {
+                    MaxSdk.ShowRewardedAd(rewardedAdUnitID);
+                }
             }
         }
         

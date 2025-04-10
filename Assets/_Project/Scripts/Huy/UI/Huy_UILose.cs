@@ -26,6 +26,11 @@ namespace Huy
 				goBtns.SetActive(true);
 
 			}, this);
+			
+			AdsManager.Instance.ShowInterstitialAds(() =>
+			{
+				Debug.Log("Show Inter UI Lose");
+			});
 		}
 
 		public void OnHome_Clicked()

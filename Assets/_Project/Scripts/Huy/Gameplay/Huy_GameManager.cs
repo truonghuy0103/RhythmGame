@@ -24,7 +24,7 @@ namespace Huy
         [SerializeField] private List<Transform> lsTransTargetArrows = new List<Transform>();
         [SerializeField] private List<Transform> lsPositionSpawnArrows = new List<Transform>();
 
-        [SerializeField] private GameObject goGameContent;
+        public GameObject goGameContent;
         
         [Header("---Animator---")] 
         [SerializeField] private Huy_CharacterDataBinding boyDataBinding;
