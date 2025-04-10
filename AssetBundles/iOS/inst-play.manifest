@@ -1,0 +1,17 @@
+ManifestFileVersion: 0
+CRC: 1605881169
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: 2b2f934ea7060727c1cc5b28e4c8c24d
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: 9a2ca7bdbd1871f7131daf57de908e0c
+HashAppended: 0
+ClassTypes:
+- Class: 83
+  Script: {instanceID: 0}
+SerializeReferenceClassIdentifiers: []
+Assets:
+- Assets/_Project/AssetBundle/Wuggy/Inst-play.mp3
+Dependencies: []

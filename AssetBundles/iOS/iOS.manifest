@@ -1,0 +1,97 @@
+ManifestFileVersion: 0
+CRC: 301289040
+AssetBundleManifest:
+  AssetBundleInfos:
+    Info_0:
+      Name: inst-maniacal
+      Dependencies: {}
+    Info_1:
+      Name: inst-godrays
+      Dependencies: {}
+    Info_2:
+      Name: inst-parasite
+      Dependencies: {}
+    Info_3:
+      Name: inst-promenade
+      Dependencies: {}
+    Info_4:
+      Name: inst-shotgun-shell
+      Dependencies: {}
+    Info_5:
+      Name: inst-fired
+      Dependencies: {}
+    Info_6:
+      Name: inst-let-us-in
+      Dependencies: {}
+    Info_7:
+      Name: inst-slaughter
+      Dependencies: {}
+    Info_8:
+      Name: inst-dip
+      Dependencies: {}
+    Info_9:
+      Name: inst-fading
+      Dependencies: {}
+    Info_10:
+      Name: inst-headache
+      Dependencies: {}
+    Info_11:
+      Name: inst-nerves
+      Dependencies: {}
+    Info_12:
+      Name: inst-release
+      Dependencies: {}
+    Info_13:
+      Name: inst_gospel
+      Dependencies: {}
+    Info_14:
+      Name: inst_parish
+      Dependencies: {}
+    Info_15:
+      Name: inst_worship
+      Dependencies: {}
+    Info_16:
+      Name: inst_zavodila
+      Dependencies: {}
+    Info_17:
+      Name: inst-happy
+      Dependencies: {}
+    Info_18:
+      Name: inst-really-happy
+      Dependencies: {}
+    Info_19:
+      Name: inst-smile
+      Dependencies: {}
+    Info_20:
+      Name: inst-unhappy
+      Dependencies: {}
+    Info_21:
+      Name: inst-hellclown
+      Dependencies: {}
+    Info_22:
+      Name: inst-improbable-outset
+      Dependencies: {}
+    Info_23:
+      Name: inst-madness
+      Dependencies: {}
+    Info_24:
+      Name: inst-kissy
+      Dependencies: {}
+    Info_25:
+      Name: inst-kissy_playtime
+      Dependencies: {}
+    Info_26:
+      Name: inst-ballistic
+      Dependencies: {}
+    Info_27:
+      Name: inst-overhead
+      Dependencies: {}
+    Info_28:
+      Name: inst-play
+      Dependencies: {}
+    Info_29:
+      Name: inst-playground
+      Dependencies: {}
+    Info_30:
+      Name: inst-playtime
+      Dependencies: {}

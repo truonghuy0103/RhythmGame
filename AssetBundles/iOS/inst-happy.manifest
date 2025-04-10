@@ -1,0 +1,17 @@
+ManifestFileVersion: 0
+CRC: 939515789
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: f9ffe02446eca10d10793a0e9b15c091
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: 9a2ca7bdbd1871f7131daf57de908e0c
+HashAppended: 0
+ClassTypes:
+- Class: 83
+  Script: {instanceID: 0}
+SerializeReferenceClassIdentifiers: []
+Assets:
+- Assets/_Project/AssetBundle/Sunday Night Mouse/Inst-happy.mp3
+Dependencies: []

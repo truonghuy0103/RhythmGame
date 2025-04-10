@@ -1,0 +1,17 @@
+ManifestFileVersion: 0
+CRC: 212042076
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: 040fb09b915c3d30d43d9cfccf9cf7e4
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: 9a2ca7bdbd1871f7131daf57de908e0c
+HashAppended: 0
+ClassTypes:
+- Class: 83
+  Script: {instanceID: 0}
+SerializeReferenceClassIdentifiers: []
+Assets:
+- Assets/_Project/AssetBundle/Gacello/Inst-nerves.mp3
+Dependencies: []

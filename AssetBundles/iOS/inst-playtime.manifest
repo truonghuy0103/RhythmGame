@@ -1,0 +1,17 @@
+ManifestFileVersion: 0
+CRC: 3093876339
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: 50150dccca052834a7b64cd03fd2dee0
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: 9a2ca7bdbd1871f7131daf57de908e0c
+HashAppended: 0
+ClassTypes:
+- Class: 83
+  Script: {instanceID: 0}
+SerializeReferenceClassIdentifiers: []
+Assets:
+- Assets/_Project/AssetBundle/Wuggy/Inst-playtime.mp3
+Dependencies: []

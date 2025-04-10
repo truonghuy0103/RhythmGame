@@ -1,0 +1,18 @@
+ManifestFileVersion: 0
+CRC: 1874090620
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: 67d661a7454f82963e7cd123254eab5c
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: 9a2ca7bdbd1871f7131daf57de908e0c
+HashAppended: 0
+ClassTypes:
+- Class: 83
+  Script: {instanceID: 0}
+SerializeReferenceClassIdentifiers: []
+Assets:
+- Assets/_Project/AssetBundle/Vs Kissy Missy/Inst-Lovey.mp3
+- Assets/_Project/AssetBundle/Tricky/Inst-madness.mp3
+Dependencies: []

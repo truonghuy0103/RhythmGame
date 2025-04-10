@@ -1,0 +1,18 @@
+ManifestFileVersion: 0
+CRC: 2623017719
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: 67f0ad2fdb4d36be1d01cda9271e1e51
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: 9a2ca7bdbd1871f7131daf57de908e0c
+HashAppended: 0
+ClassTypes:
+- Class: 83
+  Script: {instanceID: 0}
+SerializeReferenceClassIdentifiers: []
+Assets:
+- Assets/_Project/AssetBundle/Vs Kissy Missy/Inst-kissy.mp3
+- Assets/_Project/AssetBundle/Whitty/Inst-lo-fight.mp3
+Dependencies: []
