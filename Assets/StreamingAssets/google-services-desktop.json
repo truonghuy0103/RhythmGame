@@ -1,36 +1,28 @@
 {
   "project_info": {
-    "project_number": "1089340286388",
-    "project_id": "hieprhythm",
-    "storage_bucket": "hieprhythm.appspot.com"
+    "project_number": "473762000106",
+    "project_id": "rhythmgame-5c41b",
+    "storage_bucket": "rhythmgame-5c41b.firebasestorage.app"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:1089340286388:android:8dfeffcb78424decec3ee1",
+        "mobilesdk_app_id": "1:473762000106:ios:0796bd2e4df99dc8017b93",
         "android_client_info": {
           "package_name": "com.fnf.test"
         }
       },
-      "oauth_client": [
-        {
-          "client_id": "1089340286388-mrvlmvtoktolsd79c58cmeo8623pm5cj.apps.googleusercontent.com",
-          "client_type": 3
-        }
-      ],
       "api_key": [
         {
-          "current_key": "AIzaSyB9mXvZESwQb-WcMbgNFA3dcA0XbuThQvE"
+          "current_key": "AIzaSyBpseRL__yj_KhHvU4rK3YtUXbb4nU8Eu4"
         }
       ],
       "services": {
+        "analytics_service": {
+          "status": 0
+        },
         "appinvite_service": {
-          "other_platform_oauth_client": [
-            {
-              "client_id": "1089340286388-mrvlmvtoktolsd79c58cmeo8623pm5cj.apps.googleusercontent.com",
-              "client_type": 3
-            }
-          ]
+          "status": 1
         }
       }
     }

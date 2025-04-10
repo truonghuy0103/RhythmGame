@@ -148,6 +148,8 @@ namespace Huy
             Debug.Log("lengthSong: " + lengthSong);
             
             SetupGameplayUI(lengthSong);
+            
+            Huy_Core.GameAnalyticsManager.Instance.PlayStart(configSongData.nameSong);
         }
 
         public void SetupGameplayUI(float lengthSong)
@@ -445,6 +447,7 @@ namespace Huy
                 ClearAllArrow();
                 UIManager.Instance.HideUI(UIIndex.UIGameplay);
                 gameState = GameState.EndGame;
+                Huy_Core.GameAnalyticsManager.Instance.PlayEnd(configSongData.nameSong, "Lose", score, miss, timerSong);
                 UIManager.Instance.ShowUI(UIIndex.UILose);
             }
         }
@@ -453,6 +456,7 @@ namespace Huy
         {
             GameSave.ModeSaves[indexMode].WeekSaves[indexWeek].SongSaves[indexSongOfWeek].Score = score;
             gameState = GameState.EndGame;
+            Huy_Core.GameAnalyticsManager.Instance.PlayEnd(configSongData.nameSong, "Win", score, miss, timerSong);
             UIManager.Instance.ShowUI(UIIndex.UIWin, new WinParam()
             {
                 coinReward = 100
