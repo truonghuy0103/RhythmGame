@@ -193,42 +193,76 @@ namespace Huy_Core
         #region Callback
         private void RewardedOnOnAdRevenuePaidEvent(string arg1, MaxSdkBase.AdInfo arg2)
         {
-            throw new NotImplementedException();
+            Debug.Log("RewardedOnOnAdRevenuePaidEvent");
         }
 
         private void RewardedOnOnAdReceivedRewardEvent(string arg1, MaxSdkBase.Reward arg2, MaxSdkBase.AdInfo arg3)
         {
-            throw new NotImplementedException();
+            hasRewarded = true;
         }
 
         private void RewardedOnOnAdHiddenEvent(string arg1, MaxSdkBase.AdInfo arg2)
         {
-            throw new NotImplementedException();
+            if (hasRewarded)
+            {
+                if (customRewardCallback != null)
+                {
+                    customRewardCallback();
+                    customRewardCallback = null;
+                }
+                else
+                {
+                    rewardCallback(rewardType, rewardAmount);
+                }
+                
+                hasRewarded = false;
+            }
+            else
+            {
+                watchFailed?.Invoke();
+            }
+
+            if (closedCallback != null)
+            {
+                closedCallback();
+            }
+            
+            LoadRewardedVideo();
         }
 
         private void RewardedOnOnAdDisplayFailedEvent(string arg1, MaxSdkBase.ErrorInfo arg2, MaxSdkBase.AdInfo arg3)
         {
-            throw new NotImplementedException();
+            LoadRewardedVideo();
         }
 
         private void RewardedOnOnAdDisplayedEvent(string arg1, MaxSdkBase.AdInfo arg2)
         {
-            throw new NotImplementedException();
+            if (openedCallback != null)
+            {
+                openedCallback();
+            }
         }
 
         private void RewardedOnOnAdClickedEvent(string arg1, MaxSdkBase.AdInfo arg2)
         {
-            throw new NotImplementedException();
+            
         }
 
         private void RewardedOnOnAdLoadFailedEvent(string arg1, MaxSdkBase.ErrorInfo arg2)
         {
-            throw new NotImplementedException();
+            Debug.Log("RewardedOnOnAdLoadFailedEvent");
+            rewardedRetryAttempt++;
+            double retryDelay = Math.Pow(2,Math.Min(6, rewardedRetryAttempt));
+            if (target != null)
+            {
+                target.Invoke("LoadRewardedVideo", (float)retryDelay);
+            }
         }
 
         private void RewardedOnOnAdLoadedEvent(string arg1, MaxSdkBase.AdInfo arg2)
         {
-            throw new NotImplementedException();
+            Debug.Log("RewardedOnOnAdLoadedEvent");
+            rewardedRetryAttempt = 0;
         }
 
         private void InterstitialOnOnAdDisplayFailedEvent(string arg1, MaxSdkBase.ErrorInfo arg2, MaxSdkBase.AdInfo arg3)
