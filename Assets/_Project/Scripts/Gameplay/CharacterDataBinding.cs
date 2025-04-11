@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Huy_CharacterDataBinding : MonoBehaviour
+public class CharacterDataBinding : MonoBehaviour
 {
     [SerializeField] private Animator characterAnimator;
     [SerializeField] private bool isBoy = false;

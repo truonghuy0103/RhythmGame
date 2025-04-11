@@ -8,7 +8,7 @@ using UnityEngine.UI;
 
 namespace Huy
 {
-	public class Huy_UISkin : BaseUI
+	public class UISkin : BaseUI
 	{
 		[SerializeField] private Image imgGirl;
 		[SerializeField] private Image imgBoy;
@@ -45,23 +45,23 @@ namespace Huy
          public override void OnSetup(UIParam param = null)
          {
             base.OnSetup(param);
-            for (int i = 0; i < Huy_ConfigSkin.GetBoySkinDataLength(); i++)
+            for (int i = 0; i < ConfigSkin.GetBoySkinDataLength(); i++)
             {
-	            Huy_ConfigSkinData configSkinData = Huy_ConfigSkin.GetConfigSkinDataBoy(i);
-	            bool isBought = Huy_GameManager.Instance.GameSave.BoySkinBoughts.IndexOf(i) >= 0;
+	            ConfigSkinData configSkinData = ConfigSkin.GetConfigSkinDataBoy(i);
+	            bool isBought = GameManager.Instance.GameSave.BoySkinBoughts.IndexOf(i) >= 0;
 	            lsSkinBoyItems[i].OnSetup(this,configSkinData,isBought,false);
             }
             
-            for (int i = 0; i < Huy_ConfigSkin.GetGirlSkinDataLength(); i++)
+            for (int i = 0; i < ConfigSkin.GetGirlSkinDataLength(); i++)
             {
-	            Huy_ConfigSkinData configSkinData = Huy_ConfigSkin.GetConfigSkinDataGirl(i);
-	            bool isBought = Huy_GameManager.Instance.GameSave.GirlSkinBoughts.IndexOf(i) >= 0;
+	            ConfigSkinData configSkinData = ConfigSkin.GetConfigSkinDataGirl(i);
+	            bool isBought = GameManager.Instance.GameSave.GirlSkinBoughts.IndexOf(i) >= 0;
 				lsSkinGirlItems[i].OnSetup(this,configSkinData,isBought,true);
             }
             
-            txtCoin.text = Huy_GameManager.Instance.GameSave.Coin.ToString();
-			lsSkinBoyItems[Huy_GameManager.Instance.GameSave.CurrentIndexBoy].OnSkin_Clicked(false);
-			lsSkinGirlItems[Huy_GameManager.Instance.GameSave.CurrentIndexGirl].OnSkin_Clicked();
+            txtCoin.text = GameManager.Instance.GameSave.Coin.ToString();
+			lsSkinBoyItems[GameManager.Instance.GameSave.CurrentIndexBoy].OnSkin_Clicked(false);
+			lsSkinGirlItems[GameManager.Instance.GameSave.CurrentIndexGirl].OnSkin_Clicked();
 			//show Boy skin
 			OnShowBoySkinClick();
          }
@@ -80,10 +80,10 @@ namespace Huy
 	         imgGirl.sprite = spriteGirl;
 	         imgGirl.SetNativeSize();
 	         
-	         bool isBought = Huy_GameManager.Instance.GameSave.GirlSkinBoughts.IndexOf(indexSkin) >= 0;
+	         bool isBought = GameManager.Instance.GameSave.GirlSkinBoughts.IndexOf(indexSkin) >= 0;
 	         if (isBought)
 	         {
-		         Huy_GameManager.Instance.GameSave.CurrentIndexGirl = indexSkin;
+		         GameManager.Instance.GameSave.CurrentIndexGirl = indexSkin;
 	         }
          }
 
@@ -101,16 +101,16 @@ namespace Huy
 	         imgBoy.sprite = spriteBoy;
 	         imgBoy.SetNativeSize();
 	         
-	         bool isBought = Huy_GameManager.Instance.GameSave.BoySkinBoughts.IndexOf(indexSkin) >= 0;
+	         bool isBought = GameManager.Instance.GameSave.BoySkinBoughts.IndexOf(indexSkin) >= 0;
 	         if (isBought)
 	         {
-		         Huy_GameManager.Instance.GameSave.CurrentIndexBoy = indexSkin;
+		         GameManager.Instance.GameSave.CurrentIndexBoy = indexSkin;
 	         }
          }
 
          public void OnShowBoySkinClick()
          {
-	         Huy_SoundManager.Instance.PlaySoundSFX(SoundFXIndex.Click);
+	         SoundManager.Instance.PlaySoundSFX(SoundFXIndex.Click);
 	         
 	         btnBoy.enabled = false;
 	         btnBoy.image.sprite = spriteBtnBoySelect;
@@ -124,7 +124,7 @@ namespace Huy
 
          public void OnShowGirlSkinClick()
          {
-	         Huy_SoundManager.Instance.PlaySoundSFX(SoundFXIndex.Click);
+	         SoundManager.Instance.PlaySoundSFX(SoundFXIndex.Click);
 	         
 	         btnBoy.enabled = true;
 	         btnBoy.image.sprite = spriteBtnBoyDeselect;
@@ -138,27 +138,27 @@ namespace Huy
 
          public void OnAdsClick()
          {
-	         Huy_SoundManager.Instance.PlaySoundSFX(SoundFXIndex.Click);
+	         SoundManager.Instance.PlaySoundSFX(SoundFXIndex.Click);
 	         //Show Ads
 	         AdsManager.Instance.ShowRewardedAds(() =>
 	         {
 		         Debug.Log("Finished Reward ads");
-		         Huy_GameManager.Instance.GameSave.Coin += 100;
-		         txtCoin.text = Huy_GameManager.Instance.GameSave.Coin.ToString();
+		         GameManager.Instance.GameSave.Coin += 100;
+		         txtCoin.text = GameManager.Instance.GameSave.Coin.ToString();
 	         });
          }
 
          public void UpdateTextCoin()
          {
-	         txtCoin.text = Huy_GameManager.Instance.GameSave.Coin.ToString();
+	         txtCoin.text = GameManager.Instance.GameSave.Coin.ToString();
          }
 
          public override void OnCloseClick()
          {
 	         base.OnCloseClick();
 	         UIManager.Instance.ShowUI(UIIndex.UIMainMenu);
-	         Huy_SoundManager.Instance.PlaySoundSFX(SoundFXIndex.Click);
-	         if (Huy_GameManager.Instance.GameSave.isFirstOpen)
+	         SoundManager.Instance.PlaySoundSFX(SoundFXIndex.Click);
+	         if (GameManager.Instance.GameSave.isFirstOpen)
 	         {
 		         //Show Inter ads
 	         }

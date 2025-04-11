@@ -5,7 +5,7 @@ using UnityEngine;
 using Huy;
 namespace Huy
 {
-	public class Huy_UIRewardLogin : BaseUI
+	public class UIRewardLogin : BaseUI
 	{
 		[SerializeField] private List<SlotItem> lsSlotItems = new List<SlotItem>();
 	     public override void OnInit()
@@ -19,12 +19,12 @@ namespace Huy
             for (int i = 0; i < lsSlotItems.Count; i++)
             {
 	            //Get config daily reward
-	            Huy_ConfigDailyLoginData configDailyLoginData = Huy.Huy_ConfigDailyLogin.GetDailyLoginData(i);
+	            ConfigDailyLoginData configDailyLoginData = Huy.ConfigDailyLogin.GetDailyLoginData(i);
 	            //Debug.Log("Config: " + configDailyLoginData.coin + " " + configDailyLoginData.id);
-	            Debug.Log("login: " + Huy_GameManager.Instance.GameSave.CurrentDay + " " 
-	                      + Huy_GameManager.Instance.GameSave.CurrentDayOfWeekLogin);
-	            int currentDayLogin = Huy_GameManager.Instance.GameSave.CurrentDayLogin;
-	            int currentWeekLogin = Huy_GameManager.Instance.GameSave.CurrentDayOfWeekLogin;
+	            Debug.Log("login: " + GameManager.Instance.GameSave.CurrentDay + " " 
+	                      + GameManager.Instance.GameSave.CurrentDayOfWeekLogin);
+	            int currentDayLogin = GameManager.Instance.GameSave.CurrentDayLogin;
+	            int currentWeekLogin = GameManager.Instance.GameSave.CurrentDayOfWeekLogin;
 	            int coin = configDailyLoginData.coin;
 
 	            if (DateTime.Now.DayOfYear - currentWeekLogin == currentDayLogin)
@@ -49,7 +49,7 @@ namespace Huy
          public override void OnCloseClick()
          {
 	         base.OnCloseClick();
-	         Huy_UIMainMenu uiMainMenu = (Huy_UIMainMenu)UIManager.Instance.FindUIVisible(UIIndex.UIMainMenu);
+	         UIMainMenu uiMainMenu = (UIMainMenu)UIManager.Instance.FindUIVisible(UIIndex.UIMainMenu);
 	         uiMainMenu.UpdateTextCoin();
 	         //Show Inter ads
          }

@@ -147,9 +147,9 @@ public class AssetBundleManager : SingletonMono<AssetBundleManager>
             yield return new WaitForSeconds(1);
         }
         
-        Huy_SoundManager.Instance.AddSoundBGM(asset.asset as AudioClip);
-        Huy_SoundManager.Instance.StopAllSoundFX();
-        Huy_SoundManager.Instance.PlaySoundBGM();
+        SoundManager.Instance.AddSoundBGM(asset.asset as AudioClip);
+        SoundManager.Instance.StopAllSoundFX();
+        SoundManager.Instance.PlaySoundBGM();
         assetBundle.Unload(false);
     }
 }

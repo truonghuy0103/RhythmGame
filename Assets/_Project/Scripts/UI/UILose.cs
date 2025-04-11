@@ -5,7 +5,7 @@ using UnityEngine;
 using Huy;
 namespace Huy
 {
-	public class Huy_UILose : BaseUI
+	public class UILose : BaseUI
 	{
 		[SerializeField] private GameObject goBtns;
 
@@ -19,7 +19,7 @@ namespace Huy
 			base.OnSetup(param);
 
 			goBtns.SetActive(false);
-			Huy_SoundManager.Instance.PlaySoundSFX(SoundFXIndex.GameOver);
+			SoundManager.Instance.PlaySoundSFX(SoundFXIndex.GameOver);
 			Timer.DelayedCall(2, () =>
 			{
 				//Show UI buttons
@@ -35,8 +35,8 @@ namespace Huy
 
 		public void OnHome_Clicked()
 		{
-			Huy_SoundManager.Instance.PlaySoundSFX(SoundFXIndex.Click);
-			Huy_SoundManager.Instance.StopSoundSFX(SoundFXIndex.GameOver);
+			SoundManager.Instance.PlaySoundSFX(SoundFXIndex.Click);
+			SoundManager.Instance.StopSoundSFX(SoundFXIndex.GameOver);
 			
 			UIManager.Instance.HideUI(this);
 			UIManager.Instance.ShowUI(UIIndex.UIGameplay);
@@ -45,12 +45,12 @@ namespace Huy
 
 		public void OnRestart_Clicked()
 		{
-			Huy_SoundManager.Instance.PlaySoundSFX(SoundFXIndex.Click);
-			Huy_SoundManager.Instance.StopSoundSFX(SoundFXIndex.GameOver);
+			SoundManager.Instance.PlaySoundSFX(SoundFXIndex.Click);
+			SoundManager.Instance.StopSoundSFX(SoundFXIndex.GameOver);
 			
 			UIManager.Instance.HideUI(this);
 			//Game manager restart function
-			Huy_GameManager.Instance.RestartGame();
+			GameManager.Instance.RestartGame();
 		}
 	}
 }

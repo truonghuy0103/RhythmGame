@@ -9,7 +9,7 @@ using UnityEditor;
 
 namespace Huy
 {
-    public class Huy_UIGameplay : BaseUI
+    public class UIGameplay : BaseUI
 {
     [Header("-----Text-----")]
     [SerializeField] private TextMeshProUGUI txtSong;
@@ -99,24 +99,24 @@ namespace Huy
 
     IEnumerator CountdownToStart(float timer)
     {
-        Huy_GameManager.Instance.gameState = GameState.Ready;    
+        GameManager.Instance.gameState = GameState.Ready;    
         imgReady.gameObject.SetActive(true);
         for (int i = 0; i < lsSpriteCountdowns.Count; i++)
         {
             imgReady.sprite = lsSpriteCountdowns[i];
             imgReady.SetNativeSize();
             
-            Huy_SoundManager.Instance.PlaySoundSFX(SoundFXIndex.One + 1);
+            SoundManager.Instance.PlaySoundSFX(SoundFXIndex.One + 1);
             
             yield return new WaitForSeconds(timer);
         }
         
         imgReady.gameObject.SetActive(false);
-        Huy_SoundManager.Instance.PlaySoundSFX(SoundFXIndex.Go);
+        SoundManager.Instance.PlaySoundSFX(SoundFXIndex.Go);
         
         yield return new WaitForSeconds(timer);
-        Huy_GameManager.Instance.gameState = GameState.Playing;
-        Huy_SoundManager.Instance.PlaySoundBGM();
+        GameManager.Instance.gameState = GameState.Playing;
+        SoundManager.Instance.PlaySoundBGM();
     }
 
     public float GetDistanceMoveArrow()
@@ -147,7 +147,7 @@ namespace Huy
 
         lsImgBtns[index].transform.localScale = Vector3.one;
         
-        Huy_GameManager.Instance.OnButtonClickDown(index);
+        GameManager.Instance.OnButtonClickDown(index);
     }
 
     public void OnButtonClickUp(int index)
@@ -157,7 +157,7 @@ namespace Huy
 
         lsImgBtns[index].transform.localScale = defaultScaleBtn;
         
-        Huy_GameManager.Instance.OnButtonClickUp(index);
+        GameManager.Instance.OnButtonClickUp(index);
     }
 
     private void Update()
@@ -263,7 +263,7 @@ namespace Huy
         if (sliderHP.value >= sliderHP.maxValue)
         {
             //Show game lose
-            Huy_GameManager.Instance.ShowGameLose();
+            GameManager.Instance.ShowGameLose();
         }
     }
 
@@ -282,9 +282,9 @@ namespace Huy
     public void OnPauseGame_Clicked()
     {
         //Play click SFX
-        Huy_SoundManager.Instance.PlaySoundSFX(SoundFXIndex.Click);
-        Huy_SoundManager.Instance.PauseSoundBGM();
-        Huy_GameManager.Instance.gameState = GameState.PauseGame;
+        SoundManager.Instance.PlaySoundSFX(SoundFXIndex.Click);
+        SoundManager.Instance.PauseSoundBGM();
+        GameManager.Instance.gameState = GameState.PauseGame;
         UIManager.Instance.ShowUI(UIIndex.UIPause);
     }
 }

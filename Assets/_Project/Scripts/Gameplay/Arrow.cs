@@ -5,7 +5,7 @@ using UnityEngine;
 using DG.Tweening;
 using Huy;
 
-public class Huy_Arrow : MonoBehaviour
+public class Arrow : MonoBehaviour
 {
     [SerializeField] private Sprite spriteArrowMustHit;
     [SerializeField] private Sprite spriteArrow;
@@ -131,8 +131,8 @@ public class Huy_Arrow : MonoBehaviour
             collider2D.enabled = false;
         }
         
-        Huy_GameManager.Instance.uiGameplay.SetCorrectArrow(indexArrow);
-        Huy_GameManager.Instance.lsTargetArrows[indexArrow].SetCorrectCollider(indexArrow + 1, timerAnim);
+        GameManager.Instance.uiGameplay.SetCorrectArrow(indexArrow);
+        GameManager.Instance.lsTargetArrows[indexArrow].SetCorrectCollider(indexArrow + 1, timerAnim);
     }
 
     public void SetInvisibleTail()
@@ -140,7 +140,7 @@ public class Huy_Arrow : MonoBehaviour
         spriteRendererTail.enabled = false;
         collider2D.enabled = false;
         //Set animation idle for Main
-        Huy_GameManager.Instance.SetAnimationBoy(0);
+        GameManager.Instance.SetAnimationBoy(0);
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -152,12 +152,12 @@ public class Huy_Arrow : MonoBehaviour
             if (isMustHit)
             {
                 //Set collider for target arrow
-                Huy_GameManager.Instance.lsTargetArrows[indexArrow].SetCollider(this);
+                GameManager.Instance.lsTargetArrows[indexArrow].SetCollider(this);
             }
             else
             {
                 //Set animation for enemy
-                Huy_GameManager.Instance.SetAnimationEnemy(indexArrow + 1);
+                GameManager.Instance.SetAnimationEnemy(indexArrow + 1);
             }
         }
     }
@@ -172,17 +172,17 @@ public class Huy_Arrow : MonoBehaviour
                 if (isCorrectArrow)
                 {
                     //Add score
-                    Huy_GameManager.Instance.AddScore();
+                    GameManager.Instance.AddScore();
                 }
                 else
                 {
                     //Sub score
-                    Huy_GameManager.Instance.SubScore();
+                    GameManager.Instance.SubScore();
                     //Set anim fail for main
-                    Huy_GameManager.Instance.SetAnimationBoy(indexArrow + 5);
+                    GameManager.Instance.SetAnimationBoy(indexArrow + 5);
                 }
                 //Exit collider target arrow
-                Huy_GameManager.Instance.lsTargetArrows[indexArrow].ExitCollider(this);
+                GameManager.Instance.lsTargetArrows[indexArrow].ExitCollider(this);
             }
         }
     }

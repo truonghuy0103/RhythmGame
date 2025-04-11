@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f0339ea30ba744d24b162a63c730d3f9, type: 3}
-  m_Name: Huy Config Gameplay
+  m_Name: ConfigGameplay
   m_EditorClassIdentifier: 
   data:
   - nameMode: Default

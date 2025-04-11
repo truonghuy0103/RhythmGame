@@ -11,7 +11,7 @@ using Random = UnityEngine.Random;
 
 namespace Huy
 {
-	public class Huy_UILuckyDraw : BaseUI
+	public class UILuckyDraw : BaseUI
 	{
 		[SerializeField] private Image imgDraw;
 		[SerializeField] private TextMeshProUGUI txtCountdown;
@@ -31,7 +31,7 @@ namespace Huy
          public override void OnSetup(UIParam param = null)
          {
             base.OnSetup(param);
-            timerCountdown = Huy_GameManager.Instance.GameSave.CountdownLuckyDraw -
+            timerCountdown = GameManager.Instance.GameSave.CountdownLuckyDraw -
                               TimeSpan.FromTicks(DateTime.Now.Ticks).TotalSeconds;
 
             if (timerCountdown > 0)
@@ -49,7 +49,7 @@ namespace Huy
             //Set text coin from config lucky draw
             for (int i = 0; i < lsTextCoins.Count; i++)
             {
-	            Huy_ConfigLuckyDrawData luckyDrawData = Huy_ConfigLuckyDraw.GetConfigLuckyDrawData(i);
+	            ConfigLuckyDrawData luckyDrawData = ConfigLuckyDraw.GetConfigLuckyDrawData(i);
 	            lsTextCoins[i].text = luckyDrawData.coin.ToString();
             }
             
@@ -97,7 +97,7 @@ namespace Huy
 			         Timer.DelayedCall(1, () =>
 			         {
 				         //Get config depend Index to coin
-				         Huy_ConfigLuckyDrawData luckyDrawData = Huy_ConfigLuckyDraw.GetConfigLuckyDrawData(randIndex);
+				         ConfigLuckyDrawData luckyDrawData = ConfigLuckyDraw.GetConfigLuckyDrawData(randIndex);
 				         //Show reward
 				         UIManager.Instance.ShowUI(UIIndex.UIReward, new RewardParam()
 				         {
@@ -142,8 +142,8 @@ namespace Huy
          public void OnFree_Clicked()
          {
 	         isAds = false;
-	         Huy_SoundManager.Instance.PlaySoundSFX(SoundFXIndex.Click);
-	         Huy_GameManager.Instance.GameSave.CountdownLuckyDraw =
+	         SoundManager.Instance.PlaySoundSFX(SoundFXIndex.Click);
+	         GameManager.Instance.GameSave.CountdownLuckyDraw =
 		         TimeSpan.FromTicks(DateTime.Now.Ticks).TotalSeconds + ValueTimerCountdown;
 	         btnFree.interactable = false;
 	         Spin();
@@ -151,7 +151,7 @@ namespace Huy
 
          public void OnAds_Clicked()
          {
-	         Huy_SoundManager.Instance.PlaySoundSFX(SoundFXIndex.Click);
+	         SoundManager.Instance.PlaySoundSFX(SoundFXIndex.Click);
 	         //Show Reward Ads
 	         AdsManager.Instance.ShowRewardedAds(() =>
 	         {
@@ -162,12 +162,12 @@ namespace Huy
 
          public override void OnCloseClick()
          {
-	         Huy_SoundManager.Instance.PlaySoundSFX(SoundFXIndex.Click);
+	         SoundManager.Instance.PlaySoundSFX(SoundFXIndex.Click);
 	         base.OnCloseClick();
 	         //Show Inter ads
 	         if (UIManager.Instance.FindUIVisible(UIIndex.UIMainMenu) != null)
 	         {
-		         Huy_UIMainMenu uiMainMenu = (Huy_UIMainMenu)UIManager.Instance.FindUIVisible(UIIndex.UIMainMenu);
+		         UIMainMenu uiMainMenu = (UIMainMenu)UIManager.Instance.FindUIVisible(UIIndex.UIMainMenu);
 	         }
          }
 	}

@@ -3,16 +3,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "Huy Config Gameplay", menuName = "Config/Huy Config Gameplay",order = 4)]
-public class Huy_ConfigGameplay : ScriptableObject
+[CreateAssetMenu(fileName = "ConfigGameplay", menuName = "Config/Config Gameplay",order = 4)]
+public class ConfigGameplay : ScriptableObject
 {
-    public Huy_GameplayModeData[] data;
-    private static Huy_ConfigGameplay Instance;
+    public GameplayModeData[] data;
+    private static ConfigGameplay Instance;
 
-    public static Huy_GameplayModeData ConfigModeData(int index)
+    public static GameplayModeData ConfigModeData(int index)
     {
-        Instance = Resources.Load<Huy_ConfigGameplay>("Configs/Huy Config Gameplay");
-        Huy_GameplayModeData result = null;
+        Instance = Resources.Load<ConfigGameplay>("Configs/ConfigGameplay");
+        GameplayModeData result = null;
 
         if (Instance.data.Length > index)
         {
@@ -27,10 +27,10 @@ public class Huy_ConfigGameplay : ScriptableObject
         return result;
     }
 
-    public static Huy_GameplayWeekData ConfigWeekData(int indexMode, int indexWeek)
+    public static GameplayWeekData ConfigWeekData(int indexMode, int indexWeek)
     {
-        Instance = Resources.Load<Huy_ConfigGameplay>("Configs/Huy Config Gameplay");
-        Huy_GameplayWeekData result = null;
+        Instance = Resources.Load<ConfigGameplay>("Configs/ConfigGameplay");
+        GameplayWeekData result = null;
 
         if (Instance.data.Length > indexMode && Instance.data[indexMode].gameplayWeekDatas.Count > indexWeek)
         {
@@ -40,10 +40,10 @@ public class Huy_ConfigGameplay : ScriptableObject
         return result;
     }
     
-    public static Huy_GameplaySongData ConfigSongData(int indexMode, int indexWeek, int indexSong)
+    public static GameplaySongData ConfigSongData(int indexMode, int indexWeek, int indexSong)
     {
-        Instance = Resources.Load<Huy_ConfigGameplay>("Configs/Huy Config Gameplay");
-        Huy_GameplaySongData result = null;
+        Instance = Resources.Load<ConfigGameplay>("Configs/ConfigGameplay");
+        GameplaySongData result = null;
 
         if (Instance.data.Length > indexMode && Instance.data[indexMode].gameplayWeekDatas.Count > indexWeek &&
             Instance.data[indexMode].gameplayWeekDatas[indexWeek].gameplaySongDatas.Count > indexSong)
@@ -56,19 +56,19 @@ public class Huy_ConfigGameplay : ScriptableObject
 
     public static int GetModeLength()
     {
-        Instance=Resources.Load<Huy_ConfigGameplay>("Configs/Huy Config Gameplay");
+        Instance=Resources.Load<ConfigGameplay>("Configs/ConfigGameplay");
         return Instance.data.Length;
     }
 
     public static int GetWeekLength(int indexMode)
     {
-        Instance=Resources.Load<Huy_ConfigGameplay>("Configs/Huy Config Gameplay");
+        Instance=Resources.Load<ConfigGameplay>("Configs/ConfigGameplay");
         return Instance.data[indexMode].gameplayWeekDatas.Count;
     }
 
     public static int GetSongLength(int indexMode, int indexWeek)
     {
-        Instance=Resources.Load<Huy_ConfigGameplay>("Configs/Huy Config Gameplay");
+        Instance=Resources.Load<ConfigGameplay>("Configs/ConfigGameplay");
         return Instance.data[indexMode].gameplayWeekDatas[indexWeek].gameplaySongDatas.Count;
     }
 
@@ -85,21 +85,21 @@ public class Huy_ConfigGameplay : ScriptableObject
 }
 
 [Serializable]
-public class Huy_GameplayModeData
+public class GameplayModeData
 {
     public string nameMode;
-    public List<Huy_GameplayWeekData> gameplayWeekDatas = new List<Huy_GameplayWeekData>();
+    public List<GameplayWeekData> gameplayWeekDatas = new List<GameplayWeekData>();
 }
 
 [Serializable]
-public class Huy_GameplayWeekData
+public class GameplayWeekData
 {
     public string nameWeek;
-    public List<Huy_GameplaySongData> gameplaySongDatas = new List<Huy_GameplaySongData>();
+    public List<GameplaySongData> gameplaySongDatas = new List<GameplaySongData>();
 }
 
 [Serializable]
-public class Huy_GameplaySongData
+public class GameplaySongData
 {
     public string nameSong;
     public Sprite spriteBG;

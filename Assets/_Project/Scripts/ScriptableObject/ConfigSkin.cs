@@ -5,19 +5,19 @@ using UnityEngine;
 using Huy;
 namespace Huy
 {
-	[CreateAssetMenu(fileName = "Huy Config Skin", menuName = "Config/Huy Config Skin",order = 5)]
-	public class Huy_ConfigSkin : ScriptableObject
+	[CreateAssetMenu(fileName = "ConfigSkin", menuName = "Config/Config Skin",order = 5)]
+	public class ConfigSkin : ScriptableObject
 	{
-		public Huy_ConfigSkinData[] dataBoys;
-		public Huy_ConfigSkinData[] dataGirls;
+		public ConfigSkinData[] dataBoys;
+		public ConfigSkinData[] dataGirls;
 		
-		private static Huy_ConfigSkin Instance;
+		private static ConfigSkin Instance;
 
-		public static Huy_ConfigSkinData GetConfigSkinDataBoy(int index)
+		public static ConfigSkinData GetConfigSkinDataBoy(int index)
 		{
-			Instance = Resources.Load<Huy_ConfigSkin>("Configs/Huy Config Skin");
+			Instance = Resources.Load<ConfigSkin>("Configs/ConfigSkin");
 
-			Huy_ConfigSkinData result = null;
+			ConfigSkinData result = null;
 			foreach (var go in Instance.dataBoys)
 			{
 				if (go.id == index)
@@ -35,11 +35,11 @@ namespace Huy
 			return result;
 		}
 		
-		public static Huy_ConfigSkinData GetConfigSkinDataGirl(int index)
+		public static ConfigSkinData GetConfigSkinDataGirl(int index)
 		{
-			Instance = Resources.Load<Huy_ConfigSkin>("Configs/Huy Config Skin");
+			Instance = Resources.Load<ConfigSkin>("Configs/ConfigSkin");
 
-			Huy_ConfigSkinData result = null;
+			ConfigSkinData result = null;
 			foreach (var go in Instance.dataGirls)
 			{
 				if (go.id == index)
@@ -59,19 +59,19 @@ namespace Huy
 
 		public static int GetBoySkinDataLength()
 		{
-			Instance = Resources.Load<Huy_ConfigSkin>("Configs/Huy Config Skin");
+			Instance = Resources.Load<ConfigSkin>("Configs/ConfigSkin");
 			return Instance.dataBoys.Length;
 		}
 
 		public static int GetGirlSkinDataLength()
 		{
-			Instance = Resources.Load<Huy_ConfigSkin>("Configs/Huy Config Skin");
+			Instance = Resources.Load<ConfigSkin>("Configs/ConfigSkin");
 			return Instance.dataGirls.Length;
 		}
 	}
 
 	[Serializable]
-	public class Huy_ConfigSkinData
+	public class ConfigSkinData
 	{
 		public int id;
 		public RuntimeAnimatorController skinAnimator;

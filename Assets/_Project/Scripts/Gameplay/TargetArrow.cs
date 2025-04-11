@@ -4,7 +4,7 @@ using Huy;
 using Unity.VisualScripting.Dependencies.NCalc;
 using UnityEngine;
 
-public class Huy_TargetArrow : MonoBehaviour
+public class TargetArrow : MonoBehaviour
 {
     private bool isPress;
 
@@ -28,9 +28,9 @@ public class Huy_TargetArrow : MonoBehaviour
                 if (countCollider == 0)
                 {
                     //Set animation fail for Main
-                    Huy_GameManager.Instance.SetAnimationBoy(index + 5);
+                    GameManager.Instance.SetAnimationBoy(index + 5);
                     //Sub HP bar for Main
-                    Huy_GameManager.Instance.SubScore();
+                    GameManager.Instance.SubScore();
                 }
 
                 if (lsArrows.Count > 0)
@@ -52,13 +52,13 @@ public class Huy_TargetArrow : MonoBehaviour
         }
     }
     
-    public List<Huy_Arrow> lsArrows = new List<Huy_Arrow>();
+    public List<Arrow> lsArrows = new List<Arrow>();
 
     private int index;
 
     public int countCorrect;
 
-    public void SetCollider(Huy_Arrow arrow)
+    public void SetCollider(Arrow arrow)
     {
         if (arrow != null)
         {
@@ -71,7 +71,7 @@ public class Huy_TargetArrow : MonoBehaviour
         }
     }
 
-    public void ExitCollider(Huy_Arrow arrow)
+    public void ExitCollider(Arrow arrow)
     {
         if (arrow != null)
         {
@@ -87,6 +87,6 @@ public class Huy_TargetArrow : MonoBehaviour
     public void SetCorrectCollider(int index, float timerAnim)
     {
         countCorrect++;
-        Huy_GameManager.Instance.SetAnimationBoy(index,timerAnim);
+        GameManager.Instance.SetAnimationBoy(index,timerAnim);
     }
 }

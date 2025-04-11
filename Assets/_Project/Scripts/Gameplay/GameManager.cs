@@ -9,11 +9,11 @@ using UnityEngine.Serialization;
 
 namespace Huy
 {
-    public class Huy_GameManager : SingletonMono<Huy_GameManager>
+    public class GameManager : SingletonMono<GameManager>
     {
         public GameSave GameSave { get; set; }
         
-        public Huy_UIGameplay uiGameplay;
+        public UIGameplay uiGameplay;
 
         [Header("---Transform and Game Object---")] 
         [SerializeField] private List<GameObject> lsPrefabArrows = new List<GameObject>();
@@ -27,13 +27,13 @@ namespace Huy
         public GameObject goGameContent;
         
         [Header("---Animator---")] 
-        [SerializeField] private Huy_CharacterDataBinding boyDataBinding;
-        [SerializeField] private Huy_CharacterDataBinding girlDataBinding; 
-        [SerializeField] private Huy_CharacterDataBinding bossDataBinding;
-        private Huy_CharacterDataBinding enemyDataBinding;
+        [SerializeField] private CharacterDataBinding boyDataBinding;
+        [SerializeField] private CharacterDataBinding girlDataBinding; 
+        [SerializeField] private CharacterDataBinding bossDataBinding;
+        private CharacterDataBinding enemyDataBinding;
         
         [Header("---Data---")] 
-        private List<Huy_ArrowDataItem> lsArrowDataItems = new List<Huy_ArrowDataItem>();
+        private List<ArrowDataItem> lsArrowDataItems = new List<ArrowDataItem>();
 
         [Header("---Variables ---")] 
         private float prevTimeArrow = 0;
@@ -98,11 +98,11 @@ namespace Huy
         
         private Difficult difficult;
         
-        private Huy_ConfigWeekData configWeekData;
-        private Huy_ConfigSongData configSongData;
-        private Huy_GameplaySongData gameplaySongData;
+        private ConfigWeekData configWeekData;
+        private ConfigSongData configSongData;
+        private GameplaySongData gameplaySongData;
         
-        public List<Huy_TargetArrow> lsTargetArrows = new List<Huy_TargetArrow>();
+        public List<TargetArrow> lsTargetArrows = new List<TargetArrow>();
 
         private void Awake()
         {
@@ -135,16 +135,16 @@ namespace Huy
             
             curIndexArrow = 0;
 
-            configWeekData = Huy_ConfigMode.ConfigWeekData(indexMode, indexWeek);
-            configSongData = Huy_ConfigMode.ConfigSongData(indexMode, indexWeek, indexSongOfWeek);
+            configWeekData = ConfigMode.ConfigWeekData(indexMode, indexWeek);
+            configSongData = ConfigMode.ConfigSongData(indexMode, indexWeek, indexSongOfWeek);
             
             gameState = GameState.None;
             
             goGameContent.SetActive(true);
                 
             GetSongGameplay(indexMode, configSongData.nameJson);
-            Huy_SoundManager.Instance.PlaySoundBGM();
-            float lengthSong = Huy_SoundManager.Instance.GetLengthBGM();
+            SoundManager.Instance.PlaySoundBGM();
+            float lengthSong = SoundManager.Instance.GetLengthBGM();
             Debug.Log("lengthSong: " + lengthSong);
             
             SetupGameplayUI(lengthSong);
@@ -159,9 +159,9 @@ namespace Huy
             timeMoveArrow = defaultTimeMoveArrow * 1;
             
             //Get data json
-            Huy_RootItem rootItem =
-                JsonConvert.DeserializeObject<Huy_RootItem>(Resources.Load<TextAsset>("Jsons/" + configSongData.nameJson + "-easy").text);
-            Huy_SongItem songItem = rootItem.song;
+            RootItem rootItem =
+                JsonConvert.DeserializeObject<RootItem>(Resources.Load<TextAsset>("Jsons/" + configSongData.nameJson + "-easy").text);
+            SongDataItem songItem = rootItem.song;
 
             Debug.Log("json: " + rootItem.ToString());
 
@@ -170,7 +170,7 @@ namespace Huy
             {
                 for (int j = 0; j < songItem.notes[i].sectionNotes.Count; j++)
                 {
-                    Huy_ArrowDataItem arrowDataItem = new Huy_ArrowDataItem(songItem.notes[i].sectionNotes[j][0],
+                    ArrowDataItem arrowDataItem = new ArrowDataItem(songItem.notes[i].sectionNotes[j][0],
                         (int)(songItem.notes[i].sectionNotes[j][1] % 4), songItem.notes[i].sectionNotes[j][2],
                         songItem.notes[i].mustHitSection);
                     lsArrowDataItems.Add(arrowDataItem);
@@ -182,7 +182,7 @@ namespace Huy
             timerSong = lengthSong;
             deltaTime = timeMoveArrow - 0.1f;
             
-            Huy_SoundManager.Instance.StopSoundSFX(SoundFXIndex.SoundMenu);
+            SoundManager.Instance.StopSoundSFX(SoundFXIndex.SoundMenu);
             UIManager.Instance.ShowUI(UIIndex.UIGameplay,new GameplayParam()
             {
                 difficult = difficult,
@@ -190,7 +190,7 @@ namespace Huy
                 nameSong = configSongData.nameJson,
             });
             
-            gameplaySongData = Huy_ConfigGameplay.ConfigSongData(indexMode, indexWeek, indexSongOfWeek);
+            gameplaySongData = ConfigGameplay.ConfigSongData(indexMode, indexWeek, indexSongOfWeek);
             uiGameplay.SetSpriteIconBoss(gameplaySongData.spriteIconLose,gameplaySongData.spriteIcon);
             
             Miss = 0;
@@ -223,11 +223,11 @@ namespace Huy
                 ShowTimerSong();
                 if (indexMode == 0 && indexWeek == 0 && indexSongOfWeek == 0)
                 {
-                    LoadNoteNew(Huy_SoundManager.Instance.GetCurrentTimeSoundBGM() + deltaTime);
+                    LoadNoteNew(SoundManager.Instance.GetCurrentTimeSoundBGM() + deltaTime);
                 }
                 else
                 {
-                    CalculateCreateArrow(Huy_SoundManager.Instance.GetCurrentTimeSoundBGM() + deltaTime);
+                    CalculateCreateArrow(SoundManager.Instance.GetCurrentTimeSoundBGM() + deltaTime);
                 }
             }
         }
@@ -252,7 +252,7 @@ namespace Huy
             }
         }
 
-        private int SortByTimeAppear(Huy_ArrowDataItem obj1, Huy_ArrowDataItem obj2)
+        private int SortByTimeAppear(ArrowDataItem obj1, ArrowDataItem obj2)
         {
             return obj1.timeAppear.CompareTo(obj2.timeAppear);
         }
@@ -333,7 +333,7 @@ namespace Huy
                     GameObject goArrow = Instantiate(lsPrefabArrows[indexArrowClone],
                         lsContainSpawnArrow[indexArrowClone]);
                     goArrow.transform.localPosition = lsPositionSpawnArrows[indexArrowClone].position;
-                    Huy_Arrow arrowMove = goArrow.GetComponent<Huy_Arrow>();
+                    Arrow arrowMove = goArrow.GetComponent<Arrow>();
                     //Setup arrow
                     arrowMove.SetupArrow(timeMoveArrow, lsArrowDataItems[curIndexArrow].timeTail / 1000,
                         lsArrowDataItems[curIndexArrow].indexArrow, lsArrowDataItems[curIndexArrow].mustHit,
@@ -345,7 +345,7 @@ namespace Huy
                     GameObject goArrow = Instantiate(lsPrefabArrows[indexArrowClone],
                         lsContainSpawnEnemyArrow[indexArrowClone]);
                     goArrow.transform.localPosition = lsPositionSpawnArrows[indexArrowClone].position;
-                    Huy_Arrow arrowMove = goArrow.GetComponent<Huy_Arrow>();
+                    Arrow arrowMove = goArrow.GetComponent<Arrow>();
                     //Setup arrow
                     arrowMove.SetupArrow(timeMoveArrow, lsArrowDataItems[curIndexArrow].timeTail / 1000,
                         lsArrowDataItems[curIndexArrow].indexArrow, lsArrowDataItems[curIndexArrow].mustHit,
@@ -361,7 +361,7 @@ namespace Huy
             if (indexMod == 0)
             {
                 AudioClip songAudioClip = Resources.Load("Sounds/Inst-" + nameSong) as AudioClip;
-                Huy_SoundManager.Instance.AddSoundBGM(songAudioClip);
+                SoundManager.Instance.AddSoundBGM(songAudioClip);
             }
             else
             {
@@ -379,7 +379,7 @@ namespace Huy
             lsTargetArrows[index].IsPress = false;
             for (int i = 0; i < lsContainSpawnArrow[index].childCount; i++)
             {
-                lsContainSpawnArrow[index].GetChild(i).GetComponent<Huy_Arrow>().IsPress = false;
+                lsContainSpawnArrow[index].GetChild(i).GetComponent<Arrow>().IsPress = false;
             }
                 
         }
@@ -442,7 +442,7 @@ namespace Huy
         {
             if (gameState != GameState.EndGame)
             {
-                Huy_SoundManager.Instance.StopSoundBGM();
+                SoundManager.Instance.StopSoundBGM();
                 //Clear all arrow
                 ClearAllArrow();
                 UIManager.Instance.HideUI(UIIndex.UIGameplay);
@@ -468,7 +468,7 @@ namespace Huy
             Time.timeScale = 1;
             gameState = GameState.EndGame;
             SetupGameplay(indexMode, indexWeek, indexSongOfWeek, difficult);
-            Huy_SoundManager.Instance.StopSoundBGM();
+            SoundManager.Instance.StopSoundBGM();
             ClearAllArrow();
         }
 
@@ -477,7 +477,7 @@ namespace Huy
             Time.timeScale = 1;
             gameState = GameState.EndGame;
             UIManager.Instance.HideUI(UIIndex.UIGameplay);
-            Huy_SoundManager.Instance.StopSoundBGM();
+            SoundManager.Instance.StopSoundBGM();
             //Hide Game Object Content
             goGameContent.SetActive(false);
             ClearAllArrow();
@@ -487,7 +487,7 @@ namespace Huy
         {
             Time.timeScale = 1;
             gameState = GameState.Playing;
-            Huy_SoundManager.Instance.ResumeSoundBGM();
+            SoundManager.Instance.ResumeSoundBGM();
         }
 
         private void ClearAllArrow()
@@ -498,7 +498,7 @@ namespace Huy
                 {
                     for (int j = 0; j < lsContainSpawnArrow[i].childCount; j++)
                     {
-                        lsContainSpawnArrow[i].GetChild(j).GetComponent<Huy_Arrow>().DestroySelf();
+                        lsContainSpawnArrow[i].GetChild(j).GetComponent<Arrow>().DestroySelf();
                     }
                 }
             }
@@ -509,7 +509,7 @@ namespace Huy
                 {
                     for (int j = 0; j < lsContainSpawnEnemyArrow[i].childCount; j++)
                     {
-                        lsContainSpawnEnemyArrow[i].GetChild(j).GetComponent<Huy_Arrow>().DestroySelf();
+                        lsContainSpawnEnemyArrow[i].GetChild(j).GetComponent<Arrow>().DestroySelf();
                     }
                 }
             }
@@ -517,14 +517,14 @@ namespace Huy
     }
     
     [Serializable]
-    public class Huy_ArrowDataItem
+    public class ArrowDataItem
     {
         public float timeAppear;
         public int indexArrow;
         public float timeTail;
         public bool mustHit;
 
-        public Huy_ArrowDataItem(float timeAppear, int indexArrow, float timeTail, bool mustHit)
+        public ArrowDataItem(float timeAppear, int indexArrow, float timeTail, bool mustHit)
         {
             this.timeAppear = timeAppear;
             this.indexArrow = indexArrow;
@@ -534,13 +534,13 @@ namespace Huy
     }
 
     [Serializable]
-    public class Huy_NoteSongItem
+    public class NoteSongItem
     {
         public int lengthInStep;
         public bool mustHitSection;
         public List<float[]> sectionNotes = new List<float[]>();
 
-        public Huy_NoteSongItem(int lengthInStep, bool mustHitSection, List<float[]> sectionNotes)
+        public NoteSongItem(int lengthInStep, bool mustHitSection, List<float[]> sectionNotes)
         {
             this.lengthInStep = lengthInStep;
             this.mustHitSection = mustHitSection;
@@ -549,15 +549,15 @@ namespace Huy
     }
 
     [Serializable]
-    public class Huy_SongItem
+    public class SongDataItem
     {
-        public List<Huy_NoteSongItem> notes = new List<Huy_NoteSongItem>();
+        public List<NoteSongItem> notes = new List<NoteSongItem>();
     }
 
     [Serializable]
-    public class Huy_RootItem
+    public class RootItem
     {
-        public Huy_SongItem song;
+        public SongDataItem song;
     }
 
     public enum GameState

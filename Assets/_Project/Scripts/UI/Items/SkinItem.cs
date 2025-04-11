@@ -15,10 +15,10 @@ namespace Huy
 		[SerializeField] private GameObject goPrice;
 		[SerializeField] private Image imgSkin;
 
-		private Huy_UISkin parent;
+		private UISkin parent;
 		
 		//Config Skin data
-		private Huy_ConfigSkinData configSkinData;
+		private ConfigSkinData configSkinData;
 		
 		private bool isBought;
 		
@@ -40,7 +40,7 @@ namespace Huy
 
 		public void OnSkin_Clicked()
 		{
-			Huy_SoundManager.Instance.PlaySoundSFX(SoundFXIndex.Click);
+			SoundManager.Instance.PlaySoundSFX(SoundFXIndex.Click);
 			if (!goPrice.activeSelf)
 			{
 				GetComponent<Image>().sprite = spriteSelect;
@@ -77,7 +77,7 @@ namespace Huy
 			GetComponent<Image>().sprite = spriteDeselect;
 		}
 
-		public void OnSetup(Huy_UISkin parent, Huy_ConfigSkinData configSkinData, bool isBought, bool isSkinGirl = true)
+		public void OnSetup(UISkin parent, ConfigSkinData configSkinData, bool isBought, bool isSkinGirl = true)
 		{
 			this.parent = parent;
 			this.isBought = isBought;
@@ -99,23 +99,23 @@ namespace Huy
 
 		public void OnBuy_Clicked()
 		{
-			Huy_SoundManager.Instance.PlaySoundSFX(SoundFXIndex.Click);
-			if (Huy_GameManager.Instance.GameSave.Coin >= valueBoughtSkin && !isBought)
+			SoundManager.Instance.PlaySoundSFX(SoundFXIndex.Click);
+			if (GameManager.Instance.GameSave.Coin >= valueBoughtSkin && !isBought)
 			{
 				isBought = true;
-				Huy_GameManager.Instance.GameSave.Coin -= valueBoughtSkin;
+				GameManager.Instance.GameSave.Coin -= valueBoughtSkin;
 				goPrice.SetActive(false);
 				if (isSkinGirl)
 				{
 					int idSkinGirl = configSkinData.id;
 					//id get form config
-					Huy_GameManager.Instance.GameSave.GirlSkinBoughts.Add(idSkinGirl);
+					GameManager.Instance.GameSave.GirlSkinBoughts.Add(idSkinGirl);
 				}
 				else
 				{
 					int idSkinBoy = configSkinData.id;
 					//id get form config
-					Huy_GameManager.Instance.GameSave.BoySkinBoughts.Add(idSkinBoy);
+					GameManager.Instance.GameSave.BoySkinBoughts.Add(idSkinBoy);
 				}
 				//Update text coin
 				parent.UpdateTextCoin();

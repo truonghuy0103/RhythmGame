@@ -13,7 +13,7 @@ namespace Huy
 		public int coinReward;
 	}
 	
-	public class Huy_UIWin : BaseUI
+	public class UIWin : BaseUI
 	{
 		[SerializeField] private TextMeshProUGUI txtCoinReward;
 		[SerializeField] private TextMeshProUGUI txtCoin;
@@ -36,7 +36,7 @@ namespace Huy
             WinParam winParam = param as WinParam;
             txtCoinReward.text = "+" + winParam.coinReward;
             
-            Huy_SoundManager.Instance.PlaySoundSFX(SoundFXIndex.Victory);
+            SoundManager.Instance.PlaySoundSFX(SoundFXIndex.Victory);
             
             btnX5.gameObject.SetActive(true);
             isWatchAds = false;
@@ -48,26 +48,26 @@ namespace Huy
 
          public void OnHome_Clicked()
          {
-	         Huy_SoundManager.Instance.PlaySoundSFX(SoundFXIndex.Click);
-	         Huy_SoundManager.Instance.StopSoundSFX(SoundFXIndex.Victory);
+	         SoundManager.Instance.PlaySoundSFX(SoundFXIndex.Click);
+	         SoundManager.Instance.StopSoundSFX(SoundFXIndex.Victory);
 	         //Show inter ads
 	         
 	         UIManager.Instance.HideUI(this);
 	         UIManager.Instance.ShowUI(UIIndex.UIMainMenu);
-	         Huy_GameManager.Instance.GoToHome();
+	         GameManager.Instance.GoToHome();
 	         
 	         //Disable Game Content
 	         if (!isWatchAds)
 	         {
 		         //Add coin reward value to Save
-		         Huy_GameManager.Instance.GameSave.Coin += valueCoinReward;
+		         GameManager.Instance.GameSave.Coin += valueCoinReward;
 		         SaveManager.Instance.SaveGame();
 	         }
          }
          
          public void OnX5_Clicked()
          {
-	         Huy_SoundManager.Instance.PlaySoundSFX(SoundFXIndex.Click);
+	         SoundManager.Instance.PlaySoundSFX(SoundFXIndex.Click);
 	         AdsManager.Instance.ShowRewardedAds(() =>
 	         {
 		         UIManager.Instance.HideUI(UIIndex.UIGameplay);

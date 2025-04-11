@@ -95,17 +95,17 @@ namespace Huy
 			if (firstOpen == 0)
 			{
 				ModeSaves.Clear();
-				for (int i = 0; i < Huy_ConfigGameplay.GetModeLength(); i++)
+				for (int i = 0; i < ConfigGameplay.GetModeLength(); i++)
 				{
 					ModeSave modeSave = new ModeSave();
 					modeSave.IsDownloadAssetBundle = i == 0;
 					ModeSaves.Add(modeSave);
 
-					for (int j = 0; j < Huy_ConfigGameplay.GetWeekLength(i); j++)
+					for (int j = 0; j < ConfigGameplay.GetWeekLength(i); j++)
 					{
 						ModeSaves[i].WeekSaves.Add(new WeekSave());
 
-						for (int k = 0; k < Huy_ConfigGameplay.GetSongLength(i,j); k++)
+						for (int k = 0; k < ConfigGameplay.GetSongLength(i,j); k++)
 						{
 							SongSave songSave = new SongSave();
 							songSave.IndexSong = k;
@@ -151,19 +151,19 @@ namespace Huy
 				}
 			}
 
-			if (ModeSaves.Count < Huy_ConfigGameplay.GetModeLength())
+			if (ModeSaves.Count < ConfigGameplay.GetModeLength())
 			{
-				for (int i = ModeSaves.Count; i < Huy_ConfigGameplay.GetModeLength(); i++)
+				for (int i = ModeSaves.Count; i < ConfigGameplay.GetModeLength(); i++)
 				{
 					ModeSave modeSave = new ModeSave();
 					modeSave.IsDownloadAssetBundle = false;
 					ModeSaves.Add(modeSave);
 					
-					for (int j = 0; j < Huy_ConfigGameplay.GetWeekLength(i); j++)
+					for (int j = 0; j < ConfigGameplay.GetWeekLength(i); j++)
 					{
 						ModeSaves[i].WeekSaves.Add(new WeekSave());
 
-						for (int k = 0; k < Huy_ConfigGameplay.GetSongLength(i,j); k++)
+						for (int k = 0; k < ConfigGameplay.GetSongLength(i,j); k++)
 						{
 							SongSave songSave = new SongSave();
 							songSave.IndexSong = k;

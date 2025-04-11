@@ -4,7 +4,7 @@ using UnityEngine;
 using Huy;
 namespace Huy
 {
-	public class Huy_UIOption : BaseUI
+	public class UIOption : BaseUI
 	{
 	     public override void OnInit()
             {

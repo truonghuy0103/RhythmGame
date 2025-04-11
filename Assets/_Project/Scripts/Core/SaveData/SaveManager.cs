@@ -24,7 +24,7 @@ namespace Huy_Core
 
         private void Update()
         {
-            if (Huy_GameManager.Instance && gameSave != null)
+            if (GameManager.Instance && gameSave != null)
             {
                 timeSinceSave += Time.deltaTime;
                 if (timeSinceSave >= gameSaveInterval)

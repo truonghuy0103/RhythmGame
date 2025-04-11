@@ -1010,7 +1010,7 @@ GameObject:
   - component: {fileID: 1339348754}
   - component: {fileID: 1339348758}
   m_Layer: 5
-  m_Name: Huy.UIManager
+  m_Name: UIManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1188,7 +1188,7 @@ GameObject:
   - component: {fileID: 1593563687}
   - component: {fileID: 1593563684}
   m_Layer: 0
-  m_Name: Huy_Core.Huy_SoundManager
+  m_Name: SoundManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1621,7 +1621,7 @@ GameObject:
   - component: {fileID: 1953307783}
   - component: {fileID: 1953307782}
   m_Layer: 0
-  m_Name: Huy_Core.AdsManager
+  m_Name: AdsManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

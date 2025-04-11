@@ -51,7 +51,7 @@ namespace Huy
 
 		private void OnLogin_Clicked()
 		{
-			Huy_SoundManager.Instance.PlaySoundSFX(SoundFXIndex.Click);
+			SoundManager.Instance.PlaySoundSFX(SoundFXIndex.Click);
 			DisableSlot();
 			//Show UI Reward
 			UIManager.Instance.ShowUI(UIIndex.UIReward, new RewardParam() { valueCoin = valueCoin });
@@ -61,7 +61,7 @@ namespace Huy
 				indexLogin = 0;
 			}
 			
-			Huy_GameManager.Instance.GameSave.CurrentDayLogin = indexLogin;
+			GameManager.Instance.GameSave.CurrentDayLogin = indexLogin;
 		}
 
 		private void DisableSlot()

@@ -30,15 +30,15 @@ namespace Huy
 
 		private int price;
 
-		private Huy_UIMainMenu parent;
+		private UIMainMenu parent;
 
 		private void Awake()
 		{
 			imgFrame = GetComponent<Image>();
 		}
 
-		public void OnSetupSongItem(Huy_UIMainMenu parent, int indexMode, int indexWeek, int indexSong,
-			Huy_GameplaySongData gameplaySongData,int score, bool isBought)
+		public void OnSetupSongItem(UIMainMenu parent, int indexMode, int indexWeek, int indexSong,
+			GameplaySongData gameplaySongData,int score, bool isBought)
 		{
 			int indexFrame = indexSong % lsSpriteFrames.Count;
 			imgFrame.sprite = lsSpriteFrames[indexFrame];
@@ -74,7 +74,7 @@ namespace Huy
 
 		public void OnDifficult_Clicked(int index)
 		{
-			Huy_SoundManager.Instance.PlaySoundSFX(SoundFXIndex.Click);
+			SoundManager.Instance.PlaySoundSFX(SoundFXIndex.Click);
 			indexDifficult += index;
 			if (indexDifficult < 0)
 			{
@@ -94,10 +94,10 @@ namespace Huy
 
 		public void OnBuySongItem_Clicked()
 		{
-			Huy_SoundManager.Instance.PlaySoundSFX(SoundFXIndex.Click);
-			if (Huy_GameManager.Instance.GameSave.Coin >= price)
+			SoundManager.Instance.PlaySoundSFX(SoundFXIndex.Click);
+			if (GameManager.Instance.GameSave.Coin >= price)
 			{
-				Huy_GameManager.Instance.GameSave.Coin -= price;
+				GameManager.Instance.GameSave.Coin -= price;
 				SaveManager.Instance.SaveGame();
 				
 				goBuySong.SetActive(false);
@@ -110,25 +110,25 @@ namespace Huy
 
 		public void OnPlay_Clicked()
 		{
-			Huy_SoundManager.Instance.PlaySoundSFX(SoundFXIndex.Click);
-			if (Huy_GameManager.Instance.GameSave.isFirstOpen)
+			SoundManager.Instance.PlaySoundSFX(SoundFXIndex.Click);
+			if (GameManager.Instance.GameSave.isFirstOpen)
 			{
 				//Show inter ads
 			}
 			UIManager.Instance.HideUI(parent);
-			Huy_GameManager.Instance.SetupGameplay(indexMode, indexWeek, indexSong, (Difficult)indexDifficult);
+			GameManager.Instance.SetupGameplay(indexMode, indexWeek, indexSong, (Difficult)indexDifficult);
 		}
 
 		public void OnRewardAds_Clicked()
 		{
-			Huy_SoundManager.Instance.PlaySoundSFX(SoundFXIndex.Click);
+			SoundManager.Instance.PlaySoundSFX(SoundFXIndex.Click);
 			//Show reward ads
 			if (indexMode == 0)
 			{
 				Timer.DelayedCall(0.5f, () =>
 				{
 					UIManager.Instance.HideUI(parent);
-					Huy_GameManager.Instance.SetupGameplay(indexMode, indexWeek, indexSong, (Difficult)indexDifficult);
+					GameManager.Instance.SetupGameplay(indexMode, indexWeek, indexSong, (Difficult)indexDifficult);
 				},this);
 			}
 		}

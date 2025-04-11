@@ -11,7 +11,7 @@ namespace Huy
 	{
 		public int valueCoin;
 	}
-	public class Huy_UIReward : BaseUI
+	public class UIReward : BaseUI
 	{
 		[SerializeField] private TextMeshProUGUI txtCoin;
 	     public override void OnInit()
@@ -25,10 +25,10 @@ namespace Huy
             RewardParam rewardParam = (RewardParam)param;
             txtCoin.text = "+" + rewardParam.valueCoin.ToString();
             
-            Huy_GameManager.Instance.GameSave.Coin += rewardParam.valueCoin;
+            GameManager.Instance.GameSave.Coin += rewardParam.valueCoin;
             SaveManager.Instance.SaveGame();
 
-            Huy_UIMainMenu uiMainMenu = (Huy_UIMainMenu)UIManager.Instance.FindUIVisible(UIIndex.UIMainMenu);
+            UIMainMenu uiMainMenu = (UIMainMenu)UIManager.Instance.FindUIVisible(UIIndex.UIMainMenu);
             uiMainMenu.UpdateTextCoin();
          }
 	}

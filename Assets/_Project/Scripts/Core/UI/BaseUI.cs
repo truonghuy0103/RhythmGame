@@ -63,7 +63,7 @@ namespace Huy
 
 		public virtual void OnCloseClick()
 		{
-			Huy_SoundManager.Instance.PlaySoundSFX(SoundFXIndex.Click);
+			SoundManager.Instance.PlaySoundSFX(SoundFXIndex.Click);
 			//Hide UI from UIManager
 			UIManager.Instance.HideUI(this);
 		}

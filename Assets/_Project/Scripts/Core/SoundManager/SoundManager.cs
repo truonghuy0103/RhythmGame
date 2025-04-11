@@ -7,12 +7,12 @@ using UnityEngine;
 
 namespace Huy_Core
 {
-    public class Huy_SoundManager : SingletonMono<Huy_SoundManager>
+    public class SoundManager : SingletonMono<SoundManager>
     {
        public bool isMute = false;
-       [SerializeField] private List<Huy_SoundItem> soundFxItems = new List<Huy_SoundItem>();
+       [SerializeField] private List<SoundItem> soundFxItems = new List<SoundItem>();
        
-       private Dictionary<SoundFXIndex,Huy_SoundItem> dicSoundFxs = new Dictionary<SoundFXIndex, Huy_SoundItem>();
+       private Dictionary<SoundFXIndex,SoundItem> dicSoundFxs = new Dictionary<SoundFXIndex, SoundItem>();
        
        private List<AudioClip> lsBGMs = new List<AudioClip>();
        private AudioSource bgmSource;
@@ -156,7 +156,7 @@ namespace Huy_Core
     }
     
     [Serializable]
-    public class Huy_SoundItem
+    public class SoundItem
     {
         public SoundFXIndex soundFxIndex;
         public AudioClip soundFxClip;

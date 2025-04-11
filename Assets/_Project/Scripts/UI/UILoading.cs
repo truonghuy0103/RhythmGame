@@ -9,7 +9,7 @@ using DG.Tweening;
 
 namespace Huy
 {
-	public class Huy_UILoading : BaseUI
+	public class UILoading : BaseUI
 	{
 		[SerializeField] private TextMeshProUGUI txtLoading;
 		[SerializeField] private Image imgLoading;
@@ -24,7 +24,7 @@ namespace Huy
         
          public override void OnSetup(UIParam param = null)
          {
-	         Huy_SoundManager.Instance.PlaySoundSFX(SoundFXIndex.SoundMenu,true);
+	         SoundManager.Instance.PlaySoundSFX(SoundFXIndex.SoundMenu,true);
 	         valueSlider = 0;
 	         imgLoading.fillAmount = 0;
 	         DOTween.To(()=>imgLoading.fillAmount,x=>imgLoading.fillAmount=x,1,timerLoading).OnComplete(() =>
