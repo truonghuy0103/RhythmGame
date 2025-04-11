@@ -7,15 +7,15 @@ AnimatorOverrideController:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Daddy
-  m_Controller: {fileID: 9100000, guid: 675fc6a78cdd3154cb8562baeb80bac0, type: 2}
+  m_Controller: {fileID: 9100000, guid: fa161cd44917c483ea80c2768b5050d2, type: 2}
   m_Clips:
-  - m_OriginalClip: {fileID: 7400000, guid: 76463ef92551ff9408880e243c830b15, type: 2}
-    m_OverrideClip: {fileID: 7400000, guid: 7b8ac291e2bfb75479b9ee4c9a23e60e, type: 2}
-  - m_OriginalClip: {fileID: 7400000, guid: f890a95f417606d4bb701bef1461074c, type: 2}
-    m_OverrideClip: {fileID: 7400000, guid: 8056902087680a94ebef2471a7224817, type: 2}
-  - m_OriginalClip: {fileID: 7400000, guid: 6ad69d64fd9347a4e80259b614996696, type: 2}
-    m_OverrideClip: {fileID: 7400000, guid: 599b45cfc76199b49bbb4d8ce9e841df, type: 2}
-  - m_OriginalClip: {fileID: 7400000, guid: f6069614f47beca4698aad9b9fbb988f, type: 2}
-    m_OverrideClip: {fileID: 7400000, guid: 0f6b130244b17344e9e5c4830d8ae409, type: 2}
-  - m_OriginalClip: {fileID: 7400000, guid: 2c8b99fe3a15fde4393c0bcb623ae562, type: 2}
-    m_OverrideClip: {fileID: 7400000, guid: c8a93dd0d1629b74b96ab2e0514971dd, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 5a0fc03c4fc544fd3b301b967f592e60, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 5ef50e9925e014b1f9e1848c619e3982, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 08a85629085724ae3be64ed02e12304d, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: e5b80b2ce71e94a21a50e6cb280129a5, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 7949447643482413ab357a56cce9b826, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: aed9526025ceb4f05a53d95e9ccc66cb, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 7ec0ec6905fff429392a62079a5782bd, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: e82296d6d5ded47ff99e671f007504c4, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 8bf43c87e91844fd2a8a3e2885d9d868, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: f0ee32af00c184c64be718cb91651b00, type: 2}

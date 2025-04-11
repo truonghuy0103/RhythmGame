@@ -244,6 +244,10 @@ namespace Huy
     public void ShowTextCorrect(int index)
     {
         lsGoTexts[index].SetActive(true);
+        Timer.DelayedCall(0.25f, () =>
+        {
+            lsGoTexts[index].SetActive(false);
+        },this);
     }
 
     public void SetSliderHP(float delta)
