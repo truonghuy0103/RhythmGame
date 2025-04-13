@@ -132,7 +132,7 @@ public class Arrow : MonoBehaviour
         }
         
         GameManager.Instance.uiGameplay.SetCorrectArrow(indexArrow);
-        GameManager.Instance.uiGameplay.ShowTextCorrect(indexArrow);
+        //GameManager.Instance.uiGameplay.ShowTextCorrect(indexArrow);
         GameManager.Instance.lsTargetArrows[indexArrow].SetCorrectCollider(indexArrow + 1, timerAnim);
     }
 

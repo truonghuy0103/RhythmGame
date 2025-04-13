@@ -195,7 +195,11 @@ namespace Huy
             
             Miss = 0;
             Score = 0;
+            
+            SetupRuntimeAnimatorCharacter();
             SetupCharacter();
+            
+            uiGameplay.UpdateTimerText(timerSong);
             
             //gameState = GameState.Playing;
         }
@@ -214,6 +218,18 @@ namespace Huy
                 bossDataBinding.GetComponent<Animator>().runtimeAnimatorController = gameplaySongData.enemyAnimator;
                 enemyDataBinding = bossDataBinding;
             }
+        }
+
+        private void SetupRuntimeAnimatorCharacter()
+        {
+            int curSkinBoy = GameSave.CurrentIndexBoy;
+            int curSkinGirl = GameSave.CurrentIndexGirl;
+
+            ConfigSkinData configSkinBoyData = ConfigSkin.GetConfigSkinDataBoy(curSkinBoy);
+            ConfigSkinData configSkinGirlData = ConfigSkin.GetConfigSkinDataGirl(curSkinGirl);
+            
+            boyDataBinding.SetAnimatorController(configSkinBoyData.skinAnimator);
+            girlDataBinding.SetAnimatorController(configSkinGirlData.skinAnimator);
         }
 
         private void Update()

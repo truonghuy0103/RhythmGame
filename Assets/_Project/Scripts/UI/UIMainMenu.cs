@@ -98,6 +98,10 @@ namespace Huy
 					}
 				}
 			}
+			
+			ChangeBoySkin();
+			ChangeGirlSkin();
+			
 			AdsManager.Instance.ShowBanner();
 		}
 
@@ -228,6 +232,18 @@ namespace Huy
 			
 			goCurSelectMode = lsGoSelectModes[indexMode];
 			goCurSelectMode.SetActive(true);
+		}
+
+		public void ChangeBoySkin()
+		{
+			int curIndexSkin = gameSave.CurrentIndexBoy;
+			boyAnimator.SetFloat("Index", curIndexSkin);
+		}
+
+		public void ChangeGirlSkin()
+		{
+			int curIndexSkin = gameSave.CurrentIndexGirl;
+			girlAnimator.SetFloat("Index", curIndexSkin);
 		}
 	}
 }

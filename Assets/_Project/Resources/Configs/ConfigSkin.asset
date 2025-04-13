@@ -14,67 +14,67 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dataBoys:
   - id: 0
-    skinAnimator: {fileID: 0}
+    skinAnimator: {fileID: 22100000, guid: 96bf6d0c2b08146aa8b58aa9dfd145d1, type: 2}
     coin: 0
     spriteSkin: {fileID: 2930494915222055470, guid: 45c986fc27c604ab6b85b64d8ed7cc24, type: 3}
   - id: 1
-    skinAnimator: {fileID: 0}
+    skinAnimator: {fileID: 9100000, guid: 6dbae88be4e714c5cb4f23a2d9cbe72a, type: 2}
     coin: 1000
     spriteSkin: {fileID: 2930494915222055470, guid: 3c38289e8313640fe9205aed3cd46c78, type: 3}
   - id: 2
-    skinAnimator: {fileID: 0}
+    skinAnimator: {fileID: 22100000, guid: f6b9149b6e6f64a3ea8f3b66490ee5f3, type: 2}
     coin: 1000
     spriteSkin: {fileID: 2930494915222055470, guid: d3db16b6c091f424081ba877f733ee71, type: 3}
   - id: 3
-    skinAnimator: {fileID: 0}
+    skinAnimator: {fileID: 22100000, guid: 48aa07e4bd6b445c6b4cbfe2585b2eab, type: 2}
     coin: 1000
     spriteSkin: {fileID: -4153761269051166831, guid: 14b1f072ff56444bf9e76438eea0394b, type: 3}
   - id: 4
-    skinAnimator: {fileID: 0}
+    skinAnimator: {fileID: 22100000, guid: 93e0bea9be4784d599a740dc17cc4f80, type: 2}
     coin: 1000
     spriteSkin: {fileID: 2930494915222055470, guid: bf4173fca656e471bbebccd9dfc13f64, type: 3}
   - id: 5
-    skinAnimator: {fileID: 0}
+    skinAnimator: {fileID: 22100000, guid: 90c9a356cd2f943eea2d4bb9e58c7641, type: 2}
     coin: 1000
     spriteSkin: {fileID: 4430658574457229241, guid: 97e5f14d008924f7cb615287b571632f, type: 3}
   - id: 6
-    skinAnimator: {fileID: 0}
+    skinAnimator: {fileID: 22100000, guid: e235dc612f5a04c75b43587c3b7b1bf2, type: 2}
     coin: 1000
     spriteSkin: {fileID: 2930494915222055470, guid: df42b8a7e6246471eb1b9179fba758ae, type: 3}
   - id: 7
-    skinAnimator: {fileID: 0}
+    skinAnimator: {fileID: 22100000, guid: 7c031514fdf35425d8300e07f179f1fd, type: 2}
     coin: 1000
     spriteSkin: {fileID: 2930494915222055470, guid: 68b343b8de6b9484986979cfdb926f77, type: 3}
   dataGirls:
   - id: 0
-    skinAnimator: {fileID: 0}
+    skinAnimator: {fileID: 22100000, guid: a59a2bb928c9d4c5096913195121d582, type: 2}
     coin: 0
     spriteSkin: {fileID: 8431491585289067547, guid: fd793dcec0cca4ca092251184b166633, type: 3}
   - id: 1
-    skinAnimator: {fileID: 0}
+    skinAnimator: {fileID: 9100000, guid: fa161cd44917c483ea80c2768b5050d2, type: 2}
     coin: 1000
     spriteSkin: {fileID: 8431491585289067547, guid: fa49e38e0bca048438bf42e7208f2bc8, type: 3}
   - id: 2
-    skinAnimator: {fileID: 0}
+    skinAnimator: {fileID: 22100000, guid: a6c879aedd66042c3b0cfbf2749a4906, type: 2}
     coin: 1000
     spriteSkin: {fileID: 8431491585289067547, guid: fd6e3b26d9153440283f8deb8a01d668, type: 3}
   - id: 3
-    skinAnimator: {fileID: 0}
+    skinAnimator: {fileID: 22100000, guid: 3c15cfe5361df47db854436298cfae0b, type: 2}
     coin: 1000
     spriteSkin: {fileID: 8431491585289067547, guid: 60d4fcdc8ea6843b59d7bc6dae06cb76, type: 3}
   - id: 4
-    skinAnimator: {fileID: 0}
+    skinAnimator: {fileID: 22100000, guid: b6db12901148e4b39b6b4777e5367001, type: 2}
     coin: 1000
     spriteSkin: {fileID: 8431491585289067547, guid: 64e3788aca1b541cea847ee09912efd9, type: 3}
   - id: 5
-    skinAnimator: {fileID: 0}
+    skinAnimator: {fileID: 22100000, guid: 5aea277ac03ff453ba92e9573936bd13, type: 2}
     coin: 1000
     spriteSkin: {fileID: 8431491585289067547, guid: b14b117d11f7d4d9eb0b594e5cc2a9e7, type: 3}
   - id: 6
-    skinAnimator: {fileID: 0}
+    skinAnimator: {fileID: 22100000, guid: 6baabdfc7427444b6aa49def956a68ef, type: 2}
     coin: 1000
     spriteSkin: {fileID: 8431491585289067547, guid: a6126dffa66724b819144779f4043085, type: 3}
   - id: 7
-    skinAnimator: {fileID: 0}
+    skinAnimator: {fileID: 22100000, guid: 9254d1a86185246c1af9153867754880, type: 2}
     coin: 1000
     spriteSkin: {fileID: -7984360189194582129, guid: a525a35e0d0564b179fa5e94456688bd, type: 3}

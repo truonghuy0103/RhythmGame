@@ -12,6 +12,11 @@ public class CharacterDataBinding : MonoBehaviour
         characterAnimator = GetComponent<Animator>();
     }
 
+    public void SetAnimatorController(RuntimeAnimatorController controller)
+    {
+        characterAnimator.runtimeAnimatorController = controller;
+    }
+
     public void SetAnimationCharacter(float index)
     {
         characterAnimator.SetFloat("Index", index);
