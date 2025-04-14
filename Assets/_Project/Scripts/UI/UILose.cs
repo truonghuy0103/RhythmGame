@@ -39,7 +39,7 @@ namespace Huy
 			SoundManager.Instance.StopSoundSFX(SoundFXIndex.GameOver);
 			
 			UIManager.Instance.HideUI(this);
-			UIManager.Instance.ShowUI(UIIndex.UIGameplay);
+			UIManager.Instance.ShowUI(UIIndex.UIMainMenu);
 			//Show inter ads
 		}
 
