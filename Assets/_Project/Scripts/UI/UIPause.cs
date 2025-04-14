@@ -35,6 +35,10 @@ namespace Huy
 	         GameManager.Instance.GoToHome();
 	         UIManager.Instance.HideUI(this);
 	         UIManager.Instance.ShowUI(UIIndex.UIMainMenu);
+	         
+	         AdsManager.Instance.ShowInterstitialAds(() =>
+	         {
+	         });
          }
          
          public void OnRestart_Clicked()

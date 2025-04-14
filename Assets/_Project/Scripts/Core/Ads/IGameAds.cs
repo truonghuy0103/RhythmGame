@@ -8,9 +8,6 @@ namespace Huy_Core
     public interface IGameAds
     {
         void Init();
-
-        void Update();
-
         
         void ShowBanner();
         

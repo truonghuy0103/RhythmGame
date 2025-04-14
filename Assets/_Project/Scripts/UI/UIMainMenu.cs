@@ -101,6 +101,11 @@ namespace Huy
 			
 			ChangeBoySkin();
 			ChangeGirlSkin();
+
+			if (!SoundManager.Instance.CheckSoundFXAvailable(SoundFXIndex.SoundMenu))
+			{
+				SoundManager.Instance.PlaySoundSFX(SoundFXIndex.SoundMenu);
+			}
 			
 			AdsManager.Instance.ShowBanner();
 		}
