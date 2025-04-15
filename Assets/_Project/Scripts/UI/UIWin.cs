@@ -34,12 +34,15 @@ namespace Huy
             
             //Get coin from Save
             WinParam winParam = param as WinParam;
+            valueCoinReward = winParam.coinReward;
             txtCoinReward.text = "+" + winParam.coinReward;
+            txtCoin.text = GameManager.Instance.GameSave.Coin.ToString();
             
             SoundManager.Instance.PlaySoundSFX(SoundFXIndex.Victory);
             
             btnX5.gameObject.SetActive(true);
             isWatchAds = false;
+     
             AdsManager.Instance.ShowInterstitialAds(() =>
             {
 	            
@@ -56,13 +59,9 @@ namespace Huy
 	         UIManager.Instance.ShowUI(UIIndex.UIMainMenu);
 	         GameManager.Instance.GoToHome();
 	         
-	         //Disable Game Content
-	         if (!isWatchAds)
-	         {
-		         //Add coin reward value to Save
-		         GameManager.Instance.GameSave.Coin += valueCoinReward;
-		         SaveManager.Instance.SaveGame();
-	         }
+	         //Add coin reward value to Save
+	         GameManager.Instance.GameSave.Coin += valueCoinReward;
+	         SaveManager.Instance.SaveGame();
          }
          
          public void OnX5_Clicked()
@@ -76,6 +75,7 @@ namespace Huy
 		         //Show reward ads
 		         isWatchAds = true;
 		         valueCoinReward *= 5;
+		         txtCoinReward.text = "+" + valueCoinReward;
 		         //Add coin reward to Save
 		         btnX5.gameObject.SetActive(false);
 	         });
