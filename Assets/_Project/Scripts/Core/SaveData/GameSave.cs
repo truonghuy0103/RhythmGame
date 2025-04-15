@@ -135,8 +135,13 @@ namespace Huy
 				CurrentDayOfWeekLogin = DateTime.Now.DayOfYear;
 				CurrentDayLogin = 0;
 
-				Coin = 0;
+				Coin = 2000;
+
+				CurrentIndexBoy = 0;
+				CurrentIndexGirl = 0;
 				
+				BoySkinBoughts.Clear();
+				GirlSkinBoughts.Clear();
 				BoySkinBoughts.Add(0);
 				GirlSkinBoughts.Add(0);
 

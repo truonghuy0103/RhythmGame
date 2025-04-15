@@ -54,12 +54,12 @@ namespace Huy_Core
 
         private void ClosedCallback()
         {
-            
+            SoundManager.Instance.ResumeAll();
         }
 
         private void OpenedCallback()
         {
-            
+            SoundManager.Instance.PauseAll();
         }
 
         private void RewardCallback(string arg1, double arg2)

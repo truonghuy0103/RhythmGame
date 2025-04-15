@@ -84,10 +84,10 @@ namespace Huy
 	         if (isBought)
 	         {
 		         GameManager.Instance.GameSave.CurrentIndexGirl = indexSkin;
+		         
+		         UIMainMenu uiMainMenu = (UIMainMenu)UIManager.Instance.FindUIVisible(UIIndex.UIMainMenu);
+		         uiMainMenu.ChangeGirlSkin(); 
 	         }
-	         
-	         UIMainMenu uiMainMenu = (UIMainMenu)UIManager.Instance.FindUIVisible(UIIndex.UIMainMenu);
-	         uiMainMenu.ChangeGirlSkin();  
          }
 
          public void OnChangeSkinBoy(Sprite spriteBoy, SkinItem skinItem)
@@ -108,10 +108,10 @@ namespace Huy
 	         if (isBought)
 	         {
 		         GameManager.Instance.GameSave.CurrentIndexBoy = indexSkin;
+		         
+		         UIMainMenu uiMainMenu = (UIMainMenu)UIManager.Instance.FindUIVisible(UIIndex.UIMainMenu);
+		         uiMainMenu.ChangeBoySkin();   
 	         }
-	         
-	         UIMainMenu uiMainMenu = (UIMainMenu)UIManager.Instance.FindUIVisible(UIIndex.UIMainMenu);
-	         uiMainMenu.ChangeBoySkin();                                                             
          }
 
          public void OnShowBoySkinClick()

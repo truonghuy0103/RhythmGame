@@ -1661,12 +1661,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   adMobSupport: 1
-  adMobAndroidBannerID: ca-app-pub-1968904141824310/1812089743
-  adMobiOSBannerID: ca-app-pub-1968904141824310/5736389862
-  adMobAndroidInterID: ca-app-pub-1968904141824310/8806478166
-  adMobiOSInterID: ca-app-pub-1968904141824310/4601904618
-  adMobAndroidRewardID: ca-app-pub-1968904141824310/6413679736
-  adMobiOSRewardID: ca-app-pub-1968904141824310/9828749945
+  adMobAndroidBannerID: ca-app-pub-3940256099942544/6300978111
+  adMobiOSBannerID: ca-app-pub-3940256099942544/2934735716
+  adMobAndroidInterID: ca-app-pub-3940256099942544/1033173712
+  adMobiOSInterID: ca-app-pub-3940256099942544/4411468910
+  adMobAndroidRewardID: ca-app-pub-3940256099942544/5224354917
+  adMobiOSRewardID: ca-app-pub-3940256099942544/5224354917
 --- !u!4 &1953307783
 Transform:
   m_ObjectHideFlags: 0

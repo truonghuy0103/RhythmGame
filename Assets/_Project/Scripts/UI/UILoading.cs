@@ -27,7 +27,7 @@ namespace Huy
 	         SoundManager.Instance.PlaySoundSFX(SoundFXIndex.SoundMenu,true);
 	         valueSlider = 0;
 	         imgLoading.fillAmount = 0;
-	         DOTween.To(()=>imgLoading.fillAmount,x=>imgLoading.fillAmount=x,1,timerLoading).OnComplete(() =>
+	         DOTween.To(() => imgLoading.fillAmount, x => imgLoading.fillAmount = x, 1, timerLoading).OnComplete(() =>
 	         {
 		         UIManager.Instance.HideUI(this);
 		         UIManager.Instance.ShowUI(UIIndex.UIMainMenu);

@@ -130,12 +130,21 @@ namespace Huy_Core
 
        public void UnMute()
        {
+           isMute = false;
            for (SoundFXIndex i = SoundFXIndex.Click; i < SoundFXIndex.COUNT; i++)
            {
-               StopSoundSFX(i);
+               PlaySoundSFX(i);
            }
-           
-           isMute = false;
+       }
+
+       public void PauseAll()
+       {
+           EazySoundManager.PauseAllSounds();
+       }
+
+       public void ResumeAll()
+       {
+           EazySoundManager.ResumeAllSounds();
        }
       
     }

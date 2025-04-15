@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using Huy_Core;
 using UnityEngine;
 using GoogleMobileAds.Api;
@@ -60,8 +61,16 @@ public class AdMobAds : IGameAds
 
     public void Init()
     {
+        // ✅ Set test device IDs (recommended during development)
+        var requestConfiguration = new RequestConfiguration
+        {
+            TestDeviceIds = new List<string> { "CAD4CF379084C93DEC48AE6BCFC685CC" }
+        };
+        MobileAds.SetRequestConfiguration(requestConfiguration);
+        
         MobileAds.Initialize((InitializationStatus initStatus) =>
         {
+            Debug.Log("AdMob Initialization success ");
             //Init banner
             InitBanner();
             //Init inter
@@ -77,7 +86,13 @@ public class AdMobAds : IGameAds
     {
         if (!string.IsNullOrEmpty(_bannerAdUnitID))
         {
+            if (_bannerAd != null)
+            {
+                _bannerAd.Destroy();
+                _bannerAd = null;
+            }
             _bannerAd = new BannerView(_bannerAdUnitID, AdSize.Banner, AdPosition.Bottom);
+            
             AdRequest adRequest = new AdRequest();
             _bannerAd.LoadAd(adRequest);
             
@@ -93,14 +108,6 @@ public class AdMobAds : IGameAds
         _interstitialRetryAttempt = 0;
         
         LoadInterstitial();
-        
-        if (_interstitialAd != null)
-        {
-            _interstitialAd.OnAdClicked += InterstitialAdOnOnAdClicked;
-            _interstitialAd.OnAdFullScreenContentOpened += InterstitialAdOnOnAdFullScreenContentOpened;
-            _interstitialAd.OnAdFullScreenContentClosed += InterstitialAdOnOnAdFullScreenContentClosed;
-            _interstitialAd.OnAdFullScreenContentFailed += InterstitialAdOnOnAdFullScreenContentFailed;
-        }
     }
 
     void InitRewardedVideo()
@@ -108,14 +115,6 @@ public class AdMobAds : IGameAds
         _rewardedRetryAttempt = 0;
         
         LoadRewardedVideo();
-
-        if (_rewardedAd != null)
-        {
-            _rewardedAd.OnAdClicked += RewardedAdOnOnAdClicked;
-            _rewardedAd.OnAdFullScreenContentOpened += RewardedAdOnOnAdFullScreenContentOpened;
-            _rewardedAd.OnAdFullScreenContentClosed += RewardedAdOnOnAdFullScreenContentClosed;
-            _rewardedAd.OnAdFullScreenContentFailed += RewardedAdOnOnAdFullScreenContentFailed;
-        }
     }
 
     #endregion
@@ -161,6 +160,12 @@ public class AdMobAds : IGameAds
     {
         if (!string.IsNullOrEmpty(_interstitialAdUnitID))
         {
+            if (_interstitialAd != null)
+            {
+                _interstitialAd.Destroy();
+                _interstitialAd = null;
+            }
+            
             AdRequest adRequest = new AdRequest();
             InterstitialAd.Load(_interstitialAdUnitID, adRequest, OnInterstitialLoaded);
         }
@@ -179,6 +184,24 @@ public class AdMobAds : IGameAds
         }
 
         _interstitialAd = ad;
+
+        InterstitialAdRegisterHandler();
+    }
+
+    private void InterstitialAdRegisterHandler()
+    {
+        if (_interstitialAd != null)
+        {
+            _interstitialAd.OnAdClicked -= InterstitialAdOnOnAdClicked;
+            _interstitialAd.OnAdFullScreenContentOpened -= InterstitialAdOnOnAdFullScreenContentOpened;
+            _interstitialAd.OnAdFullScreenContentClosed -= InterstitialAdOnOnAdFullScreenContentClosed;
+            _interstitialAd.OnAdFullScreenContentFailed -= InterstitialAdOnOnAdFullScreenContentFailed;
+            
+            _interstitialAd.OnAdClicked += InterstitialAdOnOnAdClicked;
+            _interstitialAd.OnAdFullScreenContentOpened += InterstitialAdOnOnAdFullScreenContentOpened;
+            _interstitialAd.OnAdFullScreenContentClosed += InterstitialAdOnOnAdFullScreenContentClosed;
+            _interstitialAd.OnAdFullScreenContentFailed += InterstitialAdOnOnAdFullScreenContentFailed;
+        }
     }
 
     private void InterstitialAdOnOnAdFullScreenContentFailed(AdError obj)
@@ -188,7 +211,7 @@ public class AdMobAds : IGameAds
 
     private void InterstitialAdOnOnAdFullScreenContentClosed()
     {
-        LoadInterstitial();
+        
         if (_closedCallback != null)
         {
             _closedCallback();
@@ -199,6 +222,8 @@ public class AdMobAds : IGameAds
             _customRewardCallback();
             _customRewardCallback = null;
         }
+        
+        LoadInterstitial();
     }
 
     private void InterstitialAdOnOnAdFullScreenContentOpened()
@@ -238,6 +263,12 @@ public class AdMobAds : IGameAds
     {
         if (!string.IsNullOrEmpty(_rewardedAdUnitID))
         {
+            if (_rewardedAd != null)
+            {
+                _rewardedAd.Destroy();
+                _rewardedAd = null;
+            }
+            
             AdRequest adRequest = new AdRequest();
             RewardedAd.Load(_rewardedAdUnitID, adRequest, OnRewardedLoaded);
         }
@@ -256,6 +287,24 @@ public class AdMobAds : IGameAds
         }
         
         _rewardedAd = ad;
+
+        RewardedAdRegisterHandler();
+    }
+
+    private void RewardedAdRegisterHandler()
+    {
+        if (_rewardedAd != null)
+        {
+            _rewardedAd.OnAdClicked -= RewardedAdOnOnAdClicked;
+            _rewardedAd.OnAdFullScreenContentOpened -= RewardedAdOnOnAdFullScreenContentOpened;
+            _rewardedAd.OnAdFullScreenContentClosed -= RewardedAdOnOnAdFullScreenContentClosed;
+            _rewardedAd.OnAdFullScreenContentFailed -= RewardedAdOnOnAdFullScreenContentFailed;
+            
+            _rewardedAd.OnAdClicked += RewardedAdOnOnAdClicked;
+            _rewardedAd.OnAdFullScreenContentOpened += RewardedAdOnOnAdFullScreenContentOpened;
+            _rewardedAd.OnAdFullScreenContentClosed += RewardedAdOnOnAdFullScreenContentClosed;
+            _rewardedAd.OnAdFullScreenContentFailed += RewardedAdOnOnAdFullScreenContentFailed;
+        }
     }
 
     public void ShowRewardedVideo(Action finished, Action watchFailed)
@@ -283,6 +332,7 @@ public class AdMobAds : IGameAds
 
     private void RewardedAdOnOnAdFullScreenContentClosed()
     {
+        Debug.Log("AdMob RewardedVideoOnOnAdFullScreenContentClosed");
         if (_hasRewarded)
         {
             if (_customRewardCallback != null)
